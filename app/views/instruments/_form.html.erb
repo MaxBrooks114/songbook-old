@@ -1,4 +1,4 @@
-<%= form_for :instrument do |f| %>
+<%= form_for :instrument, url: instruments_path do |f| %>
 <%= f.label :name %><br>
 <%= f.text_field :name %><br>
 <%= f.label :family %><br>
