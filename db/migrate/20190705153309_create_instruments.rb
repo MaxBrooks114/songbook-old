@@ -4,6 +4,7 @@ class CreateInstruments < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :family
       t.string :range
+      t.integer :user_id
 
       t.timestamps
     end

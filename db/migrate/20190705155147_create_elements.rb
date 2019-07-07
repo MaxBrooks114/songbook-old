@@ -5,6 +5,7 @@ class CreateElements < ActiveRecord::Migration[5.2]
       t.boolean :learned
       t.integer :song_id
       t.integer :instrument_id
+      t.integer :user_id
 
       t.timestamps
     end

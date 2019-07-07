@@ -7,6 +7,7 @@ class CreateSongs < ActiveRecord::Migration[5.2]
       t.string :genre
       t.string :album
       t.boolean :learned
+      t.integer :user_id
 
       t.timestamps
     end
