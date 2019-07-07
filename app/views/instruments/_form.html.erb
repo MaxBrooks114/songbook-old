@@ -1,0 +1,9 @@
+<%= form_for :instrument do |f| %>
+<%= f.label :name %><br>
+<%= f.text_field :name %><br>
+<%= f.label :family %><br>
+<%= f.select :family, ['woodwind', 'brass', 'string', 'percussion', 'other'] %><br>
+<%= f.label :range %><br>
+<%= f.select :range, ['soprano', 'alto', 'tenor', 'baritone', 'bass'] %><br>
+<%= f.submit 'Add Instrument' %>
+<%end%>
