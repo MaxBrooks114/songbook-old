@@ -1,0 +1,5 @@
+<% if @instruments %>
+  <p><%= link_to instrument.name, instrument_path(instrument) %></p>
+<% else %>
+  <h1><%= link_to instrument.name, edit_instrument_path %></h1>
+<% end %>
