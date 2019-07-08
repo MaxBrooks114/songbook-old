@@ -16,6 +16,6 @@
 <%= f.label :lyrics %><br>
 <%= f.text_area :lyrics %><br>
 <%= f.label :Instruments %><br>
-<%= f.collection_check_boxes(:instrument_ids, Instrument.all, :name, :name) %><br>
+<%= f.collection_check_boxes(:instrument_ids, Instrument.all, :id, :name) %><br>
 <%= f.submit 'Add Song' %>
 <%end%>

@@ -7,10 +7,10 @@
     <li><%= song.album %></li>
     <li><%= song.genre %></li>
     <li><%= song.lyrics %></li>
-    <ul> Instruments:
-      <% song.instruments.each do |i| %>
-        <li><%= i.name %></li>
-      <%end%>
+    <ul>Instruments:
+  <% song.instruments.each do |i| %>
+      <li><%= i.name %></li>
+  <%end%>
     </ul>
   </ul>
 <% end %>
