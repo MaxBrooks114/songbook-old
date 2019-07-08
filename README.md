@@ -1,14 +1,20 @@
 # README
 
 To do:
-  songs
-    create
-    link to instruments
+
+instruments
+  filters
+  list of elements
+  standardize attributes for filters
+  edit bug
+songs
     build elements
-  elements
+    validations
+    standardize attributes for filters
+
+elements
     everything
 
-  users
+users
     signup
     login
-    
