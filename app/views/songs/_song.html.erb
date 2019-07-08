@@ -3,14 +3,14 @@
 <% else %>
   <h1><%= link_to song.title, edit_song_path %></h1>
   <ul>
-    <li><%= song.artist %></li>
-    <li><%= song.album %></li>
-    <li><%= song.genre %></li>
+    <li>Artist: <%= song.artist %></li>
+    <li>Album: <%= song.album %></li>
+    <li>Genre: <%= song.genre %></li>
     <li><%= song.lyrics %></li>
-    <ul>Instruments:
-  <% song.instruments.each do |i| %>
-      <li><%= i.name %></li>
-  <%end%>
-    </ul>
+    <li>Instruments:
+      <ul><% song.instruments.each do |i| %>
+        <li><%= link_to i.name, instrument_path(i)%></li>
+          <%end%>
+      </ul>
   </ul>
 <% end %>
