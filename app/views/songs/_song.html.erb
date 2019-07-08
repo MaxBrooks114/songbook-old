@@ -1,0 +1,16 @@
+<% if @songs %>
+  <p><%= link_to "#{song.title} (#{song.artist})", song%> </p>
+<% else %>
+  <h1><%= link_to song.title, edit_song_path %></h1>
+  <ul>
+    <li><%= song.artist %></li>
+    <li><%= song.album %></li>
+    <li><%= song.genre %></li>
+    <li><%= song.lyrics %></li>
+    <ul> Instruments:
+      <% song.instruments.each do |i| %>
+        <li><%= i.name %></li>
+      <%end%>
+    </ul>
+  </ul>
+<% end %>
