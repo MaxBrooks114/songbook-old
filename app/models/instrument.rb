@@ -5,4 +5,9 @@ class Instrument < ApplicationRecord
   has_many :elements, through: :songs
   validates :name, :range, :family, presence: true
   validates :name, uniqueness: { scope: :range}
+
+
+  def name_with_range
+    "#{name} (#{range})"
+  end
 end
