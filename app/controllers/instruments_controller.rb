@@ -13,7 +13,8 @@ class InstrumentsController < ApplicationController
      if @instrument.save
        redirect_to instrument_path(@instrument)
      else
-       redirect_to instruments_path
+       flash[:notice] = @instrument.errors.messages
+       redirect_to new_instrument_path
      end
    end
 

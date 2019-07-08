@@ -1,3 +1,9 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %><br>
+
+
+
 <%= form_for :instrument, url: instruments_path do |f| %>
 <%= f.label :name %><br>
 <%= f.text_field :name %><br>
