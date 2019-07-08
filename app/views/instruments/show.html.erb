@@ -1,8 +1,5 @@
 <%= render partial: "instrument", locals: {instrument: @instrument} %>
-<ul>
-  <li><%= @instrument.family %></li>
-  <li><%= @instrument.range %></li>
-</ul>
+
 
 <%= link_to "Delete", instrument_path(@instrument), method: :delete, data: { confirm: 'Are you certain you want to delete your instrument?' } %><br />
 <%= link_to "Back to your instruments", instruments_path %>

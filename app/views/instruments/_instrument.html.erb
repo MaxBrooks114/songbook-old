@@ -1,5 +1,9 @@
 <% if @instruments %>
-  <p><%= link_to instrument.name, instrument_path(instrument) %></p>
+  <p><%= link_to "#{instrument.name.upcase} (#{instrument.range})", instrument%> </p>
 <% else %>
   <h1><%= link_to instrument.name, edit_instrument_path %></h1>
+  <ul>
+    <li><%= @instrument.family %></li>
+    <li><%= @instrument.range %></li>
+  </ul>
 <% end %>
