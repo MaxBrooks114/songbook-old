@@ -6,11 +6,11 @@
     <li>Artist: <%= song.artist %></li>
     <li>Album: <%= song.album %></li>
     <li>Genre: <%= song.genre %></li>
-    <li><%= song.lyrics %></li>
     <li>Instruments:
       <ul><% song.instruments.each do |i| %>
         <li><%= link_to i.name, instrument_path(i)%></li>
           <%end%>
       </ul>
+    <li><%= song.lyrics %></li>
   </ul>
 <% end %>

@@ -1,12 +1,17 @@
 class SongsController < ApplicationController
-
+skip_before_action :verify_authenticity_token
 
   def index
      @songs = Song.all
    end
 
   def new
-    @song = Song.new
+    if params[:instrument_id] && instrument = Instrument.find(params[:instrument_id])
+        @song = instrument.songs.build
+        @song.instruments << instrument
+    else
+        @song = Song.new
+    end
   end
 
   def create

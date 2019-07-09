@@ -1,5 +1,5 @@
 <%= render partial: "instrument", locals: {instrument: @instrument} %>
 
-
+<%= link_to "Add a new song with this instrument", new_instrument_song_path(:instrument_id => @instrument.id) %><br>
 <%= link_to "Delete", instrument_path(@instrument), method: :delete, data: { confirm: 'Are you certain you want to delete your instrument?' } %><br />
 <%= link_to "Back to your instruments", instruments_path %>
