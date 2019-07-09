@@ -3,8 +3,8 @@
 <% else %>
   <h1><%= link_to instrument.name, edit_instrument_path %></h1>
   <ul>
-    <li><%= instrument.family %></li>
-    <li><%= instrument.range %></li>
+    <li>Family: <%= instrument.family %></li>
+    <li>Range: <%= instrument.range %></li>
     <li>Songs you know on this instrument:
       <ul><% instrument.songs.each do |s| %>
         <li><%= link_to s.title, song_path(s)%></li>
