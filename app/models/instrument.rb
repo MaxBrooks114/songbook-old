@@ -5,9 +5,16 @@ class Instrument < ApplicationRecord
   has_many :elements, through: :songs
   validates :name, :range, :family, presence: true
   validates :name, uniqueness: { scope: :range}
+  before_save :normalize
 
 
   def name_with_range
     "#{name} (#{range})"
   end
+
+
+  private
+    def normalize
+      self.name = name.downcase.titleize.squish
+    end
 end

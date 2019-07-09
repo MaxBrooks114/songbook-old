@@ -4,8 +4,7 @@ class Song < ApplicationRecord
   has_many :elements
   # belongs_to :user
   validates :title, presence: true, uniqueness: { scope: :artist }
-  normalize :artist, :album, with: :downcase
-
+  before_save :normalize
 
   def self.genres
     @genres = [ "Blues","Classic Rock","Country","Dance","Disco","Funk","Grunge",
@@ -31,4 +30,13 @@ class Song < ApplicationRecord
       "Folklore","Ballad","Power Ballad","Rhythmic Soul","Freestyle",
       "Duet","Punk Rock","Drum Solo","Acapella","Euro-House","Dance Hall"  ]
     end
+
+
+    private
+      def normalize
+        self.title = title.downcase.titleize.squish
+        self.artist = artist.downcase.titleize.squish
+        self.album = album.downcase.titleize.squish
+      end
+
 end
