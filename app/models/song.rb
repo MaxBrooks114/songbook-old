@@ -6,8 +6,9 @@ class Song < ApplicationRecord
   validates :title, presence: true, uniqueness: { scope: :artist }
   before_save :normalize
 
+
   def self.genres
-    @genres = [ "Blues","Classic Rock","Country","Dance","Disco","Funk","Grunge",
+    genres = [ "Blues","Classic Rock","Country","Dance","Disco","Funk","Grunge",
       "Hip-Hop","Jazz","Metal","New Age","Oldies","Other","Pop","R&B",
       "Rap","Reggae","Rock","Techno","Industrial","Alternative","Ska",
       "Death Metal","Pranks","Soundtrack","Euro-Techno","Ambient",
