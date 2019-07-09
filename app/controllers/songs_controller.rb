@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  
+
 
   def index
      @songs = Song.all
@@ -9,6 +9,12 @@ class SongsController < ApplicationController
     if params[:instrument_id] && instrument = Instrument.find(params[:instrument_id])
         @song = instrument.songs.build
         @song.instruments << instrument
+        @song.elements.build
+        @song.elements.build
+        @song.elements.build
+        @song.elements.build
+        @song.elements.build
+        @song.elements.build
     else
         @song = Song.new
     end
@@ -30,6 +36,12 @@ class SongsController < ApplicationController
 
   def edit
     @song = Song.find(params[:id])
+    @song.elements.build
+    @song.elements.build
+    @song.elements.build
+    @song.elements.build
+    @song.elements.build
+    @song.elements.build
   end
 
   def update
@@ -48,6 +60,6 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title, :lyrics, :artist, :genre, :album, :learned, instrument_ids: [])
+    params.require(:song).permit(:title, :lyrics, :artist, :genre, :album, :learned, instrument_ids: [], element_ids: [])
   end
 end

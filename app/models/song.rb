@@ -2,6 +2,7 @@ class Song < ApplicationRecord
   has_many :instruments_songs
   has_many :instruments, through: :instruments_songs
   has_many :elements
+  accepts_nested_attributes_for :elements
   # belongs_to :user
   validates :title, presence: true, uniqueness: { scope: :artist }
   before_save :normalize
