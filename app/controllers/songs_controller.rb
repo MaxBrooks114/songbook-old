@@ -1,7 +1,6 @@
 class SongsController < ApplicationController
 
-
-  def index
+   def index
      @songs = Song.all
    end
 
@@ -9,11 +8,6 @@ class SongsController < ApplicationController
     if params[:instrument_id] && instrument = Instrument.find(params[:instrument_id])
         @song = instrument.songs.build
         @song.instruments << instrument
-        @song.elements.build
-        @song.elements.build
-        @song.elements.build
-        @song.elements.build
-        @song.elements.build
         @song.elements.build
     else
         @song = Song.new
@@ -36,12 +30,9 @@ class SongsController < ApplicationController
 
   def edit
     @song = Song.find(params[:id])
-    @song.elements.build
-    @song.elements.build
-    @song.elements.build
-    @song.elements.build
-    @song.elements.build
-    @song.elements.build
+    if !@song.instruments.empty?
+      @song.elements.build
+    end
   end
 
   def update
