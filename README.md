@@ -5,15 +5,15 @@ To do:
 instruments
   filters
   list of elements
-  standardize attributes for filters
   edit bug
 songs
-    build elements
-    validations
-    standardize attributes for filters
+  filters
+    plan for inverse of
 
 elements
-    everything
+    controller
+    views
+
 
 users
     signup
