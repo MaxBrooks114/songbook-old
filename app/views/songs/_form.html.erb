@@ -15,16 +15,14 @@
 <%= f.select :genre, Song.genres.sort %><br>
 <%= f.label :Instruments %><br>
 <%= f.collection_check_boxes(:instrument_ids, Instrument.all, :id, :name_with_range) %><br>
- <% if !@song.new_record?%>
-    <%= f.label "Song Elements" %><br />
-    <%= f.fields_for :elements do |e| %>
-      <%= e.label :name %>
-      <%= e.select :name, Element.names %><br>
-      <%= e.label :instrument %>
-      <%= e.select :instrument, @song.instruments.collect {|i| i.name }  %><br>
-    <%end%>
-  <%end%>
-
+<div id='elements'>
+   <%= f.fields_for :elements do |element| %>
+     <%= render 'element_fields', :f => element %>
+   <% end %>
+   <div class='links'>
+     <%= link_to_add_association 'add element', f, :elements %>
+   </div>
+ </div>
 <%= f.label :lyrics %><br>
 <%= f.text_area :lyrics %><br>
 <%= f.submit @song.new_record? ? "Add Song" : "Update Song" %>
