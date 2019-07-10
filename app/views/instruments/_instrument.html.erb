@@ -10,5 +10,10 @@
         <li><%= link_to s.title, song_path(s)%></li>
           <%end%>
       </ul>
+    <li>Elements you can play on this instrument:
+      <ul><% instrument.elements.each do |e| %>
+        <li><%=e.name%>, <%=e.song.title%>, <%=e.learned?%></li>
+          <%end%>
+      </ul>
   </ul>
 <% end %>
