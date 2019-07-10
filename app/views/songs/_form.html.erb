@@ -20,7 +20,7 @@
      <%= render 'element_fields', :f => element %>
    <% end %>
    <div class='links'>
-     <%= link_to_add_association 'add element', f, :elements %>
+     <%= link_to_add_association 'add element', f, :elements, html_options = { count: 0 } %>
    </div>
  </div>
 <%= f.label :lyrics %><br>

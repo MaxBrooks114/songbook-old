@@ -1,8 +1,8 @@
 class Song < ApplicationRecord
   has_many :instruments_songs
   has_many :instruments, through: :instruments_songs
-  has_many :elements
-  accepts_nested_attributes_for :elements
+  has_many :elements, inverse_of: :song
+  accepts_nested_attributes_for :elements, allow_destroy: true
   # belongs_to :user
   validates :title, presence: true, uniqueness: { scope: :artist }
   before_save :normalize

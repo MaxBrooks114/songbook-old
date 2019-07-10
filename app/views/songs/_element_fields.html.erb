@@ -5,7 +5,7 @@
     </div>
     <div>
       <%= f.label :instrument %>
-      <%= f.select :instrument_id, @song.instruments.collect {|i| i.name }  %><br>
+      <%= f.collection_select(:instrument_id, @song.instruments, :id, :name)  %><br>
     </div>
     <div class="field">
       <%= f.label :learned %>

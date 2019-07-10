@@ -8,7 +8,6 @@ class SongsController < ApplicationController
     if params[:instrument_id] && instrument = Instrument.find(params[:instrument_id])
         @song = instrument.songs.build
         @song.instruments << instrument
-        @song.elements.build
     else
         @song = Song.new
     end
@@ -30,9 +29,6 @@ class SongsController < ApplicationController
 
   def edit
     @song = Song.find(params[:id])
-    if !@song.instruments.empty?
-      @song.elements.build
-    end
   end
 
   def update
@@ -51,6 +47,6 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title, :lyrics, :artist, :genre, :album, :learned, instrument_ids: [], element_ids: [])
+    params.require(:song).permit(:title, :lyrics, :artist, :genre, :album, :learned, instrument_ids: [], elements_attributes: [:id, :name, :learned, :instrument_id, :_destroy] )
   end
 end
