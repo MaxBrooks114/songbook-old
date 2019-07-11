@@ -5,7 +5,11 @@ class ElementsController < ApplicationController
    end
 
    def new
-     @element = Element.new
+     if params[:song_id] && song = Song.find(params[:song_id])
+         @element = song.elements.build
+     else
+         @element = Element.new
+     end
    end
 
    def create
