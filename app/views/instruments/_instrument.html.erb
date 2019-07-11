@@ -7,13 +7,16 @@
     <li>Range: <%= instrument.range %></li>
     <li>Songs you know on this instrument:
       <ul><% instrument.songs.each do |s| %>
-        <li><%= link_to s.title, song_path(s)%></li>
-          <%end%>
-      </ul>
-    <li>Elements you can play on this instrument:
-      <ul><% instrument.elements.each do |e| %>
-        <li><%=e.name%>, <%=e.song.title%>, <%=e.learned?%></li>
-          <%end%>
-      </ul>
-  </ul>
+        <li><%= link_to s.title, song_path(s)%>
+              <ul> <% s.elements.each do |e| %>
+                      <% if e.instrument_id == instrument.id %>
+                        <li><%= link_to "#{e.name}(#{e.learned?})", edit_element_path(e) %></li>
+                      <%end%>
+                   <%end%>
+              </ul>
+        </li>
+            <%end%>
+       </ul>
+    </li>
+ </ul>
 <% end %>
