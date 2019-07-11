@@ -8,13 +8,13 @@
     <li>Genre: <%= song.genre %></li>
     <li>Instruments:
       <ul><% song.instruments.each do |i| %>
-        <li><%= link_to i.name, instrument_path(i)%></li>
+        <li><%= link_to i.type, instrument_path(i)%></li>
           <%end%>
       </ul>
     <li>Lyrics: <%= song.lyrics %></li>
     <li>Elements:
       <ul><% song.elements.each do |e| %>
-        <li><%= e.name %> (<%= e.instrument.name %>), (<%= e.learned? %>)   </li>
+        <li><%= e.name %> (<%= e.instrument.type %>), (<%= e.learned? %>)   </li>
           <%end%>
       </ul>
   </ul>

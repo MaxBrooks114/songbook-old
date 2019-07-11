@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2019_07_06_040947) do
   end
 
   create_table "instruments", force: :cascade do |t|
-    t.string "name"
+    t.string "type"
     t.string "family"
     t.string "range"
     t.integer "user_id"
