@@ -6,7 +6,7 @@
 
 <%= form_for @instrument do |f| %>
 <%= f.label :name %><br>
-<%= f.select :name, Instrument.instrument_list, :include_blank => true  %></br>
+<%= f.select :name, Instrument.instrument_list %></br>
 <%= f.label :family %><br>
 <%= f.select :family, ['Woodwind', 'Brass', 'String', 'Percussion', 'Other'] %><br>
 <%= f.label :range %><br>
