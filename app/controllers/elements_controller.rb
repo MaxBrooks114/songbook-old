@@ -11,7 +11,14 @@ class ElementsController < ApplicationController
    def create
      @element = Element.new(element_params)
      if @element.save
-       redirect_to element_path(@element)
+       song = @element.song
+       instrument = @element.instrument
+       if !song.instruments.include?(instrument)
+         song.instruments << instrument
+         redirect_to song_path(song)
+       else
+         redirect_to song_path(song)
+       end
      else
        flash[:notice] = @element.errors.messages
        redirect_to new_element_path

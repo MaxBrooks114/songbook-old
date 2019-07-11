@@ -9,13 +9,13 @@
 <%= f.select :name, Element.names %></br>
 <% if !Song.all.empty? %>
   <%= f.label :song %><br>
-  <%= f.collection_select :song_id, Song.all, :id, :name  %><br>
+  <%= f.collection_select :song_id, Song.all, :id, :title  %><br>
 <% else %>
   <%= link_to "Add a song first!", new_song_path %><br />
 <%end%>
 <%= f.label :instrument %><br>
 <%= f.collection_select :instrument_id, Instrument.all, :id, :name_with_range %><br>
 <%= f.label :learned %>
-<%= f.check_box :learned %>
+<%= f.check_box :learned %><br />
 <%= f.submit @element.new_record? ? "Add element" : "Update element" %>
 <% end %>
