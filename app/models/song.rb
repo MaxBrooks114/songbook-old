@@ -6,7 +6,7 @@ class Song < ApplicationRecord
   accepts_nested_attributes_for :instruments
   # belongs_to :user
   validates :title, presence: true, uniqueness: { scope: :artist }
-  validates :instrument_id, confirmation: true
+  validates :instrument_ids, presence: true
   before_save :normalize
 
 
