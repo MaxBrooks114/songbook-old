@@ -6,6 +6,7 @@ class Song < ApplicationRecord
   accepts_nested_attributes_for :instruments
   # belongs_to :user
   validates :title, presence: true, uniqueness: { scope: :artist }
+  validates :instrument_id, confirmation: true
   before_save :normalize
 
 
@@ -31,7 +32,7 @@ class Song < ApplicationRecord
       "Opera","Chamber Music","Sonata","Symphony","Booty Bass","Primus",
       "Porn Groove","Satire","Slow Jam","Club","Tango","Samba",
       "Folklore","Ballad","Power Ballad","Rhythmic Soul","Freestyle",
-      "Duet","Punk Rock","Drum Solo","Acapella","Euro-House","Dance Hall"  ]
+      "Duet","Punk Rock","Drum Solo","Acapella","Euro-House","Dance Hall", "Indie", "Indie-Rock"  ]
     end
 
 
