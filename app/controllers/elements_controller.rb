@@ -36,7 +36,8 @@ class ElementsController < ApplicationController
    def update
      element = Element.find(params[:id])
      element.update(element_params)
-     redirect_to element_path(element)
+     song =  element.song
+     redirect_to song_path(song)
    end
 
    def destroy
