@@ -12,8 +12,11 @@ songs
   nested fields for new instrument
 
 elements
-    controller
+    filters
     views
+    controller
+      index
+      destroy
     add recordings???
 
 
