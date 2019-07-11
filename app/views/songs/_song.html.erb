@@ -7,15 +7,18 @@
     <li>Album: <%= song.album %></li>
     <li>Genre: <%= song.genre %></li>
     <li>Instruments:
-      <ul><% song.instruments.each do |i| %>
-        <li><%= link_to i.name, instrument_path(i)%></li>
-          <%end%>
+      <ul> <% song.instruments.each do |i| %>
+        <li> <%= link_to i.name, instrument_path(i)%>
+          <ul> <% i.elements.each do |e| %>
+                  <% if e.instrument_id == i.id %>
+                    <li><%= link_to "#{e.name}(#{e.learned?})", edit_element_path(e) %></li>
+                  <%end%>
+               <%end%>
+          </ul>
+        </li>
+        <%end%>
       </ul>
+    </li>
     <li>Lyrics: <%= song.lyrics %></li>
-    <li>Elements:
-      <ul><% song.elements.each do |e| %>
-        <li><%= e.name %> (<%= e.instrument.name %>), (<%= e.learned? %>)   </li>
-          <%end%>
-      </ul>
   </ul>
 <% end %>
