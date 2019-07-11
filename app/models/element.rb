@@ -5,14 +5,14 @@ class Element < ApplicationRecord
   # belongs_to :user
 
   def self.names
-    names = ["Intro", "Verse", "Pre-Chrous", "Chorus", "Bridge", "Coda","Solo"]
+    names = [ "Intro", "Verse", "Pre-Chrous", "Chorus", "Bridge", "Coda", "Solo" ]
   end
 
   def learned?
     if self.learned
-      "learned"
+      "Complete"
     else
-      "Need to learn"
+      "Incomplete"
     end
   end
 end
