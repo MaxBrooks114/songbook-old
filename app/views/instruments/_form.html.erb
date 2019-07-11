@@ -6,11 +6,13 @@
 
 <%= form_for @instrument do |f| %>
 <%= f.label :name %><br>
+<%= f.select :name, Instrument.instrument_list, :include_blank => true  %>
+<p> Or add your own <P>
 <%= f.text_field :name %><br>
 <%= f.label :family %><br>
-<%= f.select :family, ['woodwind', 'brass', 'string', 'percussion', 'other'] %><br>
+<%= f.select :family, ['Woodwind', 'Brass', 'String', 'Percussion', 'Other'] %><br>
 <%= f.label :range %><br>
-<%= f.select :range, ['soprano', 'alto', 'tenor', 'baritone', 'bass'] %><br>
+<%= f.select :range, ['Soprano', 'Alto', 'Tenor', 'Baritone', 'Bass', 'N/A'] %><br>
 <%= f.submit @instrument.new_record? ? "Add Instrument" : "Update Instrument" %>
 <% end %>
 
