@@ -19,9 +19,9 @@ class ElementsController < ApplicationController
        instrument = @element.instrument
        if !song.instruments.include?(instrument)
          song.instruments << instrument
-         redirect_to song_path(song)
+         redirect_to element_path(element)
        else
-         redirect_to song_path(song)
+         redirect_to element_path(element)
        end
      else
        flash[:notice] = @element.errors.messages
@@ -41,7 +41,7 @@ class ElementsController < ApplicationController
      element = Element.find(params[:id])
      element.update(element_params)
      song =  element.song
-     redirect_to song_path(song)
+     redirect_to element_path(element)
    end
 
    def destroy
