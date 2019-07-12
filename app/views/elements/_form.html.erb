@@ -15,6 +15,10 @@
 <%end%>
 <%= f.label :instrument %><br>
 <%= f.collection_select :instrument_id, Instrument.all, :id, :name_with_range %><br>
+<%= f.label :key %>
+<%= f.select :key, Element.keys %><br />
+<%= f.label :tempo %>
+<%= f.text_field :tempo %><br />
 <%= f.label :learned %>
 <%= f.check_box :learned %><br />
 <%= f.submit @element.new_record? ? "Add element" : "Update element" %>
