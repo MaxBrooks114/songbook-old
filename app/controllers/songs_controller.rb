@@ -10,7 +10,7 @@ class SongsController < ApplicationController
     elsif !params[:album].blank?
         @songs = Song.where(album: params[:album])
     else
-      @songs = Song.all.sort
+      @songs = Song.all
     end
    end
 
