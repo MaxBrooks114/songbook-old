@@ -1,26 +1,22 @@
 # README
 
 To do:
+
 all
   inverse_of?
+  refactor
+    DB logic out of controllers
+    DRY
+  add navigational links
+
 
 instruments
-  filters
+
 
 songs
-  filters
-  nested fields for new instrument
+
 
 elements
-    filters
-    views
-    controller
-      index
-      destroy
-    add recordings???
-
-
-
 
 
 users
