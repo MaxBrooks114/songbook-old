@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  helper_method :params
+
    def index
      @instruments = Instrument.all
     if !params[:instruments].blank?
@@ -62,6 +62,6 @@ class SongsController < ApplicationController
   private
 
   def song_params
-    params.require(:song).permit(:title, :lyrics, :artist, :genre, :album, :learned, instrument_ids: [], elements_attributes: [:id, :name, :learned, :instrument_id, :_destroy] )
+    params.require(:song).permit(:title, :lyrics, :artist, :genre, :album, :learned, instrument_ids: [], elements_attributes: [:id, :name, :key, :tempo, :learned, :instrument_id, :_destroy] )
   end
 end
