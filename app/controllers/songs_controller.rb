@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
   helper_method :params
    def index
+     @instruments = Instrument.all
     if !params[:instruments].blank?
         @songs = Song.where(instruments: params[:instruments])
     elsif !params[:genre].blank?
@@ -15,6 +16,7 @@ class SongsController < ApplicationController
    end
 
   def new
+    @instruments = Instrument.all
     if params[:instrument_id] && instrument = Instrument.find(params[:instrument_id])
         @song = instrument.songs.build
         @song.instruments << instrument
@@ -40,6 +42,7 @@ class SongsController < ApplicationController
   end
 
   def edit
+    @instruments = Instrument.all
     @song = Song.find(params[:id])
   end
 
