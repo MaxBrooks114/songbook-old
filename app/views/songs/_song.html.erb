@@ -10,8 +10,8 @@
       <ul> <% song.instruments.each do |i| %>
         <li> <%= link_to i.name, instrument_path(i)%>
           <ul> <% i.elements.each do |e| %>
-                  <% if e.instrument_id == i.id %>
-                    <li><%=link_to e.name, element_path(e) %></li>
+                  <% if e.song_id == song.id %>
+                      <li><%=link_to e.name, element_path(e) %></li>
                   <%end%>
                <%end%>
           </ul>
