@@ -3,7 +3,6 @@ class Song < ApplicationRecord
   has_many :instruments, through: :instruments_songs
   has_many :elements, inverse_of: :song, :dependent => :destroy
   accepts_nested_attributes_for :elements, allow_destroy: true
-  accepts_nested_attributes_for :instruments
   # belongs_to :user
   validates :title, presence: true, uniqueness: { scope: :artist }
   validates :instrument_ids, presence: true

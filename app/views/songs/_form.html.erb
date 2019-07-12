@@ -13,15 +13,21 @@
 <%= f.text_field :album%><br>
 <%= f.label :genre %><br>
 <%= f.select :genre, Song.genres.sort %><br>
-<%= f.label :Instruments %><br>
-<%= f.collection_check_boxes(:instrument_ids, Instrument.all, :id, :name_with_range) %><br>
+<% !if Instrument.all.empty? %>
+    <%= link_to "You Have no instruments! Add one here first", new_instrument_path %>
+<%else%>
+    <%= f.label :Instruments %><br>
+    <%= f.collection_check_boxes(:instrument_ids, Instrument.all, :id, :name_with_range) %><br>
+<%end%>
 <div id='elements'>
-   <%= f.fields_for :elements do |element| %>
-     <%= render 'element_fields', :f => element %>
-   <% end %>
-   <div class='links'>
-     <%= link_to_add_association 'add element', f, :elements, html_options = { count: 0 } %>
-   </div>
+   <%if !@song.new_record? %>
+     <%= f.fields_for :elements do |element| %>
+        <%= render 'element_fields', :f => element %>
+     <% end %>
+     <div class='links'>
+        <%= link_to_add_association 'add element', f, :elements, html_options = { count: 0 } %>
+     </div>
+   <%end%>
  </div>
 <%= f.label :lyrics %><br>
 <%= f.text_area :lyrics %><br>

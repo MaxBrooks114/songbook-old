@@ -8,6 +8,8 @@ class SongsController < ApplicationController
     if params[:instrument_id] && instrument = Instrument.find(params[:instrument_id])
         @song = instrument.songs.build
         @song.instruments << instrument
+    elsif Instrument.all.empty?
+        redirect_to new_instrument_path
     else
         @song = Song.new
     end
