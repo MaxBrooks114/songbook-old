@@ -10,7 +10,7 @@
         <li><%= link_to s.title, song_path(s)%>
               <ul> <% s.elements.each do |e| %>
                       <% if e.instrument_id == instrument.id %>
-                        <li><%= link_to "#{e.name}(#{e.learned?})", edit_element_path(e) %></li>
+                        <li><%= link_to e.name, element_path(e) %></li>
                       <%end%>
                    <%end%>
               </ul>
