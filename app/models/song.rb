@@ -34,6 +34,19 @@ class Song < ApplicationRecord
       "Duet","Punk Rock","Drum Solo","Acapella","Euro-House","Dance Hall", "Indie", "Indie-Rock"  ]
     end
 
+    def self.used_genres
+      select(:genre).distinct.map { |s| s.genre }
+    end
+
+    def self.used_artists
+      select(:artist).distinct.map { |s| s.artist }
+    end
+
+    def self.used_albums
+      select(:album).distinct.map { |s| s.album}
+    end
+
+
 
     private
       def normalize

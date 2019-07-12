@@ -3,8 +3,14 @@ class SongsController < ApplicationController
    def index
     if !params[:instruments].blank?
         @songs = Song.where(instruments: params[:instruments])
+    elsif !params[:genre].blank?
+        @songs = Song.where(genre: params[:genre])
+    elsif !params[:artist].blank?
+        @songs = Song.where(artist: params[:artist])
+    elsif !params[:album].blank?
+        @songs = Song.where(album: params[:album])
     else
-        @songs = Song.all
+      @songs = Song.all.sort
     end
    end
 

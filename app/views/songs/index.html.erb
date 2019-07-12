@@ -3,6 +3,9 @@
   <h3>Filter posts:</h3>
   <%= form_tag("/songs", method: "get") do %>
     <%= select_tag "instruments", options_from_collection_for_select(Instrument.all, "id", "name"), include_blank: true %>
+    <%= select_tag "artist", options_for_select(Song.used_artists), include_blank: true %>
+    <%= select_tag "genre", options_for_select(Song.used_genres), include_blank: true %>
+    <%= select_tag "album", options_for_select(Song.used_albums) %>
     <%= submit_tag "Filter" %>
   <% end %>
 </div>
