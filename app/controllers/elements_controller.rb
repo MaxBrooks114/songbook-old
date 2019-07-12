@@ -1,11 +1,25 @@
 class ElementsController < ApplicationController
 
   def index
-     @elements = Element.all
+     @instruments = Instrument.all
+     @songs = Song.all
+     if !params[:instrument].blank?
+         @elements = Element.where(instrument: params[:instrument])
+     elsif !params[:song].blank?
+         @elements = Element.where(song: params[:song])
+     elsif !params[:key].blank?
+         @elements = Element.where(key: params[:key])
+     elsif !params[:tempo].blank?
+         @elements = Element.where(tempo: params[:tempo])
+     elsif !params[:learned].blank?
+         @elements = Element.where(learned: params[:learned])
+     else
+       @elements = Element.all
+    end
    end
 
    def new
-     if params[:song_id] && song = Song.find(params[:song_id])
+     if params[:song_id] && song = Element.find(params[:song_id])
          @element = song.elements.build
      else
          @element = Element.new
