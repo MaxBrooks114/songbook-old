@@ -1,3 +1,11 @@
 <h1> Instruments </h1>
+<div>
+  <h3>Filter Instruments:</h3>
+  <%= form_tag("/songs", method: "get") do %>
+    <p>Family <%= select_tag "family", options_for_select(Instrument.used_families), include_blank: true %></p>
+    <p>Range<%= select_tag "range", options_for_select(Instrument.used_ranges), include_blank: true %></p>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
 <%= render(@instruments) %>
 <%= link_to "Add a new instrument", new_instrument_path %>

@@ -1,7 +1,13 @@
 class InstrumentsController < ApplicationController
 
   def index
-     @instruments = Instrument.all
+    if !params[:family].blank?
+      @instruments = Instrument.where(family: params[:family])
+    elsif !params[:range].blank?
+      @instruments = Instrument.where(range: params[:range])
+    else
+      @instruments = Instrument.all
+    end
    end
 
    def new
