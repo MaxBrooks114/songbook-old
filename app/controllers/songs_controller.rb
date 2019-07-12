@@ -1,7 +1,11 @@
 class SongsController < ApplicationController
-
+  helper_method :params
    def index
-     @songs = Song.all
+    if !params[:instruments].blank?
+        @songs = Song.where(instruments: params[:instruments])
+    else
+        @songs = Song.all
+    end
    end
 
   def new
