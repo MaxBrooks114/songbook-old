@@ -14,6 +14,8 @@ ActiveRecord::Schema.define(version: 2019_07_06_040947) do
 
   create_table "elements", force: :cascade do |t|
     t.string "name"
+    t.integer "tempo"
+    t.string "key"
     t.boolean "learned"
     t.integer "song_id"
     t.integer "instrument_id"
