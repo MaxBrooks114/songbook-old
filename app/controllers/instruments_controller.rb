@@ -1,13 +1,13 @@
 class InstrumentsController < ApplicationController
 
   def index
-     @user = current_user
+    @user = current_user
     if !params[:family].blank?
-      @instruments = Instrument.where(family: params[:family])
+      @instruments = @user.instruments.where(family: params[:family])
     elsif !params[:range].blank?
-      @instruments = Instrument.where(range: params[:range])
+      @instruments = @user.instruments.where(range: params[:range])
     else
-      @instruments = Instrument.all
+      @instruments = @user.instruments
     end
    end
 
