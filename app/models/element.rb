@@ -3,6 +3,7 @@ class Element < ApplicationRecord
   belongs_to :instrument, inverse_of: :elements
   belongs_to :user, inverse_of: :elements
   validates :name, presence: true
+  validates :name, uniqueness: { scope: [:instrument_id, :song_id] }
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
 
 
@@ -13,7 +14,7 @@ class Element < ApplicationRecord
 
   def self.keys
     keys = ["C Major", "C# Major", "D Major", "D# Major", "E Major", "F Major",
-         "F# Major", "G Major", "G Major#", "A Major", "A# Major", "B Major", "C Minor", "C# Minor", "D Minor", "D# Minor", "E Minor", "F Minor",
+         "F# Major", "G Major", "G# Major", "A Major", "A# Major", "B Major", "C Minor", "C# Minor", "D Minor", "D# Minor", "E Minor", "F Minor",
               "F# Minor", "G Minor", "G# Minor", "A Minor", "A# Minor", "B Minor" ]
   end
 
