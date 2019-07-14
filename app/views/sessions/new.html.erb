@@ -1,0 +1,13 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %><br>
+
+
+
+<%= form_tag("/login", method: "post") do %>
+  <%= label_tag :username, 'Your username' %>
+  <%= text_field_tag :username  %><br>
+  <%= label_tag :password, 'Your password:' %><br>
+  <%= password_field_tag :password %><br>
+  <%= submit_tag 'Sign In' %>
+<% end %>

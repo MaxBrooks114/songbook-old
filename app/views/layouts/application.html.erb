@@ -10,6 +10,11 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= yield %><br />
+    <br />
+    <br />
+    <% if session[:user_id] %>
+      <%= link_to "Log Out", logout_path, :method => :post %>
+    <% end %>
   </body>
 </html>

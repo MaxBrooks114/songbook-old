@@ -14,6 +14,10 @@ resources :users do
 
 end
 
+get '/login' => 'sessions#new'
+post '/login' => 'sessions#create'
+post '/logout' => 'sessions#destroy'
+
 
 root to: "application#home"
 end
