@@ -1,5 +1,5 @@
 class InstrumentsSong < ApplicationRecord
-  belongs_to :song
-  belongs_to :instrument
-  belongs_to :user 
+  belongs_to :song, inverse_of: :instruments_songs
+  belongs_to :instrument, inverse_of: :instruments_songs
+  belongs_to :user, inverse_of: :instruments_songs 
 end

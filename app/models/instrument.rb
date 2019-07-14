@@ -1,6 +1,6 @@
 class Instrument < ApplicationRecord
   belongs_to :user, inverse_of: :instruments
-  has_many :instruments_songs
+  has_many :instruments_songs, inverse_of: :instrument
   has_many :songs, through: :instruments_songs, inverse_of: :instruments
   has_many :elements, through: :songs, inverse_of: :instrument
   validates :name, :range, :family, presence: true
