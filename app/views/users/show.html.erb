@@ -2,19 +2,17 @@
 
 
 <% if !@user.instruments.empty? %>
- <%= link_to "Your Instruments", user_instruments_path %><br />
-<% else %>
- <%=  link_to "Add an Instrument", new_user_instrument_path(:user_id => @user.id) %><br />
+ <%= link_to "Your Instruments", user_instruments_path(@user) %><br />
 <% end %>
+<%=  link_to "Add an Instrument", new_user_instrument_path(@user) %><br />
 
  <% if !@user.songs.empty? %>
-  <%= link_to "Your Songs", user_songs_path(:user_id => @user.id) %><br />
-<% else %>
-  <%=  link_to "Add a song", new_user_song_path(:user_id => @user.id) %><br />
+  <%= link_to "Your Songs", user_songs_path(@user) %><br />
 <% end %>
+<%=  link_to "Add a song", new_user_song_path(@user) %><br />
+
 
 <% if !@user.elements.empty? %>
- <%= link_to "Your Elements", user_elements_path(:user_id => @user.id) %><br />
-<% else %>
- <%=  link_to "Add an Element", new_user_element_path(:user_id => @user.id) %><br />
+ <%= link_to "Your Elements", user_elements_path(@user) %><br />
 <% end %>
+<%=  link_to "Add an Element", new_user_element_path(@user) %><br />
