@@ -1,8 +1,8 @@
 class Instrument < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user, inverse_of: :instruments
   has_many :instruments_songs
-  has_many :songs, through: :instruments_songs
-  has_many :elements, through: :songs
+  has_many :songs, through: :instruments_songs, inverse_of: :instruments
+  has_many :elements, through: :songs, inverse_of: :instrument
   validates :name, :range, :family, presence: true
   validates :name, uniqueness: { scope: :range}
   before_save :normalize

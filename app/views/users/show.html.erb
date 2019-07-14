@@ -1,5 +1,20 @@
 <h1><%= link_to @user.username, edit_user_path(@user) %>'s Songbook</h1>
 
-<%= link_to "Your Songs", songs_path %>
-<%= link_to "Your Instruments", instruments_path %>
-<%= link_to "Your Elements", elements_path %>
+
+<% if !@user.instruments.empty? %>
+ <%= link_to "Your Instruments", user_instruments_path %><br />
+<% else %>
+ <%=  link_to "Add an Instrument", new_user_instrument_path(:user_id => @user.id) %><br />
+<% end %>
+
+ <% if !@user.songs.empty? %>
+  <%= link_to "Your Songs", user_songs_path(:user_id => @user.id) %><br />
+<% else %>
+  <%=  link_to "Add a song", new_user_song_path(:user_id => @user.id) %><br />
+<% end %>
+
+<% if !@user.elements.empty? %>
+ <%= link_to "Your Elements", user_elements_path(:user_id => @user.id) %><br />
+<% else %>
+ <%=  link_to "Add an Element", new_user_element_path(:user_id => @user.id) %><br />
+<% end %>

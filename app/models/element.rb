@@ -1,10 +1,11 @@
 class Element < ApplicationRecord
   belongs_to :song, inverse_of: :elements
   belongs_to :instrument, inverse_of: :elements
+  belongs_to :user, inverse_of: :elements
   validates :name, presence: true
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
 
-  # belongs_to :user
+
 
   def self.names
     names = [ "Intro", "Verse", "Pre-Chrous", "Chorus", "Bridge", "Coda", "Solo" ]

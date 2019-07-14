@@ -1,6 +1,7 @@
 class ElementsController < ApplicationController
 
   def index
+     @user = current_user
      @instruments = Instrument.all
      @songs = Song.all
      if !params[:instrument].blank?
@@ -19,6 +20,7 @@ class ElementsController < ApplicationController
    end
 
    def new
+      @user = current_user
      if params[:song_id] && song = Element.find(params[:song_id])
          @element = song.elements.build
      else
@@ -27,6 +29,7 @@ class ElementsController < ApplicationController
    end
 
    def create
+     @user = current_user
      @element = Element.new(element_params)
      if @element.save
        song = @element.song
@@ -44,14 +47,17 @@ class ElementsController < ApplicationController
    end
 
    def show
+     @user = current_user
      @element = Element.find(params[:id])
    end
 
    def edit
+     @user = current_user
      @element = Element.find(params[:id])
    end
 
    def update
+     @user = current_user 
      element = Element.find(params[:id])
      element.update(element_params)
      song =  element.song
@@ -59,6 +65,7 @@ class ElementsController < ApplicationController
    end
 
    def destroy
+     @user = current_user
      @element = Element.find(params[:id])
      @element.destroy
      redirect_to elements_path

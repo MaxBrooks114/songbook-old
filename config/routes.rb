@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+resources :users do
   resources :elements
 
   resources :songs do
@@ -10,10 +12,9 @@ Rails.application.routes.draw do
     resources :songs, shallow: true
   end
 
+end
 
 
-  resources :users
-
-
+root to: "application#home"
 
   end

@@ -1,6 +1,7 @@
 class SongsController < ApplicationController
 
    def index
+     @user = current_user
      @instruments = Instrument.all
     if !params[:instruments].blank?
         @songs = Song.where(instruments: params[:instruments])
@@ -16,6 +17,7 @@ class SongsController < ApplicationController
    end
 
   def new
+    @user = current_user
     @instruments = Instrument.all
     if params[:instrument_id] && instrument = Instrument.find(params[:instrument_id])
         @song = instrument.songs.build
@@ -28,6 +30,7 @@ class SongsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @song = Song.new(song_params)
     if @song.save
       redirect_to song_path(@song)
@@ -38,21 +41,25 @@ class SongsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @song = Song.find(params[:id])
   end
 
   def edit
+    @user = current_user
     @instruments = Instrument.all
     @song = Song.find(params[:id])
   end
 
   def update
+    @user = current_user
     song = Song.find(params[:id])
     song.update(song_params)
     redirect_to song_path(song)
   end
 
   def destroy
+    @user = current_user
     @song = Song.find(params[:id])
     @song.destroy
     redirect_to songs_path

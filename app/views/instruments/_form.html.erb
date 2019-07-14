@@ -4,7 +4,7 @@
 
 
 
-<%= form_for @instrument do |f| %>
+<%= form_for [@user, @instrument] do |f| %>
 <%= f.label :name %><br>
 <%= f.select :name, Instrument.instrument_list %></br>
 <%= f.label :family %><br>
