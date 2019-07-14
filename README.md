@@ -3,12 +3,11 @@
 To do:
 
 all
-  inverse_of?
   refactor
     DB logic out of controllers
     DRY
   add navigational links
-  change views to only show users stuff 
+  error messages
 
 
 instruments
@@ -21,8 +20,6 @@ elements
 
 
 users
-    signup
-    login
     omniauth
     home page
     home page stats
