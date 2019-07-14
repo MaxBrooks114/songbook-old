@@ -8,6 +8,7 @@ all
     DB logic out of controllers
     DRY
   add navigational links
+  change views to only show users stuff 
 
 
 instruments
