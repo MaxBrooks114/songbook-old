@@ -1,7 +1,7 @@
 <h1> Elements </h1>
 <div>
   <h3>Filter Elements:</h3>
-  <%= form_tag("/users/elements", method: "get") do %>
+  <%= form_tag("/users/#{@user.id}/elements", method: "get") do %>
     <p>Instrument <%= select_tag "instrument", options_from_collection_for_select(@instruments, "id", "name"), include_blank: true %></p>
     <p>Song <%= select_tag "song", options_from_collection_for_select(@songs, "id", "title"), include_blank: true %></p>
     <p>Key <%= select_tag "key", options_for_select(Element.used_keys), include_blank: true %></p>
