@@ -1,5 +1,5 @@
 <% if @elements %>
-    <p><%= link_to "#{element.name} to #{element.song.title} on #{element.instrument.name}", element%> </p>
+    <p><%= link_to "#{element.name} to #{element.song.title} on #{element.instrument.name}", element %> </p>
 <% else %>
   <h1><%= link_to  "#{element.name} to #{element.song.title} on #{element.instrument.name}", edit_element_path %></h1>
   <ul>

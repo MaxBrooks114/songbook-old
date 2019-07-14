@@ -9,7 +9,7 @@
 <%= f.select :name, Element.names %></br>
 <% if !Song.all.empty? %>
   <%= f.label :song %><br>
-  <%= f.collection_select :song_id, Song.all, :id, :title  %><br>
+  <%= f.collection_select :song_id, @user.songs, :id, :title  %><br>
 <% else %>
   <%= link_to "Add a song first!", new_song_path %><br />
 <%end%>

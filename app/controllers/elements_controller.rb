@@ -2,8 +2,8 @@ class ElementsController < ApplicationController
 
   def index
      @user = current_user
-     @instruments = Instrument.all
-     @songs = Song.all
+     @instruments = @user.instruments
+     @songs = @user.songs
      if !params[:instrument].blank?
          @elements = Element.where(instrument: params[:instrument])
      elsif !params[:song].blank?
@@ -37,10 +37,8 @@ class ElementsController < ApplicationController
        instrument = @element.instrument
        if !song.instruments.include?(instrument)
          song.instruments << instrument
-         redirect_to user_element_path(@user, @element)
-       else
-         redirect_to new_user_element_path
        end
+      redirect_to user_element_path(@user, @element)
      else
        flash[:notice] = @element.errors.messages
        redirect_to new_user_element_path
@@ -50,6 +48,7 @@ class ElementsController < ApplicationController
    def show
      @user = current_user
      @element = Element.find(params[:id])
+     @song = @element.song
    end
 
    def edit

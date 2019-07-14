@@ -19,5 +19,9 @@
     <%= f.label :tempo %>
     <%= f.text_field :tempo %><br />
     </div>
+    <div class="hidden">
+    <%= f.hidden_field :user_id, :value => @user.id %>
+    </div>
+
     <%= link_to_remove_association "remove element", f %>
   </div>
