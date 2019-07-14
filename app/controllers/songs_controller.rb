@@ -2,28 +2,28 @@ class SongsController < ApplicationController
 
    def index
      @user = current_user
-     @instruments = Instrument.all
+     @instruments = @user.instruments
     if !params[:instruments].blank?
-        @songs = Song.where(instruments: params[:instruments])
+        @songs = @user.songs.where(instruments: params[:instruments])
     elsif !params[:genre].blank?
-        @songs = Song.where(genre: params[:genre])
+        @songs = @user.songs.where(genre: params[:genre])
     elsif !params[:artist].blank?
-        @songs = Song.where(artist: params[:artist])
+        @songs = @user.songs.where(artist: params[:artist])
     elsif !params[:album].blank?
-        @songs = Song.where(album: params[:album])
+        @songs = @user.songs.where(album: params[:album])
     else
-      @songs = Song.all
+      @songs = @user.songs
     end
    end
 
   def new
     @user = current_user
-    @instruments = Instrument.all
+    @instruments = @user.instruments
     if params[:instrument_id] && instrument = Instrument.find(params[:instrument_id])
         @song = instrument.songs.build
         @song.instruments << instrument
     elsif Instrument.all.empty?
-        redirect_to new_instrument_path
+        redirect_to new_user_instrument_path(@user)
     else
         @song = Song.new
     end
@@ -32,11 +32,12 @@ class SongsController < ApplicationController
   def create
     @user = current_user
     @song = Song.new(song_params)
+    @song.user_id = current_user.id if current_user
     if @song.save
-      redirect_to song_path(@song)
+      redirect_to user_song_path(@user, @song)
     else
       flash[:notice] = @song.errors.messages
-      redirect_to new_song_path
+      redirect_to new_user_song_path(@user)
     end
   end
 

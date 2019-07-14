@@ -4,7 +4,7 @@
 
 
 
-<%= form_for @song do |f| %>
+<%= form_for [@user, @song] do |f| %>
 <%= f.label :title %><br>
 <%= f.text_field :title %><br>
 <%= f.label :artist %><br>

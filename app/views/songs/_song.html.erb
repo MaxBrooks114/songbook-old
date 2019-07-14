@@ -8,7 +8,7 @@
     <li>Genre: <%= song.genre %></li>
     <li>Instruments:
       <ul> <% song.instruments.each do |i| %>
-        <li> <%= link_to i.name, instrument_path(i)%>
+        <li> <%= link_to i.name, user_instrument_path(current_user, i)%>
           <ul> <% i.elements.each do |e| %>
                   <% if e.song_id == song.id %>
                       <li><%=link_to e.name, element_path(e) %></li>

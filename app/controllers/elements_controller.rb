@@ -15,13 +15,13 @@ class ElementsController < ApplicationController
      elsif !params[:learned].blank?
          @elements = Element.where(learned: params[:learned])
      else
-       @elements = Element.all
+       @elements = @user.elements
     end
    end
 
    def new
       @user = current_user
-     if params[:song_id] && song = Element.find(params[:song_id])
+     if params[:song_id] && song = Song.find(params[:song_id])
          @element = song.elements.build
      else
          @element = Element.new
@@ -31,18 +31,19 @@ class ElementsController < ApplicationController
    def create
      @user = current_user
      @element = Element.new(element_params)
+     @element.user_id = current_user.id if current_user
      if @element.save
        song = @element.song
        instrument = @element.instrument
        if !song.instruments.include?(instrument)
          song.instruments << instrument
-         redirect_to element_path(element)
+         redirect_to user_element_path(@user, @element)
        else
-         redirect_to element_path(element)
+         redirect_to new_user_element_path
        end
      else
        flash[:notice] = @element.errors.messages
-       redirect_to new_element_path
+       redirect_to new_user_element_path
      end
    end
 
@@ -57,7 +58,7 @@ class ElementsController < ApplicationController
    end
 
    def update
-     @user = current_user 
+     @user = current_user
      element = Element.find(params[:id])
      element.update(element_params)
      song =  element.song
@@ -68,7 +69,7 @@ class ElementsController < ApplicationController
      @user = current_user
      @element = Element.find(params[:id])
      @element.destroy
-     redirect_to elements_path
+     redirect_to user_elements_path(current_user)
    end
 
 

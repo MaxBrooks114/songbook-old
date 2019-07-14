@@ -21,7 +21,7 @@ class InstrumentsController < ApplicationController
      @instrument = Instrument.new(instrument_params)
      @instrument.user_id = current_user.id if current_user
      if @instrument.save
-       redirect_to user_instrument_path(current_user, @instrument)
+       redirect_to user_instrument_path(@user, @instrument)
      else
        flash[:notice] = @instrument.errors.messages
        redirect_to new_user_instrument_path
@@ -42,14 +42,14 @@ class InstrumentsController < ApplicationController
      @user = current_user
      instrument = Instrument.find(params[:id])
      instrument.update(instrument_params)
-     redirect_to user_instrument_path(current_user, instrument)
+     redirect_to user_instrument_path(@user, instrument)
    end
 
    def destroy
      @user = current_user
      @instrument = Instrument.find(params[:id])
      @instrument.destroy
-     redirect_to user_instruments_path
+     redirect_to user_instruments_path(@user)
    end
 
 
