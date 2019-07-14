@@ -16,5 +16,4 @@ end
 
 
 root to: "application#home"
-
-  end
+end
