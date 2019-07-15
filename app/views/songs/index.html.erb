@@ -10,4 +10,6 @@
   <% end %>
 </div>
 <%= render(@songs) %>
-<%= link_to "Add a new song", new_user_song_path(@user) %>
+<%= link_to "Add a New Song", new_user_song_path(@user) %><br />
+<%= link_to "See your instruments", user_instruments_path(@user) %>
+<%= link_to "See your Elements", user_elements_path(@user) %><br />

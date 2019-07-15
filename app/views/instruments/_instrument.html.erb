@@ -1,5 +1,5 @@
 <% if @instruments %>
-  <p><%= link_to instrument.name_with_range, user_instrument_path(current_user, instrument)%> </p>
+  <p><%= link_to instrument.name_with_range, user_instrument_path(@user, instrument)%> </p>
 <% else %>
   <h1><%= link_to instrument.name, edit_user_instrument_path(instrument) %></h1>
   <ul>
