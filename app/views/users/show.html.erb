@@ -1,18 +1,6 @@
 <h1><%= link_to @user.username, edit_user_path(@user) %>'s Songbook</h1>
 
 
-<% if !@user.instruments.empty? %>
- <%= link_to "Your Instruments", user_instruments_path(@user) %><br />
-<% end %>
 <%=  link_to "Add an Instrument", new_user_instrument_path(@user) %><br />
-
- <% if !@user.songs.empty? %>
-  <%= link_to "Your Songs", user_songs_path(@user) %><br />
-<% end %>
 <%=  link_to "Add a Song", new_user_song_path(@user) %><br />
-
-
-<% if !@user.elements.empty? %>
- <%= link_to "Your Elements", user_elements_path(@user) %><br />
-<% end %>
 <%=  link_to "Add an Element", new_user_element_path(@user) %><br />
