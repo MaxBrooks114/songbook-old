@@ -8,6 +8,8 @@ class ElementsController < ApplicationController
          @elements = Element.where(instrument: params[:instrument])
      elsif !params[:song].blank?
          @elements = Element.where(song: params[:song])
+     elsif !params[:name].blank?
+           @elements = Element.where(name: params[:name])
      elsif !params[:key].blank?
          @elements = Element.where(key: params[:key])
      elsif !params[:tempo].blank?

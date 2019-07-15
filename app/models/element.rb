@@ -18,6 +18,10 @@ class Element < ApplicationRecord
               "F# Minor", "G Minor", "G# Minor", "A Minor", "A# Minor", "B Minor" ]
   end
 
+  def self.used_names
+    select(:name).distinct.map { |e| e.name }
+  end
+
   def self.used_keys
     select(:key).distinct.map { |e| e.key }
   end
@@ -27,14 +31,7 @@ class Element < ApplicationRecord
   end
 
   def self._learned
-    select(:learned).distinct.map { |e| e.learned? }
+    select(:learned).distinct.map { |e| e.learned }
   end
 
-  def learned?
-    if self.learned == true
-      "Complete"
-    elsif self.learned == false
-      "Incomplete"
-    end
-  end
 end
