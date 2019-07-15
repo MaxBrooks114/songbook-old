@@ -7,7 +7,6 @@ class Element < ApplicationRecord
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
 
 
-
   def self.names
     names = [ "Intro", "Verse", "Pre-Chrous", "Chorus", "Bridge", "Coda", "Solo" ]
   end
@@ -17,6 +16,8 @@ class Element < ApplicationRecord
          "F# Major", "G Major", "G# Major", "A Major", "A# Major", "B Major", "C Minor", "C# Minor", "D Minor", "D# Minor", "E Minor", "F Minor",
               "F# Minor", "G Minor", "G# Minor", "A Minor", "A# Minor", "B Minor" ]
   end
+
+
 
   def self.used_names
     select(:name).distinct.map { |e| e.name }
@@ -33,5 +34,34 @@ class Element < ApplicationRecord
   def self._learned
     select(:learned).distinct.map { |e| e.learned }
   end
+
+  def self.favorite_name
+    group(:name).count.sort_by{|k,v| v}.last.first
+  end
+
+  def self.favorite_key
+    group(:key).count.sort_by{|k,v| v}.last.first
+  end
+
+  def self.favorite_instrument
+    group(:instrument).count.sort_by{|k,v| v}.last.first.name
+  end
+
+  def self.learned_count
+    where(learned: true).count
+  end
+
+  def self.fastest
+    select(:tempo).maximum
+  end
+
+  def full_name
+    "#{self.name} to #{self.song.title} on #{self.instrument.name}"
+  end
+
+
+
+
+
 
 end
