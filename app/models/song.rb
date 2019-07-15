@@ -46,6 +46,17 @@ class Song < ApplicationRecord
       select(:album).distinct.map { |s| s.album}
     end
 
+    def self.favorite_artist
+      group(:artist).count.sort_by{|k,v| v}.last.first
+    end
+
+    def self.favorite_album
+      group(:artist).count.sort_by{|k,v| v}.last.first
+    end
+
+    def self.favorite_genre
+      group(:artist).count.sort_by{|k,v| v}.last.first
+    end
 
 
     private
