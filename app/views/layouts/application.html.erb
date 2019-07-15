@@ -14,17 +14,17 @@
     <br />
     <br />
     <% if session[:user_id] %>
-      <% unless current_page?(@user) %>
-        <%= link_to "Your Profile", user_path(@user) %><br />
-      <% end %>
-      <% unless current_page?(controller: 'instruments', action: 'index') %>
+      <% unless current_page?(user_instruments_path(@user)) %>
         <%= link_to "See your instruments", user_instruments_path(@user) %><br />
       <% end %>
-      <% unless current_page?(controller: 'songs', action: 'index') %>
+      <% unless current_page?(user_instruments_path(@user)) %>
         <%= link_to "See your Songs", user_songs_path(@user) %><br />
       <% end %>
-      <% unless current_page?(controller: 'elements', action: 'index') %>
+      <% unless current_page?(user_instruments_path(@user)) %>
         <%= link_to "See your Elements", user_elements_path(@user) %><br />
+      <% end %>
+      <% unless current_page?(@user) %>
+        <%= link_to "Your Profile", user_path(@user) %><br />
       <% end %>
       <br />
       <%= link_to "Log Out", logout_path, :method => :post %>
