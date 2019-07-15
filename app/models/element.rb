@@ -52,7 +52,7 @@ class Element < ApplicationRecord
   end
 
   def self.fastest
-    select(:tempo).maximum
+    Element.maximum(:tempo)
   end
 
   def full_name
