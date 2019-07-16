@@ -47,6 +47,10 @@ class Element < ApplicationRecord
     group(:instrument).count.sort_by{|k,v| v}.last.first.name
   end
 
+  def self.favorite_song
+    group(:song).count.sort_by{|k,v| v}.last.first.title
+  end
+
   def self.learned_count
     where(learned: true).count
   end

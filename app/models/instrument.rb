@@ -24,6 +24,14 @@ class Instrument < ApplicationRecord
     select(:range).distinct.map { |i| i.range}
   end
 
+  def self.favorite_range
+    group(:range).count.sort_by{|k,v| v}.last.first
+  end
+
+  def self.favorite_family
+    group(:family).count.sort_by{|k,v| v}.last.first
+  end
+
 
 
   private

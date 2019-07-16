@@ -51,11 +51,15 @@ class Song < ApplicationRecord
     end
 
     def self.favorite_album
-      group(:artist).count.sort_by{|k,v| v}.last.first
+      group(:album).count.sort_by{|k,v| v}.last.first
     end
 
     def self.favorite_genre
-      group(:artist).count.sort_by{|k,v| v}.last.first
+      group(:genre).count.sort_by{|k,v| v}.last.first
+    end
+
+    def self.song_count
+      self.count
     end
 
 

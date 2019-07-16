@@ -4,3 +4,16 @@
 <%=  link_to "Add an Instrument", new_user_instrument_path(@user) %><br />
 <%=  link_to "Add a Song", new_user_song_path(@user) %><br />
 <%=  link_to "Add an Element", new_user_element_path(@user) %><br />
+
+<p>Favorite Instrument: <%= Element.favorite_instrument %></p>
+<p>Favorite Song: <%= Element.favorite_song %></p>
+<p>Elements Learned: <%= Element.learned_count %></p>
+<p>Songs Added: <%= Song.song_count %> </p>
+<p>Favorite Artist: <%= Song.favorite_artist %> </p>
+<p>Favorite Genre: <%= Song.favorite_genre %> </p>
+<p>Favorite Album: <%= Song.favorite_album %> </p>
+<p>Favorite Instrument Range: <%= Instrument.favorite_range %> </p>
+<p>Favorite Instrument Family: <%= Instrument.favorite_family %> </p>
+<p>Favorite Element: <%= Element.favorite_name %> </p>
+<p>Favorite key: <%= Element.favorite_key %> </p>
+<p>Fastest Tempo: <%= Element.fastest %> </p>
