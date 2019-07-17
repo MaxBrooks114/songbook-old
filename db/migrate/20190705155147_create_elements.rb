@@ -1,7 +1,7 @@
 class CreateElements < ActiveRecord::Migration[5.2]
   def change
     create_table :elements do |t|
-      t.string :name
+      t.string :e_name
       t.integer :tempo
       t.string :key
       t.boolean :learned

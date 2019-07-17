@@ -1,10 +1,10 @@
 <h1> Elements </h1>
-<% unless @elements.empty? %>
+<% if Element.any? %>
   <div>
     <h3>Filter Elements:</h3>
     <%= form_tag("/users/#{current_user.id}/elements", method: "get") do %>
-      <p>Name<%= select_tag "name", options_for_select(Element.used_names), include_blank: true %></p>
-      <p>Instrument <%= select_tag "instrument", options_from_collection_for_select(@instruments, "id", "name"), include_blank: true %></p>
+      <p>Name<%= select_tag "e_name", options_for_select(Element.used_names), include_blank: true %></p>
+      <p>Instrument <%= select_tag "instrument", options_from_collection_for_select(@instruments, "id", "i_name"), include_blank: true %></p>
       <p>Song <%= select_tag "song", options_from_collection_for_select(@songs, "id", "title"), include_blank: true %></p>
       <p>Key <%= select_tag "key", options_for_select(Element.used_keys), include_blank: true %></p>
       <p>Tempo<%= select_tag "tempo", options_for_select(Element.used_tempo), include_blank: true %></p>

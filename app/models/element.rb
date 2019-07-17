@@ -1,10 +1,20 @@
 class Element < ApplicationRecord
+  include Filterable
   belongs_to :song, inverse_of: :elements
   belongs_to :instrument, inverse_of: :elements
   belongs_to :user, inverse_of: :elements
-  validates :name, presence: true
-  validates :name, uniqueness: { scope: [:instrument_id, :song_id] }
+  validates :e_name, presence: true
+  validates :e_name, uniqueness: { scope: [:instrument_id, :song_id] }
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
+  scope :key, -> (key) { where key: key }
+  scope :tempo, -> (tempo) { where tempo: tempo }
+  scope :e_name, -> (e_name) { where e_name: e_name }
+  scope :learned, -> (learned) { where learned: learned }
+  scope :song, -> (song) { where song: song }
+  scope :instrument, -> (instrument) { where instrument: instrument }
+
+
+
 
 
   def self.names
@@ -20,7 +30,7 @@ class Element < ApplicationRecord
 
 
   def self.used_names
-    select(:name).distinct.map { |e| e.name }
+    select(:e_name).distinct.map { |e| e.e_name }
   end
 
   def self.used_keys
@@ -36,7 +46,7 @@ class Element < ApplicationRecord
   end
 
   def self.favorite_name
-    group(:name).count.sort_by{|k,v| v}.last.first
+    group(:e_name).count.sort_by{|k,v| v}.last.first
   end
 
   def self.favorite_key
@@ -60,7 +70,7 @@ class Element < ApplicationRecord
   end
 
   def full_name
-    "#{self.name} to #{self.song.title} on #{self.instrument.name}"
+    "#{self.e_name} to #{self.song.title} on #{self.instrument.i_name}"
   end
 
 

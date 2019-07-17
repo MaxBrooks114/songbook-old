@@ -1,9 +1,9 @@
 <h1> Songs </h1>
-<% unless @songs.empty? %>
+<% if Song.any? %>
   <div>
     <h3>Filter Songs:</h3>
     <%= form_tag("/users/#{current_user.id}/songs", method: "get") do %>
-      <p>Instrument <%= select_tag "instruments", options_from_collection_for_select(@instruments, "id", "name"), include_blank: true %></p>
+      <p>Instrument <%= select_tag "instruments", options_from_collection_for_select(@instruments, "id", "i_name"), include_blank: true %></p>
       <p>Artist <%= select_tag "artist", options_for_select(Song.used_artists), include_blank: true %></p>
       <p>Genre <%= select_tag "genre", options_for_select(Song.used_genres), include_blank: true %></p>
       <p>Album<%= select_tag "album", options_for_select(Song.used_albums), include_blank: true %></p>

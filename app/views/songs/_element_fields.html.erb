@@ -1,11 +1,11 @@
 <div class='nested-fields'>
     <div class="field">
       <%= f.label :name %>
-      <%= f.select :name, Element.names %><br>
+      <%= f.select :e_name, Element.names %><br>
     </div>
     <div>
       <%= f.label :instrument %>
-      <%= f.collection_select(:instrument_id, @song.instruments, :id, :name)  %><br>
+      <%= f.collection_select(:instrument_id, @song.instruments, :id, :name_with_range)  %><br>
     </div>
     <div class="field">
       <%= f.label :learned %>

@@ -1,7 +1,7 @@
 <% if @instruments %>
   <p><%= link_to instrument.name_with_range, user_instrument_path(@user, instrument)%> </p>
 <% else %>
-  <h1><%= link_to instrument.name, edit_user_instrument_path(instrument) %></h1>
+  <h1><%= link_to instrument.i_name, edit_user_instrument_path(instrument) %></h1>
   <ul>
     <li>Family: <%= instrument.family %></li>
     <li>Range: <%= instrument.range %></li>
@@ -10,7 +10,7 @@
         <li><%= link_to s.title, song_path(s)%>
               <ul> <% s.elements.each do |e| %>
                       <% if e.instrument_id == instrument.id %>
-                        <li><%= link_to e.name, element_path(e) %></li>
+                        <li><%= link_to e.e_name, element_path(e) %></li>
                       <%end%>
                    <%end%>
               </ul>

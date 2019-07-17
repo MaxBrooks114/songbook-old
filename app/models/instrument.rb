@@ -3,13 +3,12 @@ class Instrument < ApplicationRecord
   has_many :instruments_songs, inverse_of: :instrument
   has_many :songs, through: :instruments_songs, inverse_of: :instruments
   has_many :elements, through: :songs, inverse_of: :instrument
-  validates :name, :range, :family, presence: true
-  validates :name, uniqueness: { scope: :range}
-  before_save :normalize
+  validates :i_name, :range, :family, presence: true
+  validates :i_name, uniqueness: { scope: :range}
 
 
   def name_with_range
-    "#{name} (#{range})"
+    "#{i_name} (#{range})"
   end
 
   def self.instrument_list
@@ -34,8 +33,4 @@ class Instrument < ApplicationRecord
 
 
 
-  private
-    def normalize
-      self.name = name.downcase.titleize.squish
-    end
 end

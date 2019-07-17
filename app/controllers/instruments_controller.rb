@@ -56,6 +56,6 @@ class InstrumentsController < ApplicationController
    private
 
    def instrument_params
-     params.require(:instrument).permit(:name, :family, :range)
+     params.require(:instrument).permit(:i_name, :family, :range)
    end
 end

@@ -4,22 +4,8 @@ class ElementsController < ApplicationController
      @user = current_user
      @instruments = @user.instruments
      @songs = @user.songs
-     if !params[:instrument].blank?
-         @elements = Element.where(instrument: params[:instrument])
-     elsif !params[:song].blank?
-         @elements = Element.where(song: params[:song])
-     elsif !params[:name].blank?
-           @elements = Element.where(name: params[:name])
-     elsif !params[:key].blank?
-         @elements = Element.where(key: params[:key])
-     elsif !params[:tempo].blank?
-         @elements = Element.where(tempo: params[:tempo])
-     elsif !params[:learned].blank?
-         @elements = Element.where(learned: params[:learned])
-     else
-       @elements = @user.elements
-    end
-   end
+     @elements = Element.filter_by(params.slice(:e_name, :key, :tempo, :learned, :instrument, :song))
+  end
 
    def new
       @user = current_user
@@ -77,6 +63,7 @@ class ElementsController < ApplicationController
    private
 
    def element_params
-     params.require(:element).permit(:name, :learned, :tempo, :key, :instrument_id, :song_id)
+     params.require(:element).permit(:e_name, :learned, :tempo, :key, :instrument_id, :song_id)
    end
+
 end

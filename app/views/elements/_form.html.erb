@@ -6,7 +6,7 @@
 
 <%= form_for [current_user, @element] do |f| %>
 <%= f.label :name %><br>
-<%= f.select :name, Element.names %></br>
+<%= f.select :e_name, Element.names %></br>
 <% if !Song.all.empty? %>
   <%= f.label :song %><br>
   <%= f.collection_select :song_id, current_user.songs, :id, :title  %><br>

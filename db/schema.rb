@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2019_07_06_040947) do
 
   create_table "elements", force: :cascade do |t|
-    t.string "name"
+    t.string "e_name"
     t.integer "tempo"
     t.string "key"
     t.boolean "learned"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_07_06_040947) do
   end
 
   create_table "instruments", force: :cascade do |t|
-    t.string "name"
+    t.string "i_name"
     t.string "family"
     t.string "range"
     t.integer "user_id"
