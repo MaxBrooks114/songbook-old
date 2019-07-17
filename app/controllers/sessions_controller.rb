@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if auth.provider
+    if request.env["omniauth.auth"]
     	@user = User.find_or_create_from_auth_hash(request.env["omniauth.auth"])
     	log_in(@user)
     	redirect_to @user
