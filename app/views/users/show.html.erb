@@ -19,3 +19,8 @@
     <p>Fastest Tempo: <%= Element.fastest %> </p>
 
 <% end %>
+<br />
+<br/>
+
+</br/>
+<%= button_to "Delete Account", user_path(@user), method: :delete, data: { confirm: 'Are you certain you want to delete your account? You will lose all of your music!' } %><br />
