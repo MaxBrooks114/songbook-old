@@ -12,18 +12,18 @@
     <%= yield %><br />
     <br />
     <br />
-    <% if session[:user_id] && @user %>
-      <% unless current_page?(user_instruments_path(@user)) %>
-        <%= link_to "See your instruments", user_instruments_path(@user) %><br />
+    <% if session[:user_id] && current_user %>
+      <% unless current_page?(user_instruments_path(current_user)) %>
+        <%= link_to "See your Instruments", user_instruments_path(current_user) %><br />
       <% end %>
-      <% unless current_page?(user_instruments_path(@user)) %>
-        <%= link_to "See your Songs", user_songs_path(@user) %><br />
+      <% unless current_page?(user_songs_path(current_user)) %>
+        <%= link_to "See your Songs", user_songs_path(current_user) %><br />
       <% end %>
-      <% unless current_page?(user_instruments_path(@user)) %>
-        <%= link_to "See your Elements", user_elements_path(@user) %><br />
+      <% unless current_page?(user_elements_path(current_user)) %>
+        <%= link_to "See your Elements", user_elements_path(current_user) %><br />
       <% end %>
-      <% unless current_page?(@user) %>
-        <%= link_to "Your Profile", user_path(@user) %><br />
+      <% unless current_page?(current_user) %>
+        <%= link_to "Your Profile", user_path(current_user) %><br />
       <% end %>
       <br />
       <%= link_to "Log Out", logout_path, :method => :get %>
