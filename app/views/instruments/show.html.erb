@@ -1,5 +1,5 @@
-<%= render partial: "instrument", locals: {user: @user, instrument: @instrument} %>
+<%= render partial: "instrument", locals: {user: current_user, instrument: @instrument} %>
 
-<%= link_to "Add a new song with this instrument", new_user_instrument_song_path(@user, :instrument_id => @instrument.id) %><br>
-<%= link_to "Delete", user_instrument_path(@user, @instrument), method: :delete, data: { confirm: 'Are you certain you want to delete your instrument?' } %><br />
-<%= link_to "Back to your instruments", user_instruments_path(@user) %>
+<%= link_to "Add a new song with this instrument", new_user_instrument_song_path(current_user, :instrument_id => @instrument.id) %><br>
+<%= link_to "Delete", user_instrument_path(current_user, @instrument), method: :delete, data: { confirm: 'Are you certain you want to delete your instrument?' } %><br />
+<%= link_to "Back to your instruments", user_instruments_path(current_user) %>

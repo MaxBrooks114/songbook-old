@@ -8,10 +8,10 @@
     <li>Genre: <%= song.genre %></li>
     <li>Instruments:
       <ul> <% song.instruments.each do |i| %>
-        <li> <%= link_to i.name, user_instrument_path(@user, i)%>
+        <li> <%= link_to i.name, user_instrument_path(current_user, i)%>
           <ul> <% i.elements.each do |e| %>
                   <% if e.song_id == song.id && e.instrument_id == i.id %>
-                      <li><%=link_to e.name, user_element_path(@user, e) %></li>
+                      <li><%=link_to e.name, user_element_path(current_user, e) %></li>
                   <%end%>
                <%end%>
           </ul>
