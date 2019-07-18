@@ -11,6 +11,7 @@ class SongsController < ApplicationController
         @song = instrument.songs.build
         @song.instruments << instrument
     elsif Instrument.all.empty?
+        flash[:notice] = 'Enter a new instrument first!'
         redirect_to new_user_instrument_path(@user)
     else
         @song = Song.new
@@ -23,7 +24,7 @@ class SongsController < ApplicationController
     if @song.save
       redirect_to user_song_path(@user, @song)
     else
-      redirect_to new_user_song_path(@user)
+      render 'new'
     end
   end
 

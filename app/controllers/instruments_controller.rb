@@ -1,7 +1,7 @@
 class InstrumentsController < ApplicationController
    before_action :set_user
-  def index
-    @instruments = instrument.filter_by(params.slice(:range, :family))
+   def index
+     @instruments = Instrument.filter_by(params.slice(:range, :family))
    end
 
    def new
@@ -14,7 +14,7 @@ class InstrumentsController < ApplicationController
      if @instrument.save
        redirect_to user_instrument_path(@user, @instrument)
      else
-       redirect_to new_user_instrument_path
+       render 'new'
      end
    end
 

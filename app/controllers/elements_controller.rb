@@ -26,7 +26,7 @@ class ElementsController < ApplicationController
        end
       redirect_to user_element_path(@user, @element)
      else
-       redirect_to new_user_element_path
+       render 'new'
      end
    end
 
