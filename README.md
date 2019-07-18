@@ -6,8 +6,9 @@ all
   refactor
     DB logic out of controllers
     DRY
-  add navigational links
   error messages
+  @user
+  separate out index and show view partials!
 
 
 instruments
@@ -20,6 +21,5 @@ elements
 
 
 users
-    omniauth
-    home page
-    home page stats
+    home page stats links
+
