@@ -19,6 +19,7 @@ class SongsController < ApplicationController
   end
 
   def create
+    @instruments = @user.instruments
     @song = Song.new(song_params)
     @song.user_id = current_user.id if current_user
     if @song.save
@@ -46,7 +47,7 @@ class SongsController < ApplicationController
   def destroy
     @song = Song.find(params[:id])
     @song.destroy
-    redirect_to songs_path
+    redirect_to user_songs_path
   end
 
 
