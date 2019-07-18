@@ -1,14 +1,13 @@
 class ElementsController < ApplicationController
+   before_action :set_user
 
   def index
-     @user = current_user
      @instruments = @user.instruments
      @songs = @user.songs
      @elements = Element.filter_by(params.slice(:e_name, :key, :tempo, :learned, :instrument, :song))
   end
 
    def new
-      @user = current_user
      if params[:song_id] && song = Song.find(params[:song_id])
          @element = song.elements.build
      else
@@ -17,7 +16,6 @@ class ElementsController < ApplicationController
    end
 
    def create
-     @user = current_user
      @element = Element.new(element_params)
      @element.user_id = current_user.id if current_user
      if @element.save
@@ -34,18 +32,15 @@ class ElementsController < ApplicationController
    end
 
    def show
-     @user = current_user
      @element = Element.find(params[:id])
      @song = @element.song
    end
 
    def edit
-     @user = current_user
      @element = Element.find(params[:id])
    end
 
    def update
-     @user = current_user
      element = Element.find(params[:id])
      element.update(element_params)
      song =  element.song
@@ -53,7 +48,6 @@ class ElementsController < ApplicationController
    end
 
    def destroy
-     @user = current_user
      @element = Element.find(params[:id])
      @element.destroy
      redirect_to user_elements_path(current_user)
