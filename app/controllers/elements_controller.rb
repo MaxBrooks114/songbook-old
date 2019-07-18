@@ -26,7 +26,6 @@ class ElementsController < ApplicationController
        end
       redirect_to user_element_path(@user, @element)
      else
-       flash[:notice] = @element.errors.messages
        redirect_to new_user_element_path
      end
    end

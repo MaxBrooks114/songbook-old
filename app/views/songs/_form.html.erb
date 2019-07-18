@@ -1,10 +1,5 @@
-<% if flash[:notice] %>
-  <%= flash[:notice] %>
-<% end %><br>
-
-
-
 <%= form_for [current_user, @song] do |f| %>
+<%= render partial: 'layouts/errors', locals: {object: @song} %>
 <%= f.label :title %><br>
 <%= f.text_field :title %><br>
 <%= f.label :artist %><br>

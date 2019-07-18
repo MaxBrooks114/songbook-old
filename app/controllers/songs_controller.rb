@@ -23,7 +23,6 @@ class SongsController < ApplicationController
     if @song.save
       redirect_to user_song_path(@user, @song)
     else
-      flash[:notice] = @song.errors.messages
       redirect_to new_user_song_path(@user)
     end
   end
