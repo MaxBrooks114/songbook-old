@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :users do
+  resources :users, only: [:new, :create, :edit, :update, :destroy, :show] do
     resources :elements
 
     resources :songs do
