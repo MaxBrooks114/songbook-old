@@ -1,5 +1,5 @@
 <h1> Instruments </h1>
-<% unless @instruments.empty? %>
+<% if Instrument.any? %>
   <div>
     <h3>Filter Instruments:</h3>
     <%= form_tag("/users/#{current_user.id}/instruments", method: "get") do %>
