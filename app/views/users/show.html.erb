@@ -1,4 +1,4 @@
-<h1><%= link_to current_user.username, edit_user_path(current_user) %>'s Songbook</h1>
+<h1><%= link_to current_user.username.titleize, edit_user_path(current_user) %>'s Songbook</h1>
 
 
 <%=  link_to "Add an Instrument", new_user_instrument_path(current_user) %><br />
