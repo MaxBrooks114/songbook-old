@@ -34,6 +34,8 @@ gem 'omniauth-google-oauth2'
 
 gem 'thin'
 
+gem 'pry'
+
 gem 'dotenv-rails'
 
 gem "cocoon"
