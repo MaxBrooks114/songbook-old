@@ -4,7 +4,7 @@
 <%=  link_to "Add an Instrument", new_user_instrument_path(current_user) %><br />
 <%=  link_to "Add a Song", new_user_song_path(current_user) %><br />
 <%=  link_to "Add an Element", new_user_element_path(current_user) %><br />
-<% if Instrument.any? && Song.any? && Element.any %>
+<% if Instrument.any? && Song.any? && Element.any? %>
     <p>Favorite Instrument: <%= Element.favorite_instrument %></p>
     <p>Favorite Song: <%= Element.favorite_song %></p>
     <p>Elements Learned: <%= Element.learned_count %></p>
