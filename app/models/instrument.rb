@@ -1,11 +1,13 @@
 class Instrument < ApplicationRecord
+  include Filterable
   belongs_to :user, inverse_of: :instruments
   has_many :instruments_songs, inverse_of: :instrument
   has_many :songs, through: :instruments_songs, inverse_of: :instruments
   has_many :elements, through: :songs, inverse_of: :instrument
   validates :i_name, :range, :family, presence: true
   validates :i_name, uniqueness: { scope: :range}
-
+  scope :range, -> (range) { where range: range}
+  scope :family, -> (family) { where family: family}
 
   def name_with_range
     "#{i_name} (#{range})"

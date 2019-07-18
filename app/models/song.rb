@@ -1,4 +1,5 @@
 class Song < ApplicationRecord
+  include Filterable
   has_many :instruments_songs, inverse_of: :song
   has_many :instruments, through: :instruments_songs, inverse_of: :songs
   has_many :elements, inverse_of: :song, :dependent => :destroy
@@ -6,6 +7,10 @@ class Song < ApplicationRecord
   belongs_to :user, inverse_of: :songs
   validates :title, presence: true, uniqueness: { scope: :artist }
   validates :instrument_ids, presence: true
+  scope :instruments, -> (instruments) { where instruments: instruments }
+  scope :artist, -> (artist) { where artist: artist }
+  scope :album, -> (album) { where album: album }
+  scope :genre, -> (genre) { where genre: genre }
   before_save :normalize
 
 

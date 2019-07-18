@@ -3,17 +3,7 @@ class SongsController < ApplicationController
    def index
      @user = current_user
      @instruments = @user.instruments
-    if !params[:instruments].blank?
-        @songs = @user.songs.where(instruments: params[:instruments])
-    elsif !params[:genre].blank?
-        @songs = @user.songs.where(genre: params[:genre])
-    elsif !params[:artist].blank?
-        @songs = @user.songs.where(artist: params[:artist])
-    elsif !params[:album].blank?
-        @songs = @user.songs.where(album: params[:album])
-    else
-      @songs = @user.songs
-    end
+     @songs = Song.filter_by(params.slice(:artist, :album, :genre, :instruments))
    end
 
   def new
