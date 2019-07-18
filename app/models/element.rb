@@ -3,7 +3,6 @@ class Element < ApplicationRecord
   belongs_to :song, inverse_of: :elements
   belongs_to :instrument, inverse_of: :elements
   belongs_to :user, inverse_of: :elements
-  validates :e_name, presence: true
   validates :e_name, uniqueness: { scope: [:instrument_id, :song_id] }
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
   scope :key, -> (key) { where key: key }
