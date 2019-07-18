@@ -1,4 +1,4 @@
-<h1>Edit <%=@element.name%> for <%=@element.song.title%> on <%= @element.instrument.name%> </h1>
+<h1>Edit <%=@element.full_name%> </h1>
 
 <%= render 'form' %>
 <%= link_to "Back to your elements", user_elements_path(current_user) %><br />
