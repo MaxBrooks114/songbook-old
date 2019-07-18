@@ -2,11 +2,11 @@ class Song < ApplicationRecord
   include Filterable
   has_many :instruments_songs, inverse_of: :song
   has_many :instruments, through: :instruments_songs, inverse_of: :songs
+  validates_presence_of :instruments
   has_many :elements, inverse_of: :song, :dependent => :destroy
   accepts_nested_attributes_for :elements, reject_if: :all_blank, allow_destroy: true
   belongs_to :user, inverse_of: :songs
   validates :title, presence: true, uniqueness: { scope: :artist }
-  validates :instrument_ids, presence: true
   scope :instruments, -> (instruments) { where instruments: instruments }
   scope :artist, -> (artist) { where artist: artist }
   scope :album, -> (album) { where album: album }
