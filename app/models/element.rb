@@ -38,7 +38,7 @@ class Element < ApplicationRecord
   end
 
   def self.used_tempo
-    select(:tempo).distinct.map { |e| e.tempo }
+    select(:tempo).distinct.map { |e| e.tempo }.reject(&:blank?)
   end
 
   def self._learned
@@ -54,7 +54,7 @@ class Element < ApplicationRecord
   end
 
   def self.favorite_instrument
-    group(:instrument).count.sort_by{|k,v| v}.last.first.name
+    group(:instrument).count.sort_by{|k,v| v}.last.first.i_name
   end
 
   def self.favorite_song

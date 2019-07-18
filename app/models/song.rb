@@ -44,11 +44,11 @@ class Song < ApplicationRecord
     end
 
     def self.used_artists
-      select(:artist).distinct.map { |s| s.artist }
+      select(:artist).distinct.map { |s| s.artist }.reject(&:empty?)
     end
 
     def self.used_albums
-      select(:album).distinct.map { |s| s.album}
+      select(:album).distinct.map { |s| s.album}.reject(&:empty?)
     end
 
     def self.favorite_artist
