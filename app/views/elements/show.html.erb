@@ -1,5 +1,9 @@
-<%= render partial: "element", locals: {element: @element} %>
-
+<h1><%= link_to @element.full_name, edit_element_path %></h1>
+<ul>
+  <li>Key: <%= @element.key %></li>
+  <li>Tempo: <%= @element.tempo %></li>
+  <li>Learned: <%= @element.learned? %></li>
+</ul>
 <%= link_to "Delete", element_path(@element), method: :delete, data: { confirm: 'Are you certain you want to delete this element?' } %><br />
 <%= link_to "Back to your elements", user_elements_path(@user) %><br />
 <%= link_to "Back to the song", user_song_path(@user, @song) %>

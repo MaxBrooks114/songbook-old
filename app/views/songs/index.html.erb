@@ -11,5 +11,8 @@
       <% end %>
     </div>
 <% end %>
-<%= render(@songs) %>
+ <br />
+<% @songs.each do |song| %>
+    <p><%= link_to "#{song.title} (#{song.artist})", song%> </p>
+<% end %>
 <%= link_to "Add a New Song", new_user_song_path(@user) %><br />

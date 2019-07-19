@@ -1,4 +1,25 @@
-<%= render partial: "song", locals: {song: @song} %>
+<h1><%= link_to @song.title, edit_song_path %></h1>
+<ul>
+  <li>Artist: <%= @song.artist %></li>
+  <li>Album: <%= @song.album %></li>
+  <li>Genre: <%= @song.genre %></li>
+  <li>Instruments:
+    <ul> <% @song.instruments.each do |i| %>
+      <li> <%= link_to i.i_name, user_instrument_path(@user, i)%>
+        <ul> <% i.elements.each do |e| %>
+                <% if e.song_id == @song.id && e.instrument_id == i.id %>
+                    <li><%=link_to e.e_name, user_element_path(@user, e) %></li>
+                <%end%>
+             <%end%>
+        </ul>
+      </li>
+      <%end%>
+    </ul>
+  </li>
+  <li>Lyrics: <%= @song.lyrics %></li>
+</ul>
+
+
 
 <%= link_to "Add a new element", new_user_song_element_path(@user, :song_id => @song.id)%><br />
 <%= link_to "Delete", song_path(@song), method: :delete, data: { confirm: 'Are you certain you want to delete this song?' } %><br />

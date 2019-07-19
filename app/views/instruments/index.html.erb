@@ -9,5 +9,9 @@
     <% end %>
     </div>
 <% end %>
-<%= render(@instruments) %>
+  <br />
+<% @instruments.each do |instrument| %>
+  <%= link_to instrument.name_with_range, user_instrument_path(@user, instrument)%> <br />
+   <br />
+<% end %>
 <%= link_to "Add a new instrument", new_user_instrument_path(@user) %><br />

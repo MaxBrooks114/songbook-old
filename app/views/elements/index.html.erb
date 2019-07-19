@@ -13,5 +13,7 @@
     <% end %>
   </div>
 <% end %>
-<%= render(@elements) %>
+<% @elements.each do |element| %>
+    <p><%= link_to element.full_name, element %> </p>
+<% end %>
 <%= link_to "Add a new element", new_user_element_path(@user) %><br />
