@@ -1,5 +1,6 @@
 <%= form_for [@user, @instrument] do |f| %>
 <%= render partial: 'layouts/errors', locals: {object: @instrument} %>
+<%= f.hidden_field :user_id, :value => @user.id %>
 <%= f.label :name %><br>
 <%= f.select :i_name, Instrument.instrument_list %></br>
 <%= f.label :family %><br>

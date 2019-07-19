@@ -17,7 +17,6 @@ class ElementsController < ApplicationController
 
    def create
      @element = Element.new(element_params)
-     @element.user_id = current_user.id if current_user
      if @element.save
        song = @element.song
        instrument = @element.instrument
@@ -49,14 +48,14 @@ class ElementsController < ApplicationController
    def destroy
      @element = Element.find(params[:id])
      @element.destroy
-     redirect_to user_elements_path(current_user)
+     redirect_to user_elements_path(@user)
    end
 
 
    private
 
    def element_params
-     params.require(:element).permit(:e_name, :learned, :tempo, :key, :instrument_id, :song_id)
+     params.require(:element).permit(:e_name, :learned, :tempo, :key, :instrument_id, :song_id, :user_id)
    end
 
 end

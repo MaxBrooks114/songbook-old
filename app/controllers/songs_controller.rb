@@ -21,7 +21,6 @@ class SongsController < ApplicationController
   def create
     @instruments = @user.instruments
     @song = Song.new(song_params)
-    @song.user_id = current_user.id if current_user
     if @song.save
       redirect_to user_song_path(@user, @song)
     else

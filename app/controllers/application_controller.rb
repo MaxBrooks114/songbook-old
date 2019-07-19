@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
     helper_method :current_user
     before_action :require_login, only: [:show, :edit, :destroy]
-    before_action :set_user
+
 
 
     def home
