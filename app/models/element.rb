@@ -3,7 +3,7 @@ class Element < ApplicationRecord
   belongs_to :song, inverse_of: :elements
   belongs_to :instrument, inverse_of: :elements
   belongs_to :user, inverse_of: :elements
-  validates :e_name, uniqueness: { scope: [:instrument_id, :song_id] }
+  validates :e_name, uniqueness: { scope: [:instrument, :song_id], message: 'You have already added that element!' }
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
   scope :key, -> (key) { where key: key }
   scope :tempo, -> (tempo) { where tempo: tempo }
@@ -16,7 +16,7 @@ class Element < ApplicationRecord
 
 
   def self.names
-    names = [ "Intro", "Verse", "Pre-Chrous", "Chorus", "Bridge", "Coda", "Solo" ]
+    names = [ "Intro", "Verse", "Pre-Chorus", "Chorus", "Bridge", "Coda", "Solo" ]
   end
 
   def self.keys

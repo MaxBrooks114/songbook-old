@@ -4,8 +4,7 @@ class Instrument < ApplicationRecord
   has_many :instruments_songs, inverse_of: :instrument
   has_many :songs, through: :instruments_songs, inverse_of: :instruments
   has_many :elements, through: :songs, inverse_of: :instrument
-  validates :i_name, :range, :family, presence: true
-  validates :i_name, uniqueness: { scope: :range}
+  validates :i_name, uniqueness: { scope: :range, message: 'You already have that instrument!' }
   scope :range, -> (range) { where range: range}
   scope :family, -> (family) { where family: family}
 
