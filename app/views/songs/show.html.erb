@@ -17,7 +17,7 @@
     </ul>
   </li>
 
-  <li>Lyrics: <%= !@song.lyrics.blank?  ? (@song.lyrics) : (@song.elements.map {|e| e.lyrics }.join(' ')) %></li>
+  <li>Lyrics: <%= !@song.lyrics.blank?  ? (@song.lyrics) : (@song.elements.pluck(:lyrics).join(" ")) %></li>
 </ul>
 
 

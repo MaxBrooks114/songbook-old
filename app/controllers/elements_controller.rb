@@ -4,7 +4,7 @@ class ElementsController < ApplicationController
   def index
      @instruments = @user.instruments
      @songs = @user.songs
-     @elements = Element.filter_by(params.slice(:lyrics, :e_name, :key, :tempo, :learned, :instrument, :song))
+     @elements = Element.filter_by(params.slice(:lyrics?, :e_name, :key, :tempo, :learned, :instrument, :song))
   end
 
    def new
