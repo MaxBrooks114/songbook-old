@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.username.downcase!
      if @user.save
-       session[:user_id] = @user.id
+       log_in(@user)
        redirect_to user_path(@user)
      else
        render 'new'
