@@ -10,10 +10,8 @@ class Element < ApplicationRecord
   scope :e_name, -> (e_name) { where e_name: e_name }
   scope :learned, -> (learned) { where learned: learned }
   scope :song, -> (song) { where song: song }
-  scope :lyrics, -> { where("text_value <> ''") }
+  scope :lyrics?, -> { where("text_value <> ''") }
   scope :instrument, -> (instrument) { where instrument: instrument }
-
-
 
 
 
@@ -28,41 +26,8 @@ class Element < ApplicationRecord
   end
 
 
-
-  def self.used_names
-    select(:e_name).distinct.map { |e| e.e_name }
-  end
-
-  def self.used_keys
-    select(:key).distinct.map { |e| e.key }
-  end
-
-  def self.used_tempo
-    select(:tempo).distinct.map { |e| e.tempo }.reject(&:blank?)
-  end
-
-  def self._learned
-    select(:learned).distinct.map { |e| e.learned }
-  end
-
   def self.lyrics?
-    select(:lyrics).map { |e| !e.lyrics.blank? }
-  end
-
-  def self.favorite_name
-    group(:e_name).count.sort_by{|k,v| v}.last.first
-  end
-
-  def self.favorite_key
-    group(:key).count.sort_by{|k,v| v}.last.first
-  end
-
-  def self.favorite_instrument
-    group(:instrument).count.sort_by{|k,v| v}.last.first.i_name
-  end
-
-  def self.favorite_song
-    group(:song).count.sort_by{|k,v| v}.last.first.title
+    select(:lyrics).map { |e| !e.lyrics.blank? }.uniq
   end
 
   def self.learned_count

@@ -3,8 +3,8 @@
   <div>
     <h3>Filter Instruments:</h3>
     <%= form_tag("/users/#{@user.id}/instruments", method: "get") do %>
-      <p>Family <%= select_tag "family", options_for_select(Instrument.used_families), include_blank: true %></p>
-      <p>Range<%= select_tag "range", options_for_select(Instrument.used_ranges), include_blank: true %></p>
+      Family <%= select_tag "family", options_for_select(Instrument.used(:family)), include_blank: true %>
+      Range<%= select_tag "range", options_for_select(Instrument.used(:range)), include_blank: true %>
       <%= submit_tag "Filter" %>
     <% end %>
     </div>
