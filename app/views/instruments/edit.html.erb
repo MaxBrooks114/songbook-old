@@ -1,4 +1,4 @@
 <h1>Edit <%= @instrument.name_with_range %> </h1>
 
 <%= render 'form' %>
-<%= link_to "Back to your instruments", user_instruments_path(current_user) %>
+<%= link_to "Back to your instruments", user_instruments_path(@user) %>

@@ -2,7 +2,7 @@
 <% if Song.any? %>
   <div>
     <h3>Filter Songs:</h3>
-    <%= form_tag("/users/#{current_user.id}/songs", method: "get") do %>
+    <%= form_tag("/users/#{@user.id}/songs", method: "get") do %>
       <p>Instrument <%= select_tag "instruments", options_from_collection_for_select(@instruments, "id", "i_name"), include_blank: true %></p>
       <p>Artist <%= select_tag "artist", options_for_select(Song.used_artists), include_blank: true %></p>
       <p>Genre <%= select_tag "genre", options_for_select(Song.used_genres), include_blank: true %></p>
@@ -12,4 +12,4 @@
     </div>
 <% end %>
 <%= render(@songs) %>
-<%= link_to "Add a New Song", new_user_song_path(current_user) %><br />
+<%= link_to "Add a New Song", new_user_song_path(@user) %><br />

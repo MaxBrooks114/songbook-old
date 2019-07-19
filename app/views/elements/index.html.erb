@@ -2,7 +2,7 @@
 <% if Element.any? %>
   <div>
     <h3>Filter Elements:</h3>
-    <%= form_tag("/users/#{current_user.id}/elements", method: "get") do %>
+    <%= form_tag("/users/#{@user.id}/elements", method: "get") do %>
       <p>Name<%= select_tag "e_name", options_for_select(Element.used_names), include_blank: true %></p>
       <p>Instrument <%= select_tag "instrument", options_from_collection_for_select(@instruments, "id", "i_name"), include_blank: true %></p>
       <p>Song <%= select_tag "song", options_from_collection_for_select(@songs, "id", "title"), include_blank: true %></p>
@@ -14,4 +14,4 @@
   </div>
 <% end %>
 <%= render(@elements) %>
-<%= link_to "Add a new element", new_user_element_path(current_user) %><br />
+<%= link_to "Add a new element", new_user_element_path(@user) %><br />

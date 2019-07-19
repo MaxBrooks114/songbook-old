@@ -1,5 +1,5 @@
 <%= render partial: "element", locals: {element: @element} %>
 
 <%= link_to "Delete", element_path(@element), method: :delete, data: { confirm: 'Are you certain you want to delete this element?' } %><br />
-<%= link_to "Back to your elements", user_elements_path(current_user) %><br />
-<%= link_to "Back to the song", user_song_path(current_user, @song) %>
+<%= link_to "Back to your elements", user_elements_path(@user) %><br />
+<%= link_to "Back to the song", user_song_path(@user, @song) %>
