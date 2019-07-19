@@ -15,6 +15,8 @@
 <%= f.select :key, Element.keys %><br />
 <%= f.label :tempo %>
 <%= f.text_field :tempo %><br />
+<%= f.label :lyrics %><br>
+<%= f.text_area :lyrics %><br>
 <%= f.label :learned %>
 <%= f.check_box :learned %><br />
 <%= f.submit @element.new_record? ? "Add element" : "Update element" %>

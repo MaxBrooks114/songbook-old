@@ -1,4 +1,7 @@
 <div class='nested-fields'>
+    <div class="hidden">
+      <%= f.hidden_field :user_id, :value => @user.id %>
+    </div>
     <div class="field">
       <%= f.label :name %>
       <%= f.select :e_name, Element.names %><br>
@@ -19,8 +22,9 @@
     <%= f.label :tempo %>
     <%= f.text_field :tempo %><br />
     </div>
-    <div class="hidden">
-    <%= f.hidden_field :user_id, :value => @user.id %>
+    <div class="field">
+    <%= f.label :lyrics %>
+    <%= f.text_field :lyrics %><br />
     </div>
 
     <%= link_to_remove_association "remove element", f %>

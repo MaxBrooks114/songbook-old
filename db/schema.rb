@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2019_07_06_040947) do
     t.string "e_name"
     t.integer "tempo"
     t.string "key"
+    t.text "lyrics"
     t.boolean "learned"
     t.integer "song_id"
     t.integer "instrument_id"
@@ -46,7 +47,6 @@ ActiveRecord::Schema.define(version: 2019_07_06_040947) do
     t.string "artist"
     t.string "genre"
     t.string "album"
-    t.boolean "learned"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

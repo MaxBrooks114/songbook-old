@@ -9,6 +9,7 @@
       <p>Key <%= select_tag "key", options_for_select(Element.used_keys), include_blank: true %></p>
       <p>Tempo<%= select_tag "tempo", options_for_select(Element.used_tempo), include_blank: true %></p>
       <p>Learned<%= select_tag "learned", options_for_select(Element._learned), include_blank: true %></p>
+      <p>Lyrics?<%= select_tag "learned", options_for_select(Element.lyrics?), include_blank: true %></p>
       <%= submit_tag "Filter" %>
     <% end %>
   </div>

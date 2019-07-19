@@ -4,7 +4,7 @@ class ElementsController < ApplicationController
   def index
      @instruments = @user.instruments
      @songs = @user.songs
-     @elements = Element.filter_by(params.slice(:e_name, :key, :tempo, :learned, :instrument, :song))
+     @elements = Element.filter_by(params.slice(:lyrics, :e_name, :key, :tempo, :learned, :instrument, :song))
   end
 
    def new
@@ -55,7 +55,7 @@ class ElementsController < ApplicationController
    private
 
    def element_params
-     params.require(:element).permit(:e_name, :learned, :tempo, :key, :instrument_id, :song_id, :user_id)
+     params.require(:element).permit(:lyrics, :e_name, :learned, :tempo, :key, :instrument_id, :song_id, :user_id)
    end
 
 end

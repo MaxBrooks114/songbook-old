@@ -4,6 +4,7 @@ class CreateElements < ActiveRecord::Migration[5.2]
       t.string :e_name
       t.integer :tempo
       t.string :key
+      t.text :lyrics
       t.boolean :learned
       t.integer :song_id
       t.integer :instrument_id

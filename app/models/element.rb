@@ -10,6 +10,7 @@ class Element < ApplicationRecord
   scope :e_name, -> (e_name) { where e_name: e_name }
   scope :learned, -> (learned) { where learned: learned }
   scope :song, -> (song) { where song: song }
+  scope :lyrics, -> { where("text_value <> ''") }
   scope :instrument, -> (instrument) { where instrument: instrument }
 
 
@@ -42,6 +43,10 @@ class Element < ApplicationRecord
 
   def self._learned
     select(:learned).distinct.map { |e| e.learned }
+  end
+
+  def self.lyrics?
+    select(:lyrics).map { |e| !e.lyrics.blank? }
   end
 
   def self.favorite_name
