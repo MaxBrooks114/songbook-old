@@ -1,5 +1,6 @@
 class InstrumentsController < ApplicationController
-   before_action :set_user
+   before_action :require_login, :set_user
+
    def index
      @instruments = Instrument.filter_by(params.slice(:range, :family))
    end
@@ -18,27 +19,37 @@ class InstrumentsController < ApplicationController
    end
 
    def show
-     @instrument = Instrument.find(params[:id])
+     set_instrument
    end
 
    def edit
-     @instrument = Instrument.find(params[:id])
+     set_instrument
    end
 
    def update
-     instrument = Instrument.find(params[:id])
-     instrument.update(instrument_params)
-     redirect_to user_instrument_path(@user, instrument)
+     set_instrument
+     if @instrument.update(instrument_params)
+       redirect_to user_instrument_path(@user, @instrument)
+     else
+      render 'edit'
    end
+ end
 
    def destroy
-     @instrument = Instrument.find(params[:id])
+     set_instrument
      @instrument.destroy
      redirect_to user_instruments_path(@user)
    end
 
 
    private
+
+   def set_instrument
+     @instrument = Instrument.find(params[:id])
+     if !@instrument
+       redirect_to user_instruments_path
+     end
+   end
 
    def instrument_params
      params.require(:instrument).permit(:i_name, :family, :range, :user_id)

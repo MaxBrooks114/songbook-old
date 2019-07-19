@@ -1,5 +1,6 @@
 class ElementsController < ApplicationController
-   before_action :set_user
+   before_action :require_login, :set_user
+
 
   def index
      @instruments = @user.instruments
@@ -30,29 +31,40 @@ class ElementsController < ApplicationController
    end
 
    def show
-     @element = Element.find(params[:id])
+     set_element
      @song = @element.song
    end
 
    def edit
-     @element = Element.find(params[:id])
+    set_element
    end
 
    def update
-     element = Element.find(params[:id])
-     element.update(element_params)
-     song =  element.song
-     redirect_to element_path(element)
+     set_element
+     if @element.update(element_params)
+       redirect_to element_path(@element)
+     else
+       render 'edit'
+     end
    end
 
    def destroy
-     @element = Element.find(params[:id])
+     set_element
      @element.destroy
      redirect_to user_elements_path(@user)
    end
 
 
    private
+
+   def set_element
+     @element = Element.find(params[:id])
+     if !@element
+       redirect_to user_elements_path
+     end
+   end
+
+
 
    def element_params
      params.require(:element).permit(:lyrics, :e_name, :learned, :tempo, :key, :instrument_id, :song_id, :user_id)
