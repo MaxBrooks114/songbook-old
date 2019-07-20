@@ -24,4 +24,3 @@
 
 <%= link_to "Add a new element", new_user_song_element_path(@user, :song_id => @song.id)%><br />
 <%= link_to "Delete", song_path(@song), method: :delete, data: { confirm: 'Are you certain you want to delete this song?' } %><br />
-<%= link_to "Back to your songs", user_songs_path(@user) %>
