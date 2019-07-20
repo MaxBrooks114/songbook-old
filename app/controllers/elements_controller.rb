@@ -67,7 +67,7 @@ class ElementsController < ApplicationController
 
 
    def element_params
-     params.require(:element).permit(:lyrics, :e_name, :learned, :tempo, :key, :instrument_id, :song_id, :user_id)
+     params.require(:element).permit(:lyrics, :e_name, :learned, :tempo, :key, :recording, :instrument_id, :song_id, :user_id)
    end
 
 end

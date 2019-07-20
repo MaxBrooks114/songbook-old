@@ -3,6 +3,7 @@ class Element < ApplicationRecord
   belongs_to :song, inverse_of: :elements
   belongs_to :instrument, inverse_of: :elements
   belongs_to :user, inverse_of: :elements
+  has_one_attached :recording
   validates :e_name, uniqueness: { scope: [:instrument, :song_id], message: 'You have already added that element!' }
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
   scope :key, -> (key) { where key: key }

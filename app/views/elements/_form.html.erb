@@ -19,5 +19,7 @@
 <%= f.text_area :lyrics %><br>
 <%= f.label :learned %>
 <%= f.check_box :learned %><br />
+<%= f.label :recording %>
+<%= f.file_field :recording %><br />
 <%= f.submit @element.new_record? ? "Add element" : "Update element" %>
 <% end %>
