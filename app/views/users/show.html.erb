@@ -5,18 +5,18 @@
 <%=  link_to "Add a Song", new_user_song_path(@user) %><br />
 <%=  link_to "Add an Element", new_user_element_path(@user) %><br />
 <% if @user.instruments.any? && @user.songs.any? && @user.elements.any? %>
-    <p>Favorite Instrument: <%= @user.elements.favorite(:instrument).name_with_range %></p>
-    <p>Favorite Song: <%= @user.elements.favorite(:song).title %></p>
-    <p>Elements Learned: <%= @user.elements.learned_count %></p>
-    <p>Songs Added: <%= @user.songs.song_count %> </p>
-    <p>Favorite Artist: <%= @user.songs.favorite(:artist) %> </p>
-    <p>Favorite Genre: <%= @user.songs.favorite(:genre) %> </p>
-    <p>Favorite Album: <%= @user.songs.favorite(:album)%> </p>
-    <p>Favorite Instrument Range: <%= @user.instruments.favorite(:range) %> </p>
-    <p>Favorite Instrument Family: <%= @user.instruments.favorite(:family) %> </p>
-    <p>Favorite Element: <%= @user.elements.favorite(:name) %> </p>
-    <p>Favorite key: <%= @user.elements.favorite(:key)%> </p>
-    <p>Fastest Tempo: <%= @user.elements.fastest %> </p>
+    <p>Favorite Instrument: <%= link_to @user.elements.favorite(:instrument).name_with_range, user_instrument_path(@user.elements.favorite(:instrument)) %></p>
+    <p>Favorite Song: <%=link_to @user.elements.favorite(:song).title, user_song_path(@user.elements.favorite(:song)) %></p>
+    <p>Elements Learned: <%= link_to @user.elements.learned_count, user_elements_path(@user) %></p>
+    <p>Songs Added: <%= link_to @user.songs.song_count, user_songs_path(@user) %> </p>
+    <p>Favorite Artist: <%= link_to @user.songs.favorite(:artist), user_songs_path(@user, :artist => @user.songs.favorite(:artist)) %> </p>
+    <p>Favorite Genre: <%= link_to @user.songs.favorite(:genre), user_songs_path(@user, :genre => @user.songs.favorite(:genre)) %> </p>
+    <p>Favorite Album: <%= link_to @user.songs.favorite(:album), user_songs_path(@user, :album => @user.songs.favorite(:album)) %> </p>
+    <p>Favorite Instrument Range: <%= link_to @user.instruments.favorite(:range), user_instruments_path(@user, :range => @user.instruments.favorite(:range))   %> </p>
+    <p>Favorite Instrument Family: <%= link_to @user.instruments.favorite(:family), user_instruments_path(@user, :family => @user.instruments.favorite(:family)) %> </p>
+    <p>Favorite Element: <%= link_to @user.elements.favorite(:e_name), user_elements_path(@user, :e_name => @user.elements.favorite(:e_name)) %> </p>
+    <p>Favorite key: <%= link_to @user.elements.favorite(:key), user_elements_path(@user, :key => @user.elements.favorite(:key))%> </p>
+    <p>Fastest Tempo: <%= link_to @user.elements.fastest, user_elements_path(@user, :tempo => @user.elements.fastest)  %> </p>
 
 <% end %>
 <br />
