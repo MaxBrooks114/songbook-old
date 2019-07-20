@@ -4,9 +4,11 @@ class Element < ApplicationRecord
   belongs_to :instrument, inverse_of: :elements
   belongs_to :user, inverse_of: :elements
   has_one_attached :recording
+  has_one_attached :sheet_music
   validates :e_name, uniqueness: { scope: [:instrument, :song_id], message: 'You have already added that element!' }
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
   validate :recording_content_type
+  validate :sheet_music_content_type
   scope :key, -> (key) { where key: key }
   scope :tempo, -> (tempo) { where tempo: tempo }
   scope :e_name, -> (e_name) { where e_name: e_name }
@@ -15,11 +17,16 @@ class Element < ApplicationRecord
   scope :lyrics?, -> { where("text_value <> ''") }
   scope :instrument, -> (instrument) { where instrument: instrument }
 
-  attr_accessor :delete_recording
+  attr_accessor :delete_recording, :delete_sheet_music
 
   after_save :purge_recording, if: :delete_recording
   private def purge_recording
     recording.purge_later
+  end
+
+  after_save :purge_sheet_music, if: :delete_sheet_music
+  private def purge_sheet_music
+    sheet_music.purge_later
   end
 
 
@@ -59,6 +66,11 @@ class Element < ApplicationRecord
       end
     end
 
+    def sheet_music_content_type
+      if sheet_music.attached? && !sheet_music.content_type.in?(%w(image/pdf image/JPEG image/png image/jpg))
+        errors.add(:sheet_muic, 'must be an image file!')
+      end
+    end
 
 
 

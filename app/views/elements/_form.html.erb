@@ -19,6 +19,12 @@
 <%= f.text_area :lyrics %><br>
 <%= f.label :learned %>
 <%= f.check_box :learned %><br />
+<%= f.label :sheet_music %>
+<%= f.file_field :sheet_music %><br />
+<% if @element.sheet_music.attached? %>
+  <%= f.label :delete_sheet_music %>
+  <%= f.check_box :delete_sheet_music %><br />
+<% end %>
 <%= f.label :recording %>
 <%= f.file_field :recording %><br />
 <% if @element.recording.attached? %>
