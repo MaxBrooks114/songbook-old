@@ -23,10 +23,8 @@ class ApplicationController < ActionController::Base
       session[:user_id] = @user.id
     end
 
-    def logged_in?
-      if current_user == @user
+    def logged_in?  
        session[:user_id]
-     end
     end
 
 
