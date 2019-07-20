@@ -1,12 +1,12 @@
 <h1> Songs </h1>
-<% if Song.any? %>
+<% if @user.songs.any? %>
   <div>
     <h3>Filter Songs:</h3>
     <%= form_tag("/users/#{@user.id}/songs", method: "get") do %>
       Instrument <%= select_tag "instruments", options_from_collection_for_select(@instruments, "id", "i_name"), include_blank: true %>
-      Artist <%= select_tag "artist", options_for_select(Song.used(:artist).reject(&:blank?)), include_blank: true %>
-      Genre <%= select_tag "genre", options_for_select(Song.used(:genre)), include_blank: true %>
-      Album<%= select_tag "album", options_for_select(Song.used(:album).reject(&:blank?)), include_blank: true %>
+      Artist <%= select_tag "artist", options_for_select(@user.songs.used(:artist).reject(&:blank?)), include_blank: true %>
+      Genre <%= select_tag "genre", options_for_select(@user.songs.used(:genre)), include_blank: true %>
+      Album<%= select_tag "album", options_for_select(@user.songs.used(:album).reject(&:blank?)), include_blank: true %>
       <%= submit_tag "Filter" %>
       <% end %>
     </div>

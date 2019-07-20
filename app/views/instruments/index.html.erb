@@ -3,15 +3,16 @@
   <div>
     <h3>Filter Instruments:</h3>
     <%= form_tag("/users/#{@user.id}/instruments", method: "get") do %>
-      Family <%= select_tag "family", options_for_select(Instrument.used(:family)), include_blank: true %>
-      Range<%= select_tag "range", options_for_select(Instrument.used(:range)), include_blank: true %>
+      Family <%= select_tag "family", options_for_select(@user.instruments.used(:family)), include_blank: true %>
+      Range<%= select_tag "range", options_for_select(@user.instruments.used(:range)), include_blank: true %>
+      Make<%= select_tag "make", options_for_select(@user.instruments.used(:make).reject(&:blank?)), include_blank: true %>
       <%= submit_tag "Filter" %>
     <% end %>
     </div>
 <% end %>
   <br />
 <% @instruments.each do |instrument| %>
-  <%= link_to instrument.name_with_range, user_instrument_path(@user, instrument)%> <br />
+  <%= link_to instrument.display_name, user_instrument_path(@user, instrument)%> <br />
    <br />
 <% end %>
 <%= link_to "Add a new instrument", new_user_instrument_path(@user) %><br />
