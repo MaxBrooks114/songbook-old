@@ -2,6 +2,9 @@
 <ul>
   <li>Family: <%= @instrument.family %></li>
   <li>Range: <%= @instrument.range %></li>
+  <% if @instrument.picture.attached? %>
+      <%= image_tag(@instrument.picture) %><br />
+  <% end %>
   <li>Songs you know on this Instrument:
     <ul><% @instrument.songs.each do |s| %>
       <li><%= link_to s.title, song_path(s)%>

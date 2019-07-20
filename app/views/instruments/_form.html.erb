@@ -7,5 +7,11 @@
 <%= f.select :family, ['Woodwind', 'Brass', 'String', 'Percussion', 'Other'] %><br>
 <%= f.label :range %><br>
 <%= f.select :range, ['Soprano', 'Alto', 'Tenor', 'Baritone', 'Bass', 'N/A'] %><br>
+<%= f.label :picture %>
+<%= f.file_field :picture %><br />
+<% if @instrument.picture.attached? %>
+  <%= f.label :delete_picture %>
+  <%= f.check_box :delete_picture %><br />
+<% end %>
 <%= f.submit @instrument.new_record? ? "Add Instrument" : "Update Instrument" %>
 <% end %>

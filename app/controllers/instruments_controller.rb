@@ -52,6 +52,6 @@ class InstrumentsController < ApplicationController
    end
 
    def instrument_params
-     params.require(:instrument).permit(:i_name, :family, :range, :user_id)
+     params.require(:instrument).permit(:i_name, :picture, :delete_picture, :family, :range, :user_id)
    end
 end

@@ -67,8 +67,8 @@ class Element < ApplicationRecord
     end
 
     def sheet_music_content_type
-      if sheet_music.attached? && !sheet_music.content_type.in?(%w(image/pdf image/JPEG image/png image/jpg))
-        errors.add(:sheet_muic, 'must be an image file!')
+      if sheet_music.attached? && !sheet_music.content_type.in?(%w(image/pdf image/JPEG image/png image/jpg image/JPG image/jpeg))
+        errors.add(:sheet_music, 'must be an image file!')
       end
     end
 
