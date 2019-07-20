@@ -16,28 +16,24 @@
       <%= f.check_box :learned %>
     </div>
     <div class="field">
-    <%= f.label :key %>
-    <%= f.select :key, Element.keys %><br />
+      <%= f.label :key %>
+      <%= f.select :key, Element.keys %><br />
     </div>
     <div class="field">
-    <%= f.label :tempo %>
-    <%= f.text_field :tempo %><br />
+      <%= f.label :tempo %>
+      <%= f.text_field :tempo %><br />
     </div>
     <div class="field">
       <%= f.label :sheet_music %>
       <%= f.file_field :sheet_music %><br />
-      <% if @element.sheet_music.attached? %>
-        <%= f.label :delete_sheet_music %>
-        <%= f.check_box :delete_sheet_music %><br />
-      <% end %>
     </div>
     <div class="field">
-    <%= f.label :recording %>
-    <%= f.file_field :recording %><br />
+      <%= f.label :recording %>
+      <%= f.file_field :recording %><br />
     </div>
     <div class="field">
-    <%= f.label :lyrics %>
-    <%= f.text_field :lyrics %><br />
+      <%= f.label :lyrics %>
+      <%= f.text_field :lyrics %><br />
     </div>
 
     <%= link_to_remove_association "remove element", f %>
