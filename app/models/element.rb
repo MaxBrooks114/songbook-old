@@ -5,7 +5,7 @@ class Element < ApplicationRecord
   belongs_to :user, inverse_of: :elements
   has_one_attached :recording
   has_one_attached :sheet_music
-  validates :e_name, uniqueness: { scope: [:instrument, :song_id], message: 'You have already added that element!' }
+  validates :e_name, uniqueness: { scope: [:instrument_id, :song_id], message: 'You have already added that element!' }
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
   validate :recording_content_type
   validate :sheet_music_content_type
