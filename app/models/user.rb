@@ -11,9 +11,10 @@ class User < ApplicationRecord
 			user.provider = auth.provider
 			user.uid = auth.uid
 			user.email = auth.info.email
-            user.username = auth.info.email
-            user.password = SecureRandom.hex
-			user.save(validate: false)
+      user.username = auth.info.name
+      user.password = SecureRandom.hex
+      user.password_confirmation = user.password
+			user.save
 		end
   end
 
