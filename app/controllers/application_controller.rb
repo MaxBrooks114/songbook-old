@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user
+    helper_method :current_user, :logged_in?
 
 
 
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
     def require_login
       unless logged_in?
-        flash[:error] = "You must be logged in to access this section"
+        flash[:notice] = "You must be logged in to access this section"
         redirect_to '/'
       end
     end
@@ -24,7 +24,9 @@ class ApplicationController < ActionController::Base
     end
 
     def logged_in?
-      session[:user_id]
+      if current_user == @user
+       session[:user_id]
+     end
     end
 
 
@@ -33,7 +35,7 @@ class ApplicationController < ActionController::Base
     end
 
     def set_user
-     @user = current_user
+      @user = current_user
     end
 
 end

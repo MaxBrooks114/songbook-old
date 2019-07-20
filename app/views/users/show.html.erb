@@ -4,19 +4,19 @@
 <%=  link_to "Add an Instrument", new_user_instrument_path(@user) %><br />
 <%=  link_to "Add a Song", new_user_song_path(@user) %><br />
 <%=  link_to "Add an Element", new_user_element_path(@user) %><br />
-<% if Instrument.any? && Song.any? && Element.any? %>
-    <p>Favorite Instrument: <%= Element.favorite(:instrument).name_with_range %></p>
-    <p>Favorite Song: <%= Element.favorite(:song).title %></p>
-    <p>Elements Learned: <%= Element.learned_count %></p>
-    <p>Songs Added: <%= Song.song_count %> </p>
-    <p>Favorite Artist: <%= Song.favorite(:artist) %> </p>
-    <p>Favorite Genre: <%= Song.favorite(:genre) %> </p>
-    <p>Favorite Album: <%= Song.favorite(:album)%> </p>
-    <p>Favorite Instrument Range: <%= Instrument.favorite(:range) %> </p>
-    <p>Favorite Instrument Family: <%= Instrument.favorite(:family) %> </p>
-    <p>Favorite Element: <%= Element.favorite(:name) %> </p>
-    <p>Favorite key: <%= Element.favorite(:key)%> </p>
-    <p>Fastest Tempo: <%= Element.fastest %> </p>
+<% if @user.instruments.any? && @user.songs.any? && @user.elements.any? %>
+    <p>Favorite Instrument: <%= @user.elements.favorite(:instrument).name_with_range %></p>
+    <p>Favorite Song: <%= @user.elements.favorite(:song).title %></p>
+    <p>Elements Learned: <%= @user.elements.learned_count %></p>
+    <p>Songs Added: <%= @user.songs.song_count %> </p>
+    <p>Favorite Artist: <%= @user.songs.favorite(:artist) %> </p>
+    <p>Favorite Genre: <%= @user.songs.favorite(:genre) %> </p>
+    <p>Favorite Album: <%= @user.songs.favorite(:album)%> </p>
+    <p>Favorite Instrument Range: <%= @user.instruments.favorite(:range) %> </p>
+    <p>Favorite Instrument Family: <%= @user.instruments.favorite(:family) %> </p>
+    <p>Favorite Element: <%= @user.elements.favorite(:name) %> </p>
+    <p>Favorite key: <%= @user.elements.favorite(:key)%> </p>
+    <p>Fastest Tempo: <%= @user.elements.fastest %> </p>
 
 <% end %>
 <br />

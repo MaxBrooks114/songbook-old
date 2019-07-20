@@ -2,7 +2,7 @@ class InstrumentsController < ApplicationController
    before_action :require_login, :set_user
 
    def index
-     @instruments = Instrument.filter_by(params.slice(:range, :family))
+     @instruments = @user.instruments.filter_by(params.slice(:range, :family))
    end
 
    def new

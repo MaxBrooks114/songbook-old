@@ -2,7 +2,7 @@ class SongsController < ApplicationController
    before_action :require_login, :set_user
    def index
      @instruments = @user.instruments
-     @songs = Song.filter_by(params.slice(:artist, :album, :genre, :instruments))
+     @songs = @user.songs.filter_by(params.slice(:artist, :album, :genre, :instruments))
    end
 
   def new
