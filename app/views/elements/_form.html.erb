@@ -21,5 +21,9 @@
 <%= f.check_box :learned %><br />
 <%= f.label :recording %>
 <%= f.file_field :recording %><br />
+<% if @element.recording.attached? %>
+  <%= f.label :delete_recording %>
+  <%= f.check_box :delete_recording %><br />
+<% end %>
 <%= f.submit @element.new_record? ? "Add element" : "Update element" %>
 <% end %>

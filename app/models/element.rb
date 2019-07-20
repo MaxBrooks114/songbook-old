@@ -6,6 +6,7 @@ class Element < ApplicationRecord
   has_one_attached :recording
   validates :e_name, uniqueness: { scope: [:instrument, :song_id], message: 'You have already added that element!' }
   validates :tempo, numericality: { only_integer: true },  allow_nil: true
+  validate :recording_content_type
   scope :key, -> (key) { where key: key }
   scope :tempo, -> (tempo) { where tempo: tempo }
   scope :e_name, -> (e_name) { where e_name: e_name }
@@ -14,6 +15,12 @@ class Element < ApplicationRecord
   scope :lyrics?, -> { where("text_value <> ''") }
   scope :instrument, -> (instrument) { where instrument: instrument }
 
+  attr_accessor :delete_recording
+
+  after_save :purge_recording, if: :delete_recording
+  private def purge_recording
+    recording.purge_later
+  end
 
 
   def self.names
@@ -43,6 +50,14 @@ class Element < ApplicationRecord
     "#{self.e_name} to #{self.song.title} on #{self.instrument.i_name}"
   end
 
+
+
+  private
+    def recording_content_type
+      if recording.attached? && !recording.content_type.in?(%w(audio/wav audio/m4a audio/mp3 audio/flac audio/mp4 audio/ogg audio/aif audio/AAC))
+        errors.add(:recording, 'must be an audio file!')
+      end
+    end
 
 
 
