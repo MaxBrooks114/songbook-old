@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  
+   before_action :require_login, only: [:edit, :update, :destroy]
+
   def new
     @user = User.new
   end
@@ -17,6 +18,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    if logged_in?
+      render 'show'
+    else
+      redirect_to '/'
+      flash[:notice] = 'You are not logged in!'
+    end
   end
 
   def edit

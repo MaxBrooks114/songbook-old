@@ -1,3 +1,7 @@
 <h1>Welcome to Your Songbook</h1>
 
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %><br>
+
 <%= link_to "Sign Up Here", new_user_path %> or <%= link_to "Sign in", login_path %> or <%= link_to('Log in with Google!', '/auth/google_oauth2')%>

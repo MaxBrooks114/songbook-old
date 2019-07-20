@@ -12,7 +12,7 @@
     <%= yield %><br />
     <br />
     <br />
-    <% if @user %> 
+    <% if @user && session[:user_id] = @user.id %>
       <% unless current_page?(user_instruments_path(@user)) %>
         <%= link_to "See your Instruments", user_instruments_path(@user) %><br />
       <% end %>
