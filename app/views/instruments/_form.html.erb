@@ -3,6 +3,10 @@
 <%= f.hidden_field :user_id, :value => @user.id %>
 <%= f.label :name %><br>
 <%= f.select :i_name, Instrument.instrument_list %></br>
+<%= f.label :make %><br>
+<%= f.text_field :make %></br>
+<%= f.label :model %><br>
+<%= f.text_field :model %></br>
 <%= f.label :family %><br>
 <%= f.select :family, ['Woodwind', 'Brass', 'String', 'Percussion', 'Other'] %><br>
 <%= f.label :range %><br>

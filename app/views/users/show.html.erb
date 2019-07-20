@@ -5,7 +5,7 @@
 <%=  link_to "Add a Song", new_user_song_path(@user) %><br />
 <%=  link_to "Add an Element", new_user_element_path(@user) %><br />
 <% if @user.instruments.any? && @user.songs.any? && @user.elements.any? %>
-    <p>Favorite Instrument: <%= link_to @user.elements.favorite(:instrument).name_with_range, user_instrument_path(@user.elements.favorite(:instrument)) %></p>
+    <p>Favorite Instrument: <%= link_to @user.elements.favorite(:instrument).display_name, user_instrument_path(@user.elements.favorite(:instrument)) %></p>
     <p>Favorite Song: <%=link_to @user.elements.favorite(:song).title, user_song_path(@user.elements.favorite(:song)) %></p>
     <p>Elements Learned: <%= link_to @user.elements.learned_count, user_elements_path(@user) %></p>
     <p>Songs Added: <%= link_to @user.songs.song_count, user_songs_path(@user) %> </p>

@@ -13,7 +13,7 @@
     <%= link_to "You Have no instruments! Add one here first", new_user_instrument_path %>
 <%else %>
     <%= f.label :Instruments %><br>
-    <%= f.collection_check_boxes(:instrument_ids, @instruments, :id, :name_with_range) %><br>
+    <%= f.collection_check_boxes(:instrument_ids, @instruments, :id, :display_name) %><br>
 <%end%>
 <div id='elements'>
    <%if !@song.new_record? %>

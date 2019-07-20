@@ -9,7 +9,7 @@
     </div>
     <div>
       <%= f.label :instrument %>
-      <%= f.collection_select(:instrument_id, @song.instruments, :id, :name_with_range)  %><br>
+      <%= f.collection_select(:instrument_id, @song.instruments, :id, :display_name)  %><br>
     </div>
     <div class="field">
       <%= f.label :learned %>

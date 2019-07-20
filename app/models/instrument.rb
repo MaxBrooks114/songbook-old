@@ -6,9 +6,10 @@ class Instrument < ApplicationRecord
   has_many :elements, through: :songs, inverse_of: :instrument
   has_one_attached :picture
   validate :picture_content_type
-  validates :i_name, uniqueness: { scope: :range, message: 'You already have that instrument!' }
   scope :range, -> (range) { where range: range}
   scope :family, -> (family) { where family: family}
+  scope :make, -> (make) { where make: make}
+  before_save :normalize
 
   attr_accessor :delete_picture
 
@@ -25,7 +26,24 @@ class Instrument < ApplicationRecord
     "#{i_name} (#{range})"
   end
 
+  def make_with_model_name
+    "#{make} #{model} (#{i_name})"
+  end
+
+  def display_name
+    if make.blank? || model.blank?
+      name_with_range
+    else
+      make_with_model_name
+    end
+  end
+
   private
+
+  def normalize
+    self.make = make.downcase.titleize.squish
+    self.model = model.downcase.titleize.squish
+  end
 
   def picture_content_type
     if picture.attached? && !picture.content_type.in?(%w(image/pdf image/JPEG image/png image/jpg image/jpeg))

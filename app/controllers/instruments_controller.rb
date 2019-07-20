@@ -2,7 +2,7 @@ class InstrumentsController < ApplicationController
    before_action :require_login, :set_user
 
    def index
-     @instruments = @user.instruments.filter_by(params.slice(:range, :family))
+     @instruments = @user.instruments.filter_by(params.slice(:range, :family, :make))
    end
 
    def new
@@ -52,6 +52,6 @@ class InstrumentsController < ApplicationController
    end
 
    def instrument_params
-     params.require(:instrument).permit(:i_name, :picture, :delete_picture, :family, :range, :user_id)
+     params.require(:instrument).permit(:i_name, :make, :model, :picture, :delete_picture, :family, :range, :user_id)
    end
 end
