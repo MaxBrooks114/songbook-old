@@ -42,7 +42,7 @@ class Element < ApplicationRecord
 
 
   def self.lyrics?
-    select(:lyrics).map { |e| !e.lyrics.blank? }.uniq
+    select(:lyrics).map { |e| e.lyrics.blank? }.uniq
   end
 
   def self.learned_count
