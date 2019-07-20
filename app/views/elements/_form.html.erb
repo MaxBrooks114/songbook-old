@@ -3,12 +3,8 @@
 <%= f.hidden_field :user_id, :value => @user.id %>
 <%= f.label :name %><br>
 <%= f.select :e_name, Element.names %></br>
-<% if !Song.all.empty? %>
-  <%= f.label :song %><br>
-  <%= f.collection_select :song_id, @user.songs, :id, :title  %><br>
-<% else %>
-  <%= link_to "Add a song first!", new_song_path %><br />
-<%end%>
+<%= f.label :song %><br>
+<%= f.collection_select :song_id, @user.songs, :id, :title  %><br>
 <%= f.label :instrument %><br>
 <%= f.collection_select :instrument_id, @user.instruments, :id, :name_with_range %><br>
 <%= f.label :key %>

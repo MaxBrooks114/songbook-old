@@ -6,7 +6,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  
+
   </head>
 
   <body>
@@ -14,13 +14,13 @@
     <br />
     <br />
     <% if @user && session[:user_id] = @user.id %>
-      <% unless current_page?(user_instruments_path(@user)) %>
+      <% unless current_page?(user_instruments_path(@user)) || @user.instruments.empty? %>
         <%= link_to "See your Instruments", user_instruments_path(@user) %><br />
       <% end %>
-      <% unless current_page?(user_songs_path(@user)) %>
+      <% unless current_page?(user_songs_path(@user)) || @user.songs.empty? %>
         <%= link_to "See your Songs", user_songs_path(@user) %><br />
       <% end %>
-      <% unless current_page?(user_elements_path(@user)) %>
+      <% unless current_page?(user_elements_path(@user)) || @user.elements.empty?%>
         <%= link_to "See your Elements", user_elements_path(@user) %><br />
       <% end %>
       <% unless current_page?(@user) %>

@@ -11,6 +11,9 @@ class ElementsController < ApplicationController
    def new
      if params[:song_id] && song = Song.find(params[:song_id])
          @element = song.elements.build
+     elsif Song.all.empty?
+           flash[:notice] = 'Enter a song first!'
+           redirect_to new_user_song_path(@user)
      else
          @element = Element.new
      end

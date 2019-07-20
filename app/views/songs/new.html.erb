@@ -1,3 +1,5 @@
 <h1>Add a New Song</h1>
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %><br>
 <%= render 'form'%>
-<%= link_to "Back to your songs", user_songs_path(@user) %>

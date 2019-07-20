@@ -1,9 +1,10 @@
 <h1><%= link_to @user.username.titleize, edit_user_path(@user) %>'s Songbook</h1>
 
-
 <%=  link_to "Add an Instrument", new_user_instrument_path(@user) %><br />
-<%=  link_to "Add a Song", new_user_song_path(@user) %><br />
-<%=  link_to "Add an Element", new_user_element_path(@user) %><br />
+<% unless @user.instruments.empty? %>
+  <%=  link_to "Add a Song", new_user_song_path(@user) %><br />
+  <%=  link_to "Add an Element", new_user_element_path(@user) %><br />
+<% end %>
 <% if @user.instruments.any? && @user.songs.any? && @user.elements.any? %>
     <p>Favorite Instrument: <%= link_to @user.elements.favorite(:instrument).display_name, user_instrument_path(@user, @user.elements.favorite(:instrument)) %></p>
     <p>Favorite Song: <%=link_to @user.elements.favorite(:song).title, user_song_path(@user, @user.elements.favorite(:song)) %></p>
