@@ -1,7 +1,7 @@
 class SongsController < ApplicationController
    before_action :require_login, :set_user
+
    def index
-     @instruments = @user.instruments
      @songs = @user.songs.filter_by(params.slice(:artist, :album, :genre, :instruments))
    end
 
@@ -43,6 +43,11 @@ class SongsController < ApplicationController
     set_song
     @instruments = @user.instruments
     if @song.update(song_params)
+      @song.elements.each do |e|
+        unless @song.instruments.include?(e.instrument)
+          e.destroy
+        end
+      end
       redirect_to song_path(@song)
     else
       render 'edit'
@@ -66,6 +71,6 @@ class SongsController < ApplicationController
   end
 
   def song_params
-    params.require(:song).permit(:title, :lyrics, :artist, :genre, :album, :learned, :user_id, instrument_ids: [], elements_attributes: [:id, :lyrics, :e_name, :key, :tempo, :learned, :recording, :delete_recording, :sheet_music, :delete_sheet_music, :user_id, :instrument_id, :_destroy] )
+    params.require(:song).permit(:title, :lyrics, :artist, :genre, :album, :learned, :user_id, :instrument_id, instrument_ids: [], elements_attributes: [:id, :lyrics, :e_name, :key, :tempo, :learned, :recording, :delete_recording, :sheet_music, :delete_sheet_music, :user_id, :instrument_id, :_destroy] )
   end
 end
