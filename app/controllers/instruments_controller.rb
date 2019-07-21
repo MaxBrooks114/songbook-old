@@ -47,7 +47,7 @@ class InstrumentsController < ApplicationController
    def set_instrument
      @instrument = Instrument.find(params[:id])
      if !@instrument
-       redirect_to user_instruments_path
+       redirect_to user_instruments_path(@user)
      end
    end
 
