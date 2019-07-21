@@ -22,6 +22,7 @@ class ElementsController < ApplicationController
    def create
      @element = Element.new(element_params)
      if @element.save
+       song = @element.song
        instrument = @element.instrument
        unless @element.song.instruments.include?(instrument)
          song.instruments << instrument
