@@ -22,12 +22,11 @@ class ElementsController < ApplicationController
    def create
      @element = Element.new(element_params)
      if @element.save
-       song = @element.song
        instrument = @element.instrument
-       if !song.instruments.include?(instrument)
+       unless @element.song.instruments.include?(instrument)
          song.instruments << instrument
        end
-      redirect_to user_element_path(@user, @element)
+       redirect_to user_element_path(@user, @element)
      else
        render 'new'
      end
@@ -64,7 +63,7 @@ class ElementsController < ApplicationController
    def set_element
      @element = Element.find(params[:id])
      if !@element
-       redirect_to user_elements_path
+       redirect_to user_elements_path(@user)
      end
    end
 
