@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
    before_action :require_login, only: [:edit, :update, :destroy]
 
+  def index
+    redirect_to ('/')
+    flash[:notice] = 'That account was created manually please sign in without google'
+  end
   def new
     @user = User.new
   end
@@ -32,9 +36,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find(params[:id])
-    user.update(user_params)
-    redirect_to user_path(user)
+    @user = User.find(params[:id])
+     if @user.update(user_params)
+       redirect_to user_path(@user)
+     else
+      render 'edit'
+    end
   end
 
   def destroy

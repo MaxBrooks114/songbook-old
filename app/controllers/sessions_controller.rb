@@ -5,20 +5,20 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if auth
-    	@user = User.find_or_create_from_auth_hash(auth)
-    	log_in(@user)
-    	redirect_to @user
-    elsif
-      @user = User.find_by(username: params[:username].downcase)
-      if @user && @user.authenticate(params[:password])
-        log_in(@user)
-        redirect_to @user
-      end
+    @user = User.find_by(username: params[:username].downcase)
+    if @user && @user.authenticate(params[:password])
+      log_in(@user)
+      redirect_to @user
     else
       flash[:notice] = 'Invalid email/password combination'
       redirect_to '/login'
     end
+  end
+
+  def googlecreate
+    @user = User.find_or_create_from_auth_hash(auth)
+    log_in(@user)
+    redirect_to @user
   end
 
 
