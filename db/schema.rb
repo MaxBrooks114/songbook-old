@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2019_07_20_180510) do
 
   # These are extensions that must be enabled in order to support this database
@@ -87,6 +88,9 @@ ActiveRecord::Schema.define(version: 2019_07_20_180510) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+=======
+ActiveRecord::Schema.define(version: 0) do
+>>>>>>> 2c6c1292eb28130ebfc9e1877742702b3c8bd554
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end
