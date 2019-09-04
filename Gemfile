@@ -36,6 +36,12 @@ gem 'thin'
 
 gem 'pry'
 
+gem 'rack-cors'
+
+gem 'rspotify'
+
+gem 'active_model_serializers'
+
 gem 'dotenv-rails'
 
 gem "cocoon"
