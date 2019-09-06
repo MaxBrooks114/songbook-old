@@ -38,7 +38,7 @@ gem 'pry'
 
 gem 'rack-cors'
 
-gem 'rspotify'
+gem 'faraday'
 
 gem 'active_model_serializers'
 

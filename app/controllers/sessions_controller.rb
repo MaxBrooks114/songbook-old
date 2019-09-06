@@ -15,9 +15,16 @@ class SessionsController < ApplicationController
     end
   end
 
-  def googlecreate
+  def google_create
     @user = User.find_or_create_from_auth_hash(auth)
     log_in(@user)
+    redirect_to @user
+  end
+
+  def spotify_create
+    @user =  current_user 
+    spotify = SpotifyService.new
+    session[:token] = spotify.authenticate!(ENV['FOURSQUARE_CLIENT_ID'], ENV['FOURSQUARE_SECRET'], params[:code])
     redirect_to @user
   end
 
