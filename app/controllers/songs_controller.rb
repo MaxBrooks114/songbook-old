@@ -37,7 +37,7 @@ class SongsController < ApplicationController
     respond_to do |f|
        f.html {render :show}
        f.json {render json: @song.to_json(only: [:id, :title, :lyrics, :genre, :album],
-                             include: [instruments: { only: [:name]}])}
+                             include: [instruments: { only: [:i_name]}, elements: {only: [:e_name]}])}
    end
   end
 
