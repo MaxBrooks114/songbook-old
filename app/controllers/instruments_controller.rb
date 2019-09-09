@@ -29,7 +29,12 @@ class InstrumentsController < ApplicationController
      set_instrument
      respond_to do |f|
         f.html {render :show}
+<<<<<<< HEAD
         f.json {render json: @instrument.to_json(include: [:songs, :elements])}
+=======
+        f.json {render json: @instrument.to_json(only: [:id, :make, :model, :family, :range],
+                              include: [songs: { only: [:name]}])}
+>>>>>>> 318c101070540370237c8a4c6fd33baee011c3ff
     end
    end
 
