@@ -2,8 +2,15 @@ class InstrumentsController < ApplicationController
    before_action :require_login, :set_user
 
    def index
+     if params[:family]
+        @instrument = @user.instruments.find_by(family: params[:family])
+     end
      @instruments = @user.instruments.filter_by(params.slice(:range, :family, :make))
-   end
+     respond_to do |f|
+       f.html {render :index}
+       f.json {render json: @instruments}
+    end
+  end
 
    def new
      @instrument = Instrument.new
@@ -20,6 +27,10 @@ class InstrumentsController < ApplicationController
 
    def show
      set_instrument
+     respond_to do |f|
+        f.html {render :show}
+        f.json {render json: @instrument.to_json(include: [:songs, :elements])}
+    end
    end
 
    def edit

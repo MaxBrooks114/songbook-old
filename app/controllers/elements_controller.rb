@@ -6,6 +6,10 @@ class ElementsController < ApplicationController
      @instruments = @user.instruments
      @songs = @user.songs
      @elements = @user.elements.filter_by(params.slice(:lyrics?, :e_name, :key, :tempo, :learned, :instrument, :song))
+     respond_to do |f|
+       f.html {render :index}
+       f.json {render json: @elements}
+    end
   end
 
    def new
@@ -36,6 +40,10 @@ class ElementsController < ApplicationController
    def show
      set_element
      @song = @element.song
+     respond_to do |f|
+        f.html {render :show}
+        f.json {render json: @element.to_json(include: [:song, :instrument])}
+    end
    end
 
    def edit

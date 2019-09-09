@@ -3,6 +3,10 @@ class SongsController < ApplicationController
 
    def index
      @songs = @user.songs.filter_by(params.slice(:artist, :album, :genre, :instruments))
+     respond_to do |f|
+       f.html {render :index}
+       f.json {render json: @songs}
+    end
    end
 
   def new
@@ -30,7 +34,11 @@ class SongsController < ApplicationController
 
   def show
     set_song
-
+    respond_to do |f|
+       f.html {render :show}
+       f.json {render json: @song.to_json(only: [:id, :title, :lyrics, :genre, :album],
+                             include: [instruments: { only: [:i_name]}, elements: {only: [:e_name]}])}
+   end
   end
 
   def edit
