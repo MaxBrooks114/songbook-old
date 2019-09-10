@@ -19,7 +19,12 @@ class InstrumentsController < ApplicationController
    def create
      @instrument = Instrument.new(instrument_params)
      if @instrument.save
-       redirect_to user_instrument_path(@user, @instrument)
+       # redirect_to user_instrument_path(@user, @instrument)
+       respond_to do |f|
+          f.html {redirect_to user_instrument_path(@user, @instrument)}
+
+          f.json {render json: @instrument.to_json(include: [:songs, :elements])}
+        end
      else
        render 'new'
      end
@@ -29,12 +34,9 @@ class InstrumentsController < ApplicationController
      set_instrument
      respond_to do |f|
         f.html {render :show}
-<<<<<<< HEAD
+
         f.json {render json: @instrument.to_json(include: [:songs, :elements])}
-=======
-        f.json {render json: @instrument.to_json(only: [:id, :make, :model, :family, :range],
-                              include: [songs: { only: [:name]}])}
->>>>>>> 318c101070540370237c8a4c6fd33baee011c3ff
+
     end
    end
 
