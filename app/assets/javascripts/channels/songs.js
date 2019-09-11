@@ -12,7 +12,7 @@ function listenForSongsClick() {
 
 function getSongs() {
 	$.ajax({
-		url: 'http://localhost:3000/users/1/songs',
+		url: `http://localhost:3000/users/${userId}/songs`,
 		method: 'get',
 		dataType: 'json',
 		success: function (data) {

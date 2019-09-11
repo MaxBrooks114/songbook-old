@@ -1,6 +1,8 @@
 <h1><%= link_to @user.username.titleize, edit_user_path(@user) %>'s Songbook</h1>
 
 <%=  link_to "Add an Instrument", new_user_instrument_path(@user) %><br />
+<button id='ajax-new-instrument'>New Instrument</button>
+<div id="new-instrument-form-div"></div>
 <% unless @user.instruments.empty? %>
   <%=  link_to "Add a Song", new_user_song_path(@user) %><br />
   <%=  link_to "Add an Element", new_user_element_path(@user) %><br />

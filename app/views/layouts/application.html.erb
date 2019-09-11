@@ -5,12 +5,15 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application' %>
+    <script id='user-Id'> let userId = <%= current_user.id %></script>
 
   </head>
 
   <body>
-    <%= yield %><br />
+    <%= yield %>
+
+    <br />
     <br />
     <br />
     <% if @user && session[:user_id] = @user.id %>

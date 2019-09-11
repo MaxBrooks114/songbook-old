@@ -12,7 +12,7 @@ function listenForElementsClick() {
 
 function getElements() {
 	$.ajax({
-		url: 'http://localhost:3000/users/1/elements',
+		url: `http://localhost:3000/users/${userId}/elements`,
 		method: 'get',
 		dataType: 'json',
 		success: function (data) {

@@ -12,7 +12,7 @@ function listenForInstrumentsClick() {
 
 function getInstruments() {
 	$.ajax({
-		url: 'http://localhost:3000/users/1/instruments',
+		url: `http://localhost:3000/users/${userId}/instruments`,
 		method: 'get',
 		dataType: 'json',
 		success: function (data) {
@@ -48,9 +48,9 @@ class Instrument {
 
 	static newInstrumentForm() {
 		return (`
-		<strong>New instrument comment form</strong>
+		<strong>New instrument form</strong>
 			<form>
-				<input id='instrument-title' type='text' name='title'></input><br>
+				<select id='instrument-i_name' type='text' name='instrument-i_name' placeholder="typ"></input><br>
 				<input type='text' name='content'></input><br>
 				<input type='submit' />
 			</form>
@@ -71,7 +71,7 @@ Instrument.prototype.instrumentHTML = function () {
   }).join('')
 	return (`
 		<div class='instrument'>
-			<p>${this.display_name}) Songs: ${instrumentSongs} Elements: ${instrumentElements} <p>
+			<p>${this.display_name} Songs: ${instrumentSongs} Elements: ${instrumentElements} <p>
 
 		</div>
 	`)
