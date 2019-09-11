@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   get 'logout', to: 'sessions#destroy'
-  get '/auth/google_oauth2/callback', to: 'sessions#googlecreate'
+  get '/auth/google_oauth2/callback', to: 'sessions#google_create'
   get 'auth/failure', to: 'application#home'
 
   root to: "application#home"
