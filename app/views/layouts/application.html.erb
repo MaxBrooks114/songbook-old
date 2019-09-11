@@ -21,9 +21,13 @@
       <% end %>
       <% unless current_page?(user_songs_path(@user)) || @user.songs.empty? %>
         <%= link_to "See your Songs", user_songs_path(@user) %><br />
+        <button id='songs-data'> See your Songs </button>
+        <div id='ajax-songs'></div>
       <% end %>
       <% unless current_page?(user_elements_path(@user)) || @user.elements.empty?%>
         <%= link_to "See your Elements", user_elements_path(@user) %><br />
+        <button id='elements-data'> See your Elements</button>
+        <div id='ajax-elements'></div>
       <% end %>
       <% unless current_page?(@user) %>
         <%= link_to "Your Profile", user_path(@user) %><br />

@@ -1,10 +1,10 @@
 $(function () {
-	listenForClick()
+	listenForInstrumentsClick()
 	listenForNewInstrumentFormClick()
 });
 
-function listenForClick() {
-	$('button#instruments-data').on('click', function (event) {
+function listenForInstrumentsClick() {
+	$('button#instruments-data').one('click', function (event) {
 		event.preventDefault()
 		getInstruments()
 	})
@@ -71,7 +71,7 @@ Instrument.prototype.instrumentHTML = function () {
   }).join('')
 	return (`
 		<div class='instrument'>
-			<p>${this.display_name} Songs: ${instrumentSongs} Elements: ${instrumentElements} <p>
+			<p>${this.display_name}) Songs: ${instrumentSongs} Elements: ${instrumentElements} <p>
 
 		</div>
 	`)
