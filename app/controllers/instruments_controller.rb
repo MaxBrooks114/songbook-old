@@ -1,6 +1,6 @@
 class InstrumentsController < ApplicationController
    before_action :require_login, :set_user
-
+   skip_before_action :verify_authenticity_token
    def index
      if params[:family]
         @instrument = @user.instruments.find_by(family: params[:family])
@@ -35,7 +35,7 @@ class InstrumentsController < ApplicationController
      respond_to do |f|
         f.html {render :show}
 
-        f.json {render json: @instrument.to_json(include: [:songs, :elements])}
+        f.json {render json: @instrument}
 
     end
    end
