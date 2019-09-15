@@ -76,8 +76,10 @@ function postInstrument() {
       url: `http://localhost:3000/users/${userId}/instruments`,
       data: $(this).serialize(),
       dataType: "json",
+      success: document.getElementById("new-instrument-form-div").innerHTML = ''
     })
   })
+
 }
 
 
