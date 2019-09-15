@@ -1,43 +1,50 @@
 <!DOCTYPE html>
-  <head>
-    <title>Songbook</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Songbook</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application' %>
-    <script id='user-Id'> let userId = <%= current_user.id %></script>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application' %>
+  <script id='user-Id'>
+    let userId = <%= current_user.id %>
+  </script>
 
-  </head>
+</head>
 
-  <body>
-    <%= yield %>
+<body>
+  <%= yield %>
 
-    <br />
-    <br />
-    <br />
-    <% if @user && session[:user_id] = @user.id %>
-      <% unless current_page?(user_instruments_path(@user)) || @user.instruments.empty? %>
-        <%= link_to "See your Instruments", user_instruments_path(@user) %>
-        <button id='instruments-data'> See your Instruments </button>
-        <div id='ajax-instruments'></div>
-      <% end %>
-      <% unless current_page?(user_songs_path(@user)) || @user.songs.empty? %>
-        <%= link_to "See your Songs", user_songs_path(@user) %><br />
-        <button id='songs-data'> See your Songs </button>
-        <div id='ajax-songs'></div>
-      <% end %>
-      <% unless current_page?(user_elements_path(@user)) || @user.elements.empty?%>
-        <%= link_to "See your Elements", user_elements_path(@user) %><br />
-        <button id='elements-data'> See your Elements</button>
-        <div id='ajax-elements'></div>
-      <% end %>
-      <% unless current_page?(@user) %>
-        <%= link_to "Your Profile", user_path(@user) %><br />
-      <% end %>
-      <br />
-      <%= link_to "Log Out", logout_path, :method => :get %>
-
+  <br/>
+  <br/>
+  <br/>
+  <% if @user && session[:user_id] = @user.id %>
+    <% unless current_page?(user_instruments_path(@user)) || @user.instruments.empty? %>
+      <%= link_to "See your Instruments", user_instruments_path(@user) %>
+      <button id='instruments-data'>
+        See your Instruments
+      </button>
+      <div id='ajax-instruments'></div>
     <% end %>
-  </body>
+    <% unless current_page?(user_songs_path(@user)) || @user.songs.empty? %>
+      <%= link_to "See your Songs", user_songs_path(@user) %><br/>
+      <button id='songs-data'>
+        See your Songs
+      </button>
+      <div id='ajax-songs'></div>
+    <% end %>
+    <% unless current_page?(user_elements_path(@user)) || @user.elements.empty?%>
+      <%= link_to "See your Elements", user_elements_path(@user) %><br/>
+      <button id='elements-data'>
+        See your Elements</button>
+      <div id='ajax-elements'></div>
+    <% end %>
+    <% unless current_page?(@user) %>
+      <%= link_to "Your Profile", user_path(@user) %><br/>
+    <% end %>
+    <br/>
+    <%= link_to "Log Out", logout_path, :method => :get %>
+
+  <% end %>
+</body>
 </html>

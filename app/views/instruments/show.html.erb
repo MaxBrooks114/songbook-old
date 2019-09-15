@@ -1,23 +1,27 @@
 <h1><%= link_to @instrument.display_name, edit_user_instrument_path(@instrument) %></h1>
 <ul>
-  <li>Family: <%= @instrument.family %></li>
-  <li>Range: <%= @instrument.range %></li>
+  <li>Family:
+    <%= @instrument.family %></li>
+  <li>Range:
+    <%= @instrument.range %></li>
   <% if @instrument.picture.attached? %>
-      <%= image_tag(@instrument.picture) %><br />
+    <%= image_tag(@instrument.picture) %><br/>
   <% end %>
   <li>Songs you know on this Instrument:
-    <ul><% @instrument.songs.each do |s| %>
-      <li><%= link_to s.title, song_path(s)%>
-            <ul> <% s.elements.each do |e| %>
-                    <% if e.instrument_id == @instrument.id %>
-                      <li><%= link_to e.e_name, element_path(e) %></li>
-                    <%end%>
-                 <%end%>
-            </ul>
-      </li>
-          <%end%>
-     </ul>
+    <ul>
+      <% @instrument.songs.each do |s| %>
+        <li><%= link_to s.title, song_path(s)%>
+          <ul>
+            <% s.elements.each do |e| %>
+              <% if e.instrument_id == @instrument.id %>
+                <li><%= link_to e.e_name, element_path(e) %></li>
+              <%end%>
+            <%end%>
+          </ul>
+        </li>
+      <%end%>
+    </ul>
   </li>
 </ul>
 <%= link_to "Add a new song with this Instrument", new_user_instrument_song_path(@user, :instrument_id => @instrument.id) %><br>
-<%= link_to "Delete", user_instrument_path(@user, @instrument), method: :delete, data: { confirm: 'Are you certain you want to delete your instrument?' } %><br />
+<%= link_to "Delete", user_instrument_path(@user, @instrument), method: :delete, data: { confirm: 'Are you certain you want to delete your instrument?' } %><br/>
