@@ -1,20 +1,24 @@
-<h1><%= @user.username %>'s Elements </h1>
+<h1><%= @user.username %>'s Elements
+</h1>
 <% if @user.elements.any? %>
   <div>
     <h3>Filter Elements:</h3>
     <%= form_tag("/users/#{@user.id}/elements", method: "get") do %>
-      Name<%= select_tag "e_name", options_for_select(@user.elements.used(:e_name)), include_blank: true %>
-      Instrument <%= select_tag "instrument", options_from_collection_for_select(@instruments, "id", "i_name"), include_blank: true %>
-      Song <%= select_tag "song", options_from_collection_for_select(@songs, "id", "title"), include_blank: true %>
-      Key <%= select_tag "key", options_for_select(@user.elements.used(:key)), include_blank: true %>
-      Tempo<%= select_tag "tempo", options_for_select(@user.elements.used(:tempo).reject(&:blank?)), include_blank: true %>
-      Learned<%= select_tag "learned", options_for_select(@user.elements.used(:learned)), include_blank: true %>
-      Lyrics?<%= select_tag "learned", options_for_select(@user.elements.lyrics?), include_blank: true %>
-      <%= submit_tag "Filter" %>
-    <% end %>
-  </div>
+    Name<%= select_tag "e_name", options_for_select(@user.elements.used(:e_name)), include_blank: true %>
+    Instrument
+    <%= select_tag "instrument", options_from_collection_for_select(@instruments, "id", "i_name"), include_blank: true %>
+    Song
+    <%= select_tag "song", options_from_collection_for_select(@songs, "id", "title"), include_blank: true %>
+    Key
+    <%= select_tag "key", options_for_select(@user.elements.used(:key)), include_blank: true %>
+    Tempo<%= select_tag "tempo", options_for_select(@user.elements.used(:tempo).reject(&:blank?)), include_blank: true %>
+    Learned<%= select_tag "learned", options_for_select(@user.elements.used(:learned)), include_blank: true %>
+    Lyrics?<%= select_tag "learned", options_for_select(@user.elements.lyrics?), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
 <% end %>
 <% @elements.each do |element| %>
-  <p><%= link_to element.full_name, element %></p>
+<p><%= link_to element.full_name, element %></p>
 <% end %>
-<%= link_to "Add a new element", new_user_element_path(@user) %><br />
+<%= link_to "Add a new element", new_user_element_path(@user) %><br/>

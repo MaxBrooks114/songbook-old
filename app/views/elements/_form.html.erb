@@ -1,31 +1,32 @@
 <%= form_for [@user, @element] do |f| %>
 <%= render partial: 'layouts/errors', locals: {object: @element} %>
 <%= f.hidden_field :user_id, :value => @user.id %>
-<%= f.label :name %><br>
-<%= f.select :e_name, Element.names %></br>
+<%= f.label :name %>
+<br>
+  <%= f.select :e_name, Element.names %></br>
 <%= f.label :song %><br>
-<%= f.collection_select :song_id, @user.songs, :id, :title  %><br>
+<%= f.collection_select :song_id, @user.songs, :id, :title %><br>
 <%= f.label :instrument %><br>
 <%= f.collection_select :instrument_id, @user.instruments, :id, :name_with_range %><br>
 <%= f.label :key %>
-<%= f.select :key, Element.keys %><br />
+<%= f.select :key, Element.keys %><br/>
 <%= f.label :tempo %>
-<%= f.text_field :tempo %><br />
+<%= f.text_field :tempo %><br/>
 <%= f.label :lyrics %><br>
 <%= f.text_area :lyrics %><br>
 <%= f.label :learned %>
-<%= f.check_box :learned %><br />
+<%= f.check_box :learned %><br/>
 <%= f.label :sheet_music %>
-<%= f.file_field :sheet_music %><br />
+<%= f.file_field :sheet_music %><br/>
 <% if @element.sheet_music.attached? %>
   <%= f.label :delete_sheet_music %>
-  <%= f.check_box :delete_sheet_music %><br />
+  <%= f.check_box :delete_sheet_music %><br/>
 <% end %>
 <%= f.label :recording %>
-<%= f.file_field :recording %><br />
+<%= f.file_field :recording %><br/>
 <% if @element.recording.attached? %>
   <%= f.label :delete_recording %>
-  <%= f.check_box :delete_recording %><br />
+  <%= f.check_box :delete_recording %><br/>
 <% end %>
 <%= f.submit @element.new_record? ? "Add element" : "Update element" %>
 <% end %>
