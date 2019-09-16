@@ -23,7 +23,7 @@ function getInstruments() {
         const newInstrument = new Instrument(instrument)
         const newInstrumentsHtml = newInstrument.instrumentsHTML()
         document.getElementById('ajax-instruments').innerHTML += newInstrumentsHtml
-        listenForInstrumentClick()
+        getInstrumentOnClick()
       })
     }
   })
@@ -33,7 +33,7 @@ function getInstruments() {
 
 
 
-function listenForInstrumentClick() {
+function getInstrumentOnClick() {
   $("button.instrument-data").one('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
