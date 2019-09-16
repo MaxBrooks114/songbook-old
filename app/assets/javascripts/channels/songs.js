@@ -23,8 +23,24 @@ function getSongs() {
         const newSong = new Song(song)
         const newSongsHtml = newSong.songsHTML()
         document.getElementById('ajax-songs').innerHTML += newSongsHtml
+        getSongOnClick()
       })
     }
+  })
+}
+
+function getSongOnClick() {
+  $("button.song-data").one('click', function(event) {
+    let id = $(this).attr('data-id')
+    event.preventDefault()
+    console.log('click registered')
+    fetch(`/users/${userId}/songs/${id}.json`)
+      .then(res => res.json())
+      .then(song => {
+        const newSong = new Song(song)
+        const newSongHtml = newSong.songHTML()
+        document.getElementById(`song-${id}-details`).innerHTML += newSongHtml
+      })
   })
 }
 
@@ -45,8 +61,8 @@ class Song {
     this.genre = song.genre
     this.album = song.lyrics
     this.lyrics = song.lyrics
-    this.elements = song.elements
     this.instruments = song.instruments
+    this.elements = song.elements
   }
 
   static newSongForm() {
@@ -64,8 +80,10 @@ class Song {
 Song.prototype.songsHTML = function() {
   return (`
      <div class="song" data-id= "${this.id}">
-          ${this.title} (${this.artist})
-        </div
+          <p>${this.title} (${this.artist})</p>
+        <div id= "song-${this.id}-details"> </div>
+        <button data-id= "${this.id}" class='song-data'> See more </button>
+      </div>
     `
 
   )
@@ -74,7 +92,7 @@ Song.prototype.songsHTML = function() {
 Song.prototype.songHTML = function() {
   let songInstruments = this.instruments.map(instrument => {
     return (`
-			<p>${instrument.display_name}</p>
+			<p>${instrument.display_name)</p>
 		`)
   }).join('')
   let songElements = this.elements.map(element => {
@@ -83,9 +101,10 @@ Song.prototype.songHTML = function() {
     `)
   }).join('')
   return (`
-		<div class='song'>
-			<p>${this.title} Instruments: ${songInstruments} Elements: ${songElements} <p>
-
-		</div>
+			<p>Album: ${this.album}</p>
+      <p>Genre: ${this.genre}</p>
+      <p>Lyrics: ${this.lyrics}</p>
+      <p>Instruments: ${songInstruments}</p>
+      <p>Elements: ${songElements}</p>
 	`)
 }

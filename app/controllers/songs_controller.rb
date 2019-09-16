@@ -38,10 +38,7 @@ class SongsController < ApplicationController
     set_song
     respond_to do |f|
       f.html { render :show }
-      f.json do
-        render json: @song.to_json(only: %i[id title lyrics genre album],
-                                   include: [instruments: { only: [:i_name] }, elements: { only: [:e_name] }])
-      end
+      f.json { render json: @song }
     end
   end
 
