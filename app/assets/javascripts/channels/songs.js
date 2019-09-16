@@ -52,11 +52,27 @@ function listenForNewSongFormClick() {
       dataType: 'html',
     }).success(function(response) {
       document.getElementById("new-song-form-div").innerHTML += response
-      // postInstrument()
+      postSong()
     })
   })
 
 }
+
+function postSong() {
+  $("form").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: `http://localhost:3000/users/${userId}/songs`,
+      data: $(this).serialize(),
+      dataType: "json",
+      success: document.getElementById("new-song-form-div").innerHTML = 'Song Added!'
+    })
+  })
+
+}
+
+
 
 class Song {
   constructor(song) {
