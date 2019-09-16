@@ -18,7 +18,6 @@ function getSongs() {
     dataType: 'json',
     success: function(data) {
       console.log("the data is: ", data)
-
       data.map(song => {
         const newSong = new Song(song)
         const newSongsHtml = newSong.songsHTML()
@@ -47,10 +46,16 @@ function getSongOnClick() {
 function listenForNewSongFormClick() {
   $('button#ajax-new-song').on('click', function(event) {
     event.preventDefault()
-    let newSongForm = Song.newSongForm()
-    // $('div#new-song-form-div')
-    document.querySelector('div#new-song-form-div').innerHTML = newSongForm
+    $.ajax({
+      url: `http://localhost:3000/users/${userId}/songs/new`,
+      method: 'get',
+      dataType: 'html',
+    }).success(function(response) {
+      document.getElementById("new-song-form-div").innerHTML += response
+      // postInstrument()
+    })
   })
+
 }
 
 class Song {
@@ -65,16 +70,10 @@ class Song {
     this.elements = song.elements
   }
 
-  static newSongForm() {
-    return (`
-		<strong>New song comment form</strong>
-			<form>
-				<input id='song-title' type='text' name='title'></input><br>
-				<input type='text' name='content'></input><br>
-				<input type='submit' />
-			</form>
-		`)
-  }
+
+
+
+
 }
 
 Song.prototype.songsHTML = function() {
@@ -92,7 +91,7 @@ Song.prototype.songsHTML = function() {
 Song.prototype.songHTML = function() {
   let songInstruments = this.instruments.map(instrument => {
     return (`
-			<p>${instrument.display_name)</p>
+			<p>${instrument.display_name}</p>
 		`)
   }).join('')
   let songElements = this.elements.map(element => {

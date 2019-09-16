@@ -5,6 +5,8 @@
 <div id="new-instrument-form-div"></div>
 <% unless @user.instruments.empty? %>
   <%= link_to "Add a Song", new_user_song_path(@user) %><br/>
+  <button id='ajax-new-song'>New Song</button>
+  <div id="new-song-form-div"></div>
   <%= link_to "Add an Element", new_user_element_path(@user) %><br/>
 <% end %>
 <% if @user.instruments.any? && @user.songs.any? && @user.elements.any? %>
