@@ -1,6 +1,6 @@
 $(function() {
   listenForElementsClick()
-  listenForNewElementFormClick()
+  getNewElementFormOnClick()
 });
 
 function listenForElementsClick() {
@@ -21,18 +21,40 @@ function getElements() {
         const newElement = new Element(element)
         const newElementsHtml = newElement.elementsHTML()
         document.getElementById('ajax-elements').innerHTML += newElementsHtml
+        getElementOnClick()
       })
     }
   })
 }
 
-function listenForNewElementFormClick() {
+function getElementOnClick() {
+  $("button.element-data").one('click', function(event) {
+    let id = $(this).attr('data-id')
+    event.preventDefault()
+    console.log('click registered')
+    fetch(`/users/${userId}/elements/${id}.json`)
+      .then(res => res.json())
+      .then(element => {
+        const newElement = new Element(element)
+        const newElementHtml = newElement.elementHTML()
+        document.getElementById(`element-${id}-details`).innerHTML += newElementHtml
+      })
+  })
+}
+
+function getNewElementFormOnClick() {
   $('button#ajax-new-element').on('click', function(event) {
     event.preventDefault()
-    let newElementForm = Element.newElementForm()
-    // $('div#new-element-form-div')
-    document.querySelector('div#new-element-form-div').innerHTML = newElementForm
+    $.ajax({
+      url: `http://localhost:3000/users/${userId}/elements/new`,
+      method: 'get',
+      dataType: 'html',
+    }).success(function(response) {
+      document.getElementById("new-element-form-div").innerHTML += response
+      // postElement()
+    })
   })
+
 }
 
 class Element {
@@ -59,4 +81,13 @@ Element.prototype.elementsHTML = function() {
       <button data-id= "${this.id}" class='element-data'> See more </button>
     </div>
     `)
+}
+
+Element.prototype.elementHTML = function() {
+  return (`
+		<p> Tempo: ${this.tempo} </p>
+		<p> key: ${this.key} </p>
+		<p> Learned: ${this.learned} </p>
+		<p> Lyrics: ${this.lyrics} </p>
+		`)
 }
