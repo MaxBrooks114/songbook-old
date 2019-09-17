@@ -1,6 +1,6 @@
 $(function() {
   listenForInstrumentsClick()
-  listenForNewInstrumentFormClick()
+  getNewInstrumentFormOnClick()
 });
 
 function listenForInstrumentsClick() {
@@ -52,7 +52,7 @@ function getInstrumentOnClick() {
 
 
 
-function listenForNewInstrumentFormClick() {
+function getNewInstrumentFormOnClick() {
   $('button#ajax-new-instrument').on('click', function(event) {
     event.preventDefault()
     $.ajax({
