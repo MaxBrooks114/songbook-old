@@ -24,6 +24,7 @@ function getElements() {
         document.getElementById('ajax-elements').innerHTML += newElementsHtml
         getElementOnClick()
         getEditElementFormOnClick()
+        deleteElement()
       })
     }
   })
@@ -105,6 +106,18 @@ function postElement() {
       success: document.getElementById("new-element-form-div").innerHTML = 'Element Added!'
     })
   })
+}
+
+function deleteElement() {
+  $('button#element-delete').on('click', function(e) {
+    let id = $(this).attr('data-id')
+    e.preventDefault();
+    $.ajax({
+      type: "DELETE",
+      url: `http://localhost:3000/elements/${id}`,
+      success: document.querySelector(`.element[data-id="${id}"]`).innerHTML = 'Element Deleted!'
+    })
+  })
 
 }
 
@@ -131,7 +144,9 @@ Element.prototype.elementsHTML = function() {
       <div id= element-${this.id}-details> </div>
       <button data-id= "${this.id}" class='element-data'> See more </button>
 			<button data-id="${this.id}" id="element-edit"> Edit </button>
+			<button data-id="${this.id}" id="element-delete"> Delete </button>
 			<div id="edit-element-form"> </div>
+
     </div>
     `)
 }
