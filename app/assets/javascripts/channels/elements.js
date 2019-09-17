@@ -1,6 +1,7 @@
 $(function() {
   listenForElementsClick()
   getNewElementFormOnClick()
+
 });
 
 function listenForElementsClick() {
@@ -22,10 +23,13 @@ function getElements() {
         const newElementsHtml = newElement.elementsHTML()
         document.getElementById('ajax-elements').innerHTML += newElementsHtml
         getElementOnClick()
+        getEditElementFormOnClick()
       })
     }
   })
 }
+
+
 
 function getElementOnClick() {
   $("button.element-data").one('click', function(event) {
@@ -38,12 +42,14 @@ function getElementOnClick() {
         const newElement = new Element(element)
         const newElementHtml = newElement.elementHTML()
         document.getElementById(`element-${id}-details`).innerHTML += newElementHtml
+
       })
   })
 }
 
 function getNewElementFormOnClick() {
   $('button#ajax-new-element').on('click', function(event) {
+    let id = $(this).attr('data-id')
     event.preventDefault()
     $.ajax({
       url: `http://localhost:3000/users/${userId}/elements/new`,
@@ -52,6 +58,36 @@ function getNewElementFormOnClick() {
     }).success(function(response) {
       document.getElementById("new-element-form-div").innerHTML += response
       postElement()
+    })
+  })
+
+}
+
+function getEditElementFormOnClick() {
+  $('button#element-edit').on('click', function(event) {
+    let id = $(this).attr('data-id')
+    event.preventDefault()
+    $.ajax({
+      url: `http://localhost:3000/elements/${id}/edit`,
+      method: 'get',
+      dataType: 'html',
+    }).success(function(response) {
+      document.getElementById("edit-element-form").innerHTML += response
+      patchElement(id)
+    })
+  })
+
+}
+
+function patchElement(id) {
+  $("form").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "Patch",
+      url: `http://localhost:3000/elements/${id}`,
+      data: $(this).serialize(),
+      dataType: "json",
+      success: document.getElementById("edit-element-form").innerHTML = 'Element Changed!'
     })
   })
 
@@ -94,6 +130,8 @@ Element.prototype.elementsHTML = function() {
       <p>${this.full_name}</p>
       <div id= element-${this.id}-details> </div>
       <button data-id= "${this.id}" class='element-data'> See more </button>
+			<button data-id="${this.id}" id="element-edit"> Edit </button>
+			<div id="edit-element-form"> </div>
     </div>
     `)
 }
