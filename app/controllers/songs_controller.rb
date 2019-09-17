@@ -22,6 +22,9 @@ class SongsController < ApplicationController
     else
       @song = Song.new
     end
+    respond_to do |f|
+      f.html { render :new, layout: false }
+    end
   end
 
   def create
