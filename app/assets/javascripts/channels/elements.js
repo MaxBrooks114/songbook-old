@@ -51,7 +51,22 @@ function getNewElementFormOnClick() {
       dataType: 'html',
     }).success(function(response) {
       document.getElementById("new-element-form-div").innerHTML += response
-      // postElement()
+      postElement()
+    })
+  })
+
+}
+
+
+function postElement() {
+  $("form").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "POST",
+      url: `http://localhost:3000/users/${userId}/elements`,
+      data: $(this).serialize(),
+      dataType: "json",
+      success: document.getElementById("new-element-form-div").innerHTML = 'Element Added!'
     })
   })
 
