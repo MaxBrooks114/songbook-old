@@ -44,6 +44,9 @@ class InstrumentsController < ApplicationController
 
   def edit
     set_instrument
+    respond_to do |f|
+      f.html { render :edit, layout: false }
+    end
   end
 
   def update

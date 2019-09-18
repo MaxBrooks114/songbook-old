@@ -48,6 +48,9 @@ class SongsController < ApplicationController
   def edit
     set_song
     @instruments = @user.instruments
+    respond_to do |f|
+      f.html { render :edit, layout: false }
+    end
   end
 
   def update

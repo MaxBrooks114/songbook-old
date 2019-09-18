@@ -52,6 +52,9 @@ class ElementsController < ApplicationController
 
   def edit
     set_element
+    respond_to do |f|
+      f.html { render :edit, layout: false }
+    end
   end
 
   def update
