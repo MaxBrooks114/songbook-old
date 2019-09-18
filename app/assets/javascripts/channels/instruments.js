@@ -24,6 +24,7 @@ function getInstruments() {
         const newInstrumentsHtml = newInstrument.instrumentsHTML()
         document.getElementById('ajax-instruments').innerHTML += newInstrumentsHtml
         getInstrumentOnClick()
+        getEditInstrumentFormOnClick()
       })
     }
   })
@@ -62,6 +63,22 @@ function getNewInstrumentFormOnClick() {
     }).success(function(response) {
       document.getElementById("new-instrument-form-div").innerHTML += response
       postInstrument()
+    })
+  })
+
+}
+
+function getEditInstrumentFormOnClick() {
+  $('button#instrument-edit').on('click', function(event) {
+    let id = $(this).attr('data-id')
+    event.preventDefault()
+    $.ajax({
+      url: `http://localhost:3000/users/${userId}/instruments/${id}/edit`,
+      method: 'get',
+      dataType: 'html',
+    }).success(function(response) {
+      document.getElementById("edit-instrument-form").innerHTML += response
+      // patchElement(id)
     })
   })
 
@@ -106,6 +123,9 @@ Instrument.prototype.instrumentsHTML = function() {
       <p>${this.display_name}</p>
       <div id= instrument-${this.id}-details> </div>
       <button data-id= "${this.id}" class='instrument-data'> See more </button>
+      <button data-id="${this.id}" id="instrument-edit"> Edit </button>
+			<button data-id="${this.id}" id="instrument-delete"> Delete </button>
+      <div id="edit-instrument-form"> </div>
     </div>
     `)
 }
