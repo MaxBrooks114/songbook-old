@@ -60,7 +60,7 @@ function listenForNewSongFormClick() {
 
 
 function postSong() {
-  $("form").submit(function(e) {
+  $("form#new_song").submit(function(e) {
     e.preventDefault();
     $.ajax({
       type: "POST",

@@ -69,7 +69,7 @@ function getNewInstrumentFormOnClick() {
 
 
 function postInstrument() {
-  $("form").submit(function(e) {
+  $("form#new_instrument").submit(function(e) {
     e.preventDefault();
     $.ajax({
       type: "POST",

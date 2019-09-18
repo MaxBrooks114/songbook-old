@@ -96,7 +96,7 @@ function patchElement(id) {
 
 
 function postElement() {
-  $("form").submit(function(e) {
+  $("form#new_element").submit(function(e) {
     e.preventDefault();
     $.ajax({
       type: "POST",
