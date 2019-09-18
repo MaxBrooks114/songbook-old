@@ -78,7 +78,7 @@ function getEditInstrumentFormOnClick() {
       dataType: 'html',
     }).success(function(response) {
       document.getElementById("edit-instrument-form").innerHTML += response
-      // patchElement(id)
+      patchInstrument(id)
     })
   })
 
@@ -94,6 +94,20 @@ function postInstrument() {
       data: $(this).serialize(),
       dataType: "json",
       success: document.getElementById("new-instrument-form-div").innerHTML = 'Instrument Added!'
+    })
+  })
+
+}
+
+function patchInstrument(id) {
+  $("form").submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "Patch",
+      url: `http://localhost:3000/users/${userId}/instruments/${id}`,
+      data: $(this).serialize(),
+      dataType: "json",
+      success: document.getElementById("edit-instrument-form").innerHTML = 'Instrument Changed!'
     })
   })
 
