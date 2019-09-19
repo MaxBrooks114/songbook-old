@@ -45,7 +45,7 @@ function getSongOnClick() {
 }
 
 function getNewSongFormOnClick() {
-  $('button#ajax-new-song').on('click', function(event) {
+  $('button#ajax-new-song').one('click', function(event) {
     event.preventDefault()
     $.ajax({
       url: `http://localhost:3000/users/${userId}/songs/new`,
@@ -60,7 +60,7 @@ function getNewSongFormOnClick() {
 }
 
 function getEditSongFormOnClick() {
-  $('button#song-edit').on('click', function(event) {
+  $('button#song-edit').one('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     $.ajax({
@@ -69,7 +69,7 @@ function getEditSongFormOnClick() {
       dataType: 'html',
     }).success(function(response) {
       document.getElementById("edit-song-form").innerHTML += response
-      // patchSong(id)
+      patchSong(id)
     })
   })
 
@@ -89,6 +89,21 @@ function postSong() {
   })
 
 }
+
+function patchSong(id) {
+  $(`form#edit_song_${id}`).submit(function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: "Patch",
+      url: `http://localhost:3000/songs/${id}`,
+      data: $(this).serialize(),
+      dataType: "json",
+      success: document.getElementById("edit-song-form").innerHTML = 'Song Changed!'
+    })
+  })
+
+}
+
 
 
 
