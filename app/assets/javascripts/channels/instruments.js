@@ -99,7 +99,7 @@ function postInstrument() {
 }
 
 function patchInstrument(id) {
-  $("form").submit(function(e) {
+  $(`form#edit_instrument_${id}`).submit(function(e) {
     e.preventDefault();
     $.ajax({
       type: "Patch",
