@@ -25,13 +25,12 @@ function getInstruments() {
         document.getElementById('ajax-instruments').innerHTML += newInstrumentsHtml
         getInstrumentOnClick()
         getEditInstrumentFormOnClick()
+        deleteInstrument()
       })
     }
   })
 
 }
-
-
 
 
 function getInstrumentOnClick() {
@@ -113,6 +112,18 @@ function patchInstrument(id) {
 
 }
 
+function deleteInstrument() {
+  $('button#instrument-delete').on('click', function(e) {
+    let id = $(this).attr('data-id')
+    e.preventDefault();
+    $.ajax({
+      type: "DELETE",
+      url: `http://localhost:3000/users/${userId}/instruments/${id}`,
+      success: document.querySelector(`.instrument[data-id="${id}"]`).innerHTML = 'Instrument Deleted!'
+    })
+  })
+
+}
 
 class Instrument {
   constructor(instrument) {
