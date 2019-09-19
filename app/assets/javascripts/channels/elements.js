@@ -33,7 +33,7 @@ function getElements() {
 
 
 function getElementOnClick() {
-  $("button.element-data").one('click', function(event) {
+  $("button.element-data").on('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     console.log('click registered')
@@ -42,14 +42,14 @@ function getElementOnClick() {
       .then(element => {
         const newElement = new Element(element)
         const newElementHtml = newElement.elementHTML()
-        document.getElementById(`element-${id}-details`).innerHTML += newElementHtml
+        document.getElementById(`element-${id}-details`).innerHTML = newElementHtml
 
       })
   })
 }
 
 function getNewElementFormOnClick() {
-  $('button#ajax-new-element').on('click', function(event) {
+  $('button#ajax-new-element').one('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     $.ajax({
@@ -65,7 +65,7 @@ function getNewElementFormOnClick() {
 }
 
 function getEditElementFormOnClick() {
-  $('button#element-edit').on('click', function(event) {
+  $('button#element-edit').one('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     $.ajax({
@@ -81,7 +81,7 @@ function getEditElementFormOnClick() {
 }
 
 function patchElement(id) {
-  $("form").submit(function(e) {
+  $(`form#edit_element_${id}`).submit(function(e) {
     e.preventDefault();
     $.ajax({
       type: "Patch",
