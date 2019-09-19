@@ -67,8 +67,8 @@ function getNewInstrumentFormOnClick() {
 
 }
 
-function getEditInstrumentFormOnClick() {
-  $('button#instrument-edit').on('click', function(event) {
+function getEditInstrumentFormOnClick(id) {
+  $("button#instrument-edit").one('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     $.ajax({
@@ -136,6 +136,7 @@ class Instrument {
     this.elements = instrument.elements
     this.songs = instrument.songs
     this.display_name = instrument.display_name
+    this.picture = instrument.picture
   }
 
 
@@ -172,8 +173,10 @@ Instrument.prototype.instrumentHTML = function() {
 
 			<p> Range: ${this.range}</p>
       <p> Family: ${this.family}</p>
+      <img src= "${this.picture}"/>
       <ul> Songs: ${instrumentSongs}</ul>
       <ul> Elements: ${instrumentElements} </ul>
+
 
 	`)
 }
