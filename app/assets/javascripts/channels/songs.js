@@ -30,7 +30,7 @@ function getSongs() {
 }
 
 function getSongOnClick() {
-  $("button.song-data").one('click', function(event) {
+  $("button.song-data").on('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     console.log('click registered')
@@ -39,7 +39,7 @@ function getSongOnClick() {
       .then(song => {
         const newSong = new Song(song)
         const newSongHtml = newSong.songHTML()
-        document.getElementById(`song-${id}-details`).innerHTML += newSongHtml
+        document.getElementById(`song-${id}-details`).innerHTML = newSongHtml
       })
   })
 }
