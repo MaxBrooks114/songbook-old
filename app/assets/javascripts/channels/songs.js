@@ -1,6 +1,6 @@
 $(function() {
   listenForSongsClick()
-  listenForNewSongFormClick()
+  getNewSongFormOnClick()
 });
 
 function listenForSongsClick() {
@@ -23,6 +23,7 @@ function getSongs() {
         const newSongsHtml = newSong.songsHTML()
         document.getElementById('ajax-songs').innerHTML += newSongsHtml
         getSongOnClick()
+        getEditSongFormOnClick()
       })
     }
   })
@@ -43,7 +44,7 @@ function getSongOnClick() {
   })
 }
 
-function listenForNewSongFormClick() {
+function getNewSongFormOnClick() {
   $('button#ajax-new-song').on('click', function(event) {
     event.preventDefault()
     $.ajax({
@@ -53,6 +54,22 @@ function listenForNewSongFormClick() {
     }).success(function(response) {
       document.getElementById("new-song-form-div").innerHTML += response
       postSong()
+    })
+  })
+
+}
+
+function getEditSongFormOnClick() {
+  $('button#song-edit').on('click', function(event) {
+    let id = $(this).attr('data-id')
+    event.preventDefault()
+    $.ajax({
+      url: `http://localhost:3000/songs/${id}/edit`,
+      method: 'get',
+      dataType: 'html',
+    }).success(function(response) {
+      document.getElementById("edit-song-form").innerHTML += response
+      // patchSong(id)
     })
   })
 
@@ -99,6 +116,10 @@ Song.prototype.songsHTML = function() {
           <p>${this.title} (${this.artist})</p>
         <div id= "song-${this.id}-details"> </div>
         <button data-id= "${this.id}" class='song-data'> See more </button>
+        <button data-id="${this.id}" id="song-edit"> Edit </button>
+  			<button data-id="${this.id}" id="song-delete"> Delete </button>
+  			<div id="edit-song-form"> </div>
+
       </div>
     `
 
