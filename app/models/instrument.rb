@@ -14,7 +14,7 @@ class Instrument < ApplicationRecord
   scope :make, ->(make) { where make: make }
   before_save :normalize
 
-  attr_accessor :delete_picture
+  attribute :delete_picture, :boolean
 
   after_save :purge_picture, if: :delete_picture
   private def purge_picture
