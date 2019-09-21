@@ -5,7 +5,7 @@ $(function() {
 });
 
 function listenForElementsClick() {
-  $('button#elements-data').one('click', function(event) {
+  $('button#elements-data').on('click', function(event) {
     event.preventDefault()
     getElements()
   })
