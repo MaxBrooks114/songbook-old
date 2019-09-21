@@ -18,19 +18,27 @@ function getInstruments() {
     method: 'get',
     dataType: 'json',
     success: function(data) {
-      console.log("the data is: ", data)
-      data.map(instrument => {
-        const newInstrument = new Instrument(instrument)
-        const newInstrumentsHtml = newInstrument.instrumentsHTML()
-        document.getElementById('ajax-instruments').innerHTML += newInstrumentsHtml
+      if (data.length > 0) {
+        console.log("the data is: ", data)
+        document.getElementById('ajax-instruments').innerHTML = ""
+        data.map(instrument => {
+          const newInstrument = new Instrument(instrument)
+          const newInstrumentsHtml = newInstrument.instrumentsHTML();
+          document.getElementById('ajax-instruments').innerHTML += newInstrumentsHtml
+        })
         getInstrumentOnClick()
         getEditInstrumentFormOnClick()
         deleteInstrument()
-      })
+      } else {
+        document.getElementById('ajax-instruments').innerHTML = "You have no instruments please add one!"
+      }
+
     }
   })
 
 }
+
+
 
 
 function getInstrumentOnClick() {
