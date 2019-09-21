@@ -2,7 +2,7 @@
 <%= render partial: 'layouts/errors', locals: {object: @song} %>
 <%= f.hidden_field :user_id, :value => @user.id %>
 <%= f.label :title %><br>
-<%= f.text_field :title %><br>
+<%= f.text_field :title, required: true %><br>
 <%= f.label :artist %><br>
 <%= f.text_field :artist %><br>
 <%= f.label :album %><br>
