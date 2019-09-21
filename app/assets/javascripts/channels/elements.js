@@ -74,9 +74,10 @@ function getEditElementFormOnClick() {
       url: `http://localhost:3000/elements/${id}/edit`,
       method: 'get',
       dataType: 'html',
-    }).success(function(response) {
-      document.getElementById("edit-element-form").innerHTML += response
-      patchElement(id)
+      success: (function(response) {
+        document.getElementById("edit-element-form").innerHTML += response
+        patchElement(id)
+      })
     })
   })
 
