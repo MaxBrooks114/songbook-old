@@ -58,9 +58,9 @@ function getNewElementFormOnClick() {
       url: `http://localhost:3000/users/${userId}/elements/new`,
       method: 'get',
       dataType: 'html',
-    }).success(function(response) {
-      document.getElementById("new-element-form-div").innerHTML += response
-      postElement()
+      success: function(response) {
+        document.getElementById("new-element-form-div").innerHTML += response
+      }
     })
   })
 
