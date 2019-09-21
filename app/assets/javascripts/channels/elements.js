@@ -102,13 +102,16 @@ function patchElement(id) {
 function postElement() {
   $("form#new_element").submit(function(e) {
     e.preventDefault();
+    let formData = new FormData(document.getElementById("new_element"));
     $.ajax({
       type: "POST",
       url: `http://localhost:3000/users/${userId}/elements`,
-      data: $(this).serialize(),
-      dataType: "json",
+      data: formData,
+      contentType: false,
+      processData: false,
       success: document.getElementById("new-element-form-div").innerHTML = 'Element Added!'
     })
+
   })
 }
 
@@ -136,6 +139,8 @@ class Element {
     this.full_name = element.full_name
     this.songs = element.songs
     this.instruments = element.instruments
+    this.sheet_music = element.sheet_music
+    this.recording = element.recording
   }
 
 
