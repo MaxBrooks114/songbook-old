@@ -15,6 +15,7 @@
 <%= f.label :range %><br>
 <%= f.select :range, ['Soprano', 'Alto', 'Tenor', 'Baritone', 'Bass', 'N/A'] %><br>
 <%= f.label :picture %>
+<%= f.hidden_field :picture, value: f.object.picture.signed_id if f.object.picture.attached? %>
 <%= f.file_field :picture %><br/>
 <% if @instrument.picture.attached? %>
   <%= f.label :delete_picture %>

@@ -34,7 +34,7 @@ function getInstruments() {
 
 
 function getInstrumentOnClick() {
-  $("button.instrument-data").one('click', function(event) {
+  $("button.instrument-data").on('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     console.log('click registered')
@@ -43,7 +43,7 @@ function getInstrumentOnClick() {
       .then(instrument => {
         const newInstrument = new Instrument(instrument)
         const newInstrumentHtml = newInstrument.instrumentHTML()
-        document.getElementById(`instrument-${id}-details`).innerHTML += newInstrumentHtml
+        document.getElementById(`instrument-${id}-details`).innerHTML = newInstrumentHtml
       })
   })
 }
@@ -84,16 +84,21 @@ function getEditInstrumentFormOnClick(id) {
 }
 
 
+
+
 function postInstrument() {
   $("form#new_instrument").submit(function(e) {
     e.preventDefault();
+    let formData = new FormData(document.getElementById("new_instrument"));
     $.ajax({
       type: "POST",
       url: `http://localhost:3000/users/${userId}/instruments`,
-      data: $(this).serialize(),
-      dataType: "json",
+      data: formData,
+      contentType: false,
+      processData: false,
       success: document.getElementById("new-instrument-form-div").innerHTML = 'Instrument Added!'
     })
+
   })
 
 }
@@ -169,14 +174,26 @@ Instrument.prototype.instrumentHTML = function() {
       <li>${element.full_name}</li>
     `)
   }).join('')
-  return (`
+  if (this.picture !== null) {
+    return (`
 
 			<p> Range: ${this.range}</p>
       <p> Family: ${this.family}</p>
-      <img src= "${this.picture}"/>
+      <img src= "${this.picture}" />
       <ul> Songs: ${instrumentSongs}</ul>
       <ul> Elements: ${instrumentElements} </ul>
 
 
 	`)
+  } else {
+    return (`
+
+      <p> Range: ${this.range}</p>
+      <p> Family: ${this.family}</p>
+      <ul> Songs: ${instrumentSongs}</ul>
+      <ul> Elements: ${instrumentElements} </ul>
+
+
+  `)
+  }
 }
