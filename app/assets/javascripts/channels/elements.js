@@ -94,7 +94,7 @@ function patchElement(id) {
       processData: false,
       success: document.getElementById("edit-element-form").innerHTML = 'Element Changed!'
     })
-    getElements()
+
   })
 
 }
