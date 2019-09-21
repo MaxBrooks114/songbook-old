@@ -117,6 +117,19 @@ function patchSong(id) {
 
 }
 
+function deleteSong() {
+  $('button#song-delete').on('click', function(e) {
+    let id = $(this).attr('data-id')
+    e.preventDefault();
+    $.ajax({
+      type: "DELETE",
+      url: `http://localhost:3000/songs/${id}`,
+      success: document.querySelector(`.song[data-id="${id}"]`).innerHTML = 'Song Deleted!'
+    })
+  })
+
+}
+
 
 
 
