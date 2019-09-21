@@ -17,14 +17,21 @@ function getSongs() {
     method: 'get',
     dataType: 'json',
     success: function(data) {
-      console.log("the data is: ", data)
-      data.map(song => {
-        const newSong = new Song(song)
-        const newSongsHtml = newSong.songsHTML()
-        document.getElementById('ajax-songs').innerHTML += newSongsHtml
+      if (data.length > 0) {
+        console.log("the data is: ", data)
+        document.getElementById('ajax-songs').innerHTML = ""
+        data.map(song => {
+          const newSong = new Song(song)
+          const newSongsHtml = newSong.songsHTML()
+          document.getElementById('ajax-songs').innerHTML += newSongsHtml
+        })
         getSongOnClick()
         getEditSongFormOnClick()
-      })
+        deleteSong()
+      } else {
+        document.getElementById('ajax-songs').innerHTML = "You have no songs! Please add one!"
+      }
+
     }
   })
 }
