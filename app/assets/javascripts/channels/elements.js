@@ -17,6 +17,7 @@ function getElements() {
     method: 'get',
     dataType: 'json',
     success: function(data) {
+      document.getElementById('ajax-elements').innerHTML = ""
       console.log("the data is: ", data)
       data.map(element => {
         const newElement = new Element(element)
