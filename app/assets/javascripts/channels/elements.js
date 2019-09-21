@@ -84,13 +84,16 @@ function getEditElementFormOnClick() {
 function patchElement(id) {
   $(`form#edit_element_${id}`).submit(function(e) {
     e.preventDefault();
+    let formData = new FormData(document.getElementById(`edit_element_${id}`));
     $.ajax({
       type: "Patch",
       url: `http://localhost:3000/elements/${id}`,
-      data: $(this).serialize(),
-      dataType: "json",
+      data: formData,
+      contentType: false,
+      processData: false,
       success: document.getElementById("edit-element-form").innerHTML = 'Element Changed!'
     })
+    getElements()
   })
 
 }
