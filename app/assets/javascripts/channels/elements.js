@@ -22,10 +22,11 @@ function getElements() {
         const newElement = new Element(element)
         const newElementsHtml = newElement.elementsHTML()
         document.getElementById('ajax-elements').innerHTML += newElementsHtml
-        getElementOnClick()
-        getEditElementFormOnClick()
-        deleteElement()
+
       })
+      getElementOnClick()
+      getEditElementFormOnClick()
+      deleteElement()
     }
   })
 }
