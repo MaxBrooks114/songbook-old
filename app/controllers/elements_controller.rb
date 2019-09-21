@@ -46,7 +46,7 @@ class ElementsController < ApplicationController
     @song = @element.song
     respond_to do |f|
       f.html { render :show }
-      f.json { render json: @element.to_json(include: %i[song instrument]) }
+      f.json { render json: @element }
     end
   end
 
