@@ -165,6 +165,10 @@ Element.prototype.elementHTML = function() {
 		<p> Tempo: ${this.tempo} </p>
 		<p> key: ${this.key} </p>
 		<p> Learned: ${this.learned} </p>
+    <script> if (this.sheet_music !== null){
+    <img src="${this.sheet_music}"/>}</script>
+    <script> if (this.recording !== null){
+    <audio controls="controls" src = ${this.recording}></audio>}</script>
 		<p> Lyrics: ${this.lyrics} </p>
 		`)
 }
