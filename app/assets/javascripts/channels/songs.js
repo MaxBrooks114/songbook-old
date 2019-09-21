@@ -86,13 +86,19 @@ function getEditSongFormOnClick() {
 function postSong() {
   $("form#new_song").submit(function(e) {
     e.preventDefault();
-    $.ajax({
-      type: "POST",
-      url: `http://localhost:3000/users/${userId}/songs`,
-      data: $(this).serialize(),
-      dataType: "json",
-      success: document.getElementById("new-song-form-div").innerHTML = 'Song Added!'
-    })
+    if ($(this).find("input:checked").length == 0) {
+      //No checkbox checked
+      document.getElementById("new-song-form-div").innerHTML += "You need to pick an instrument!"
+      return false;
+    } else {
+      $.ajax({
+        type: "POST",
+        url: `http://localhost:3000/users/${userId}/songs`,
+        data: $(this).serialize(),
+        dataType: "json",
+        success: document.getElementById("new-song-form-div").innerHTML = 'Song Added!'
+      })
+    }
   })
 
 }
