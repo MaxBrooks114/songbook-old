@@ -114,11 +114,13 @@ function postInstrument() {
 function patchInstrument(id) {
   $(`form#edit_instrument_${id}`).submit(function(e) {
     e.preventDefault();
+    let formData = new FormData(document.getElementById(`edit_instrument_${id}`));
     $.ajax({
       type: "Patch",
       url: `http://localhost:3000/users/${userId}/instruments/${id}`,
-      data: $(this).serialize(),
-      dataType: "json",
+      data: formData, // this was the only way I could upload images via rails active storage as opposed to serializing the data
+      contentType: false,
+      processData: false,
       success: document.getElementById("edit-instrument-form").innerHTML = 'Instrument Changed!'
     })
   })
