@@ -4,7 +4,7 @@ $(function() {
 });
 
 function listenForInstrumentsClick() {
-  $('button#instruments-data').one('click', function(event) {
+  $('button#instruments-data').on('click', function(event) {
     event.preventDefault()
     getInstruments()
   })
