@@ -60,6 +60,7 @@ function getNewSongFormOnClick() {
       dataType: 'html',
     }).success(function(response) {
       document.getElementById("new-song-form-div").innerHTML += response
+      $("form#new_song").enableClientSideValidations();
       postSong()
     })
   })
@@ -76,6 +77,7 @@ function getEditSongFormOnClick() {
       dataType: 'html',
     }).success(function(response) {
       document.getElementById("edit-song-form").innerHTML += response
+      $(`form#edit_song_${id}`).enableClientSideValidations();
       patchSong(id)
     })
   })
