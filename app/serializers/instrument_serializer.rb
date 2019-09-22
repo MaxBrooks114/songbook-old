@@ -12,6 +12,8 @@ class InstrumentSerializer < ActiveModel::Serializer
     if object.picture.attached?
       variant = object.picture.variant(resize: '200x200')
       rails_representation_url(variant, disposition: 'attachment', only_path: true)
+    else
+      ''
     end
    end
 end
