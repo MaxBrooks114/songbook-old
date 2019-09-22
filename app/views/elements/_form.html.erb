@@ -7,7 +7,7 @@
 <%= f.label :song %><br>
 <%= f.collection_select :song_id, @user.songs, :id, :title %><br>
 <%= f.label :instrument %><br>
-<%= f.collection_select :instrument_id, @user.instruments, :id, :name_with_range %><br>
+<%= f.collection_select :instrument_id, @user.instruments, :id, :display_name %><br>
 <%= f.label :key %>
 <%= f.select :key, Element.keys %><br/>
 <%= f.label :tempo %>
