@@ -3,6 +3,13 @@ $(function() {
   getNewSongFormOnClick()
 });
 
+function clearContainer() {
+  var children = document.getElementById('container').childNodes;
+  children.forEach(function(node) {
+    node.innerHTML = ''
+  });
+}
+
 function listenForSongsClick() {
   $('button#songs-data').on('click', function(event) {
     event.preventDefault()
@@ -18,6 +25,7 @@ function getSongs() {
     dataType: 'json',
     success: function(data) {
       if (data.length > 0) {
+        clearContainer()
         console.log("the data is: ", data)
         document.getElementById('ajax-songs').innerHTML = ""
         data.map(song => {
@@ -29,6 +37,7 @@ function getSongs() {
         getEditSongFormOnClick()
         deleteSong()
       } else {
+        clearContainer()
         document.getElementById('ajax-songs').innerHTML = "You have no songs! Please add one!"
       }
 
@@ -52,16 +61,20 @@ function getSongOnClick() {
 }
 
 function getNewSongFormOnClick() {
-  $('button#ajax-new-song').one('click', function(event) {
+  $('button#ajax-new-song').on('click', function(event) {
     event.preventDefault()
     $.ajax({
       url: `http://localhost:3000/users/${userId}/songs/new`,
       method: 'get',
       dataType: 'html',
     }).success(function(response) {
-      document.getElementById("new-song-form-div").innerHTML += response
-      $("form#new_song").enableClientSideValidations();
-      postSong()
+      if ($(this).find(":checkbox").length > 0) {
+        clearContainer()
+        document.getElementById("new-song-form-div").innerHTML += response
+        $("form#new_song").enableClientSideValidations();
+        postSong()
+      } else
+        alert("You need to add an instrument before you start adding songs!")
     })
   })
 

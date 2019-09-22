@@ -3,6 +3,13 @@ $(function() {
   getNewInstrumentFormOnClick()
 });
 
+function clearContainer() {
+  var children = document.getElementById('container').childNodes;
+  children.forEach(function(node) {
+    node.innerHTML = ''
+  });
+}
+
 function listenForInstrumentsClick() {
   $('button#instruments-data').on('click', function(event) {
     event.preventDefault()
@@ -21,6 +28,7 @@ function getInstruments() {
       if (data.length > 0) {
         console.log("the data is: ", data)
         document.getElementById('ajax-instruments').innerHTML = ""
+        clearContainer()
         data.map(instrument => {
           const newInstrument = new Instrument(instrument)
           const newInstrumentsHtml = newInstrument.instrumentsHTML();
@@ -30,6 +38,7 @@ function getInstruments() {
         getEditInstrumentFormOnClick()
         deleteInstrument()
       } else {
+        clearContainer()
         document.getElementById('ajax-instruments').innerHTML = "You have no instruments please add one!"
       }
 
@@ -68,6 +77,7 @@ function getNewInstrumentFormOnClick() {
       method: 'get',
       dataType: 'html',
     }).success(function(response) {
+      clearContainer()
       document.getElementById("new-instrument-form-div").innerHTML += response
       postInstrument()
     })
@@ -76,7 +86,7 @@ function getNewInstrumentFormOnClick() {
 }
 
 function getEditInstrumentFormOnClick(id) {
-  $("button#instrument-edit").one('click', function(event) {
+  $("button#instrument-edit").on('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     $.ajax({
