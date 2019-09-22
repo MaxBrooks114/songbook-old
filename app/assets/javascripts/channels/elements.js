@@ -17,17 +17,21 @@ function getElements() {
     method: 'get',
     dataType: 'json',
     success: function(data) {
-      document.getElementById('ajax-elements').innerHTML = ""
-      console.log("the data is: ", data)
-      data.map(element => {
-        const newElement = new Element(element)
-        const newElementsHtml = newElement.elementsHTML()
-        document.getElementById('ajax-elements').innerHTML += newElementsHtml
+      if (data.length > 0) {
+        document.getElementById('ajax-elements').innerHTML = ""
+        console.log("the data is: ", data)
+        data.map(element => {
+          const newElement = new Element(element)
+          const newElementsHtml = newElement.elementsHTML()
+          document.getElementById('ajax-elements').innerHTML += newElementsHtml
 
-      })
-      getElementOnClick()
-      getEditElementFormOnClick()
-      deleteElement()
+        })
+        getElementOnClick()
+        getEditElementFormOnClick()
+        deleteElement()
+      } else {
+        document.getElementById('ajax-elements').innerHTML = "You have no elements! please add one."
+      }
     }
   })
 }
@@ -60,6 +64,7 @@ function getNewElementFormOnClick() {
       dataType: 'html',
       success: function(response) {
         document.getElementById("new-element-form-div").innerHTML += response
+        postElement()
       }
     })
   })
