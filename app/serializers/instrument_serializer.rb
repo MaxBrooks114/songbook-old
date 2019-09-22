@@ -9,6 +9,9 @@ class InstrumentSerializer < ActiveModel::Serializer
   has_many :elements
 
   def picture
-    rails_blob_path(object.picture, disposition: 'attachment', only_path: true) if object.picture.attached?
+    if object.picture.attached?
+      variant = object.picture.variant(resize: '200x200')
+      rails_representation_url(variant, disposition: 'attachment', only_path: true)
+    end
    end
 end

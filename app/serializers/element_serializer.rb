@@ -9,7 +9,10 @@ class ElementSerializer < ActiveModel::Serializer
   belongs_to :instrument
 
   def sheet_music
-    rails_blob_path(object.sheet_music, disposition: 'attachment', only_path: true) if object.sheet_music.attached?
+    if object.sheet_music.attached?
+      variant = object.sheet_music.variant(resize: '200x200')
+      rails_representation_url(variant, only_path: true)
+    end
   end
 
   def recording
