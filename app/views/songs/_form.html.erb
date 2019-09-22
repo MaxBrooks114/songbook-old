@@ -12,7 +12,7 @@
   <%= f.label :genre %><br>
   <%= f.select :genre, Song.genres.sort %><br>
   <%= f.label :Instruments %><br>
-  <%= f.collection_check_boxes(:instrument_ids, @instruments, :id, :display_name) %><br>
+  <%= f.collection_check_boxes(:instrument_ids, @user.instruments, :id, :display_name) %><br>
   <div id='elements'>
     <%= f.fields_for :elements do |element| %>
     <%= render 'element_fields', :f => element %>

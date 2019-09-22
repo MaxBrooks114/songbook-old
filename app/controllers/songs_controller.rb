@@ -16,14 +16,13 @@ class SongsController < ApplicationController
     if params[:instrument_id] && instrument = Instrument.find(params[:instrument_id])
       @song = instrument.songs.build
       @song.instruments << instrument
-    elsif Instrument.all.empty?
+    elsif @instruments.empty?
       flash[:notice] = 'Enter a new instrument first!'
-      redirect_to new_user_instrument_path(@user)
     else
       @song = Song.new
-    end
-    respond_to do |f|
-      f.html { render :new, layout: false }
+      respond_to do |f|
+        f.html { render :new, layout: false }
+      end
     end
   end
 

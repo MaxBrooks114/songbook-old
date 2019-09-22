@@ -67,14 +67,16 @@ function getNewSongFormOnClick() {
       url: `http://localhost:3000/users/${userId}/songs/new`,
       method: 'get',
       dataType: 'html',
+      statusCode: {
+        500: function() {
+          alert("you need to have at least one nstrument added before you add a song ")
+        }
+      },
     }).success(function(response) {
-      if ($(this).find(":checkbox").length > 0) {
-        clearContainer()
-        document.getElementById("new-song-form-div").innerHTML += response
-        $("form#new_song").enableClientSideValidations();
-        postSong()
-      } else
-        alert("You need to add an instrument before you start adding songs!")
+      clearContainer()
+      document.getElementById("new-song-form-div").innerHTML += response
+      $("form#new_song").enableClientSideValidations();
+      postSong()
     })
   })
 
