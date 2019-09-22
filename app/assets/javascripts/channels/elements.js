@@ -25,6 +25,7 @@ function getElements() {
     dataType: 'json',
     success: function(data) {
       if (data.length > 0) {
+        clearContainer()
         document.getElementById('ajax-elements').innerHTML = ""
         console.log("the data is: ", data)
         data.map(element => {
@@ -37,6 +38,7 @@ function getElements() {
         getEditElementFormOnClick()
         deleteElement()
       } else {
+        clearContainer()
         document.getElementById('ajax-elements').innerHTML = "You have no elements! please add one."
       }
     }
@@ -62,14 +64,20 @@ function getElementOnClick() {
 }
 
 function getNewElementFormOnClick() {
-  $('button#ajax-new-element').one('click', function(event) {
+  $('button#ajax-new-element').on('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     $.ajax({
       url: `http://localhost:3000/users/${userId}/elements/new`,
       method: 'get',
       dataType: 'html',
+      statusCode: {
+        500: function() {
+          alert("you need to have at least one song and one instrument added before you add an element ")
+        }
+      },
       success: function(response) {
+        clearContainer()
         document.getElementById("new-element-form-div").innerHTML += response
         postElement()
       }
@@ -87,6 +95,7 @@ function getEditElementFormOnClick() {
       method: 'get',
       dataType: 'html',
       success: (function(response) {
+        clearContainer()
         document.getElementById("edit-element-form").innerHTML += response
         patchElement(id)
       })
