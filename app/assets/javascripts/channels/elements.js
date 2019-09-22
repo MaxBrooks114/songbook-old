@@ -87,7 +87,7 @@ function getNewElementFormOnClick() {
 }
 
 function getEditElementFormOnClick() {
-  $('button#element-edit').one('click', function(event) {
+  $('button#element-edit').on('click', function(event) {
     let id = $(this).attr('data-id')
     event.preventDefault()
     $.ajax({
@@ -95,8 +95,7 @@ function getEditElementFormOnClick() {
       method: 'get',
       dataType: 'html',
       success: (function(response) {
-        clearContainer()
-        document.getElementById("edit-element-form").innerHTML += response
+        document.getElementById("edit-element-form").innerHTML = response
         patchElement(id)
       })
     })
@@ -184,14 +183,13 @@ Element.prototype.elementsHTML = function() {
 }
 
 Element.prototype.elementHTML = function() {
+
   return (`
 		<p> Tempo: ${this.tempo} </p>
 		<p> key: ${this.key} </p>
 		<p> Learned: ${this.learned} </p>
-    <script> if (this.sheet_music !== null){
-    <img src="${this.sheet_music}"/>}</script>
-    <script> if (this.recording !== null){
-    <audio controls="controls" src = ${this.recording}></audio>}</script>
+    ${this.sheet_music}
+    ${this.recording}
 		<p> Lyrics: ${this.lyrics} </p>
 		`)
 }

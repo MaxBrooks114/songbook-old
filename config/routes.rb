@@ -2,8 +2,8 @@
 
 Rails.application.routes.draw do
   resources :users do
-    get 'stats', to: 'users#stats'
     resources :elements
+    get 'stats', to: 'users#stats'
 
     resources :songs do
       resources :elements, shallow: true

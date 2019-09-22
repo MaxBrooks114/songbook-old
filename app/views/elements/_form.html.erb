@@ -23,7 +23,8 @@
   <%= f.check_box :delete_sheet_music %><br/>
 <% end %>
 <%= f.label :recording %>
-<%= f.file_field :recording, direct_upload: true %><br/>
+<%= f.file_field :recording %><br/>
+<%= f.hidden_field :recording, value: f.object.recording.signed_id if f.object.recording.attached? %>
 <% if @element.recording.attached? %>
   <%= f.label :delete_recording %>
   <%= f.check_box :delete_recording %><br/>

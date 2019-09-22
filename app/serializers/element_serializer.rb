@@ -11,12 +11,18 @@ class ElementSerializer < ActiveModel::Serializer
   def sheet_music
     if object.sheet_music.attached?
       variant = object.sheet_music.variant(resize: '200x200')
-      rails_representation_url(variant, only_path: true)
+      "<img src=\"#{rails_representation_url(variant, only_path: true)}\"/>"
+    else
+      ' '
     end
   end
 
   def recording
-    rails_blob_path(object.recording, only_path: true) if object.recording.attached?
+    if object.recording.attached?
+      "<audio controls=\"controls\" src= \"#{rails_blob_path(object.recording, only_path: true)}\"></audio>"
+    else
+      ' '
+    end
   end
 
   def tempo

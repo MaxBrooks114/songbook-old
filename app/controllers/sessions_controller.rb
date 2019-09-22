@@ -20,13 +20,6 @@ class SessionsController < ApplicationController
     redirect_to @user
   end
 
-  def spotify_create
-    @user = current_user
-    spotify = SpotifyService.new
-    session[:token] = spotify.authenticate!(ENV['FOURSQUARE_CLIENT_ID'], ENV['FOURSQUARE_SECRET'], params[:code])
-    redirect_to @user
-  end
-
   def auth
     request.env['omniauth.auth']
   end
