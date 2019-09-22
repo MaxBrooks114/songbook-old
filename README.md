@@ -1,7 +1,9 @@
 Songbook is an app that let's you manage your instrument collection, as well as your song library!
 
-TO DO:
+To use:
 
-access spotify API for users to search for songs to add to their song repertoire
+Fork, clone, run those migrations, bundle gems, and start running your server.
 
-search a song and add it
+If you find bugs please file an issue with your error in the description.
+
+This uses MIT license. 
