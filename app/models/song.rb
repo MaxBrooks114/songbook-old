@@ -8,7 +8,7 @@ class Song < ApplicationRecord
   has_many :elements, inverse_of: :song, dependent: :destroy
   accepts_nested_attributes_for :elements, reject_if: :all_blank, allow_destroy: true
   belongs_to :user, inverse_of: :songs
-  validates :title, presence: { message: 'must be given please' }
+  validates :title, presence: true, uniqueness: { scope: :artist }
   scope :instruments, ->(instrument) { Song.joins(:instruments_songs).where(instruments_songs: { id: InstrumentsSong.where(instrument: Instrument.where(id: instrument)) }) }
   scope :artist, ->(artist) { where artist: artist }
   scope :album, ->(album) { where album: album }
