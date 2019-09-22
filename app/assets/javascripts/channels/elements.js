@@ -11,6 +11,13 @@ function listenForElementsClick() {
   })
 }
 
+function clearContainer() {
+  var children = document.getElementById('container').childNodes;
+  children.forEach(function(node) {
+    node.innerHTML = ''
+  });
+}
+
 function getElements() {
   $.ajax({
     url: `http://localhost:3000/users/${userId}/elements`,
