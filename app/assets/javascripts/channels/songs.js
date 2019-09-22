@@ -4,7 +4,7 @@ $(function() {
 });
 
 function listenForSongsClick() {
-  $('button#songs-data').one('click', function(event) {
+  $('button#songs-data').on('click', function(event) {
     event.preventDefault()
     getSongs()
   })
