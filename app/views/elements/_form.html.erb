@@ -18,6 +18,7 @@
 <%= f.check_box :learned %><br/>
 <%= f.label :sheet_music %>
 <%= f.file_field :sheet_music, direct_upload: true %><br/>
+<%= f.hidden_field :sheet_music, value: f.object.sheet_music.signed_id if f.object.sheet_music.attached? %>
 <% if @element.sheet_music.attached? %>
   <%= f.label :delete_sheet_music %>
   <%= f.check_box :delete_sheet_music %><br/>
