@@ -1,31 +1,28 @@
 <%= form_for [@user, @song], :validate => true do |f| %>
 <%= render partial: 'layouts/errors', locals: {object: @song} %>
-<%= f.hidden_field :user_id, :value => @user.id %>
-<%= f.label :title %><br>
-<%= f.text_field :title %><br>
-<%= f.label :artist %><br>
-<%= f.text_field :artist %><br>
-<%= f.label :album %><br>
-<%= f.text_field :album%><br>
-<%= f.label :genre %><br>
-<%= f.select :genre, Song.genres.sort %><br>
-<% if @instruments.empty? %>
-  <%= link_to "You Have no instruments! Add one here first", new_user_instrument_path %>
-<%else %>
+<fieldset>
+
+  <%= f.hidden_field :user_id, :value => @user.id %>
+  <%= f.label :title %><br>
+  <%= f.text_field :title %><br>
+  <%= f.label :artist %><br>
+  <%= f.text_field :artist %><br>
+  <%= f.label :album %><br>
+  <%= f.text_field :album%><br>
+  <%= f.label :genre %><br>
+  <%= f.select :genre, Song.genres.sort %><br>
   <%= f.label :Instruments %><br>
   <%= f.collection_check_boxes(:instrument_ids, @instruments, :id, :display_name) %><br>
-<%end%>
-<div id='elements'>
-  <%if !@song.new_record? %>
+  <div id='elements'>
     <%= f.fields_for :elements do |element| %>
     <%= render 'element_fields', :f => element %>
-  <% end %>
-  <div class='links'>
-    <%= link_to_add_association 'add element', f, :elements, html_options = { count: 0 } %>
-  </div>
-<%end%>
+    <div class='links'>
+      <%= link_to_add_association 'add element', f, :elements, html_options = { count: 0 } %>
+    </div>
+  <%end%>
 </div>
 <%= f.label :lyrics %><br>
 <%= f.text_area :lyrics %><br>
+</fieldset>
 <%= f.submit @song.new_record? ? "Add Song" : "Update Song" %>
 <%end%>
