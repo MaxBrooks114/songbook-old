@@ -85,14 +85,11 @@ function getEditSongFormOnClick() {
 }
 
 
+
 function postSong() {
   $("form#new_song").submit(function(e) {
     e.preventDefault();
-    if ($(this).find("input:checked").length == 0) {
-      //No checkbox checked
-      document.getElementById("new-song-form-div").innerHTML += "You need to pick an instrument!"
-      return false;
-    } else {
+    if ($(this).find("input:checked").length > 0) {
       $.ajax({
         type: "POST",
         url: `http://localhost:3000/users/${userId}/songs`,
@@ -100,6 +97,9 @@ function postSong() {
         dataType: "json",
         success: document.getElementById("new-song-form-div").innerHTML = 'Song Added!'
       })
+    } else { //No checkbox checked
+      return false;
+      document.getElementById("new-song-form-div").innerHTML += "You need to pick an instrument!"
     }
   })
 
