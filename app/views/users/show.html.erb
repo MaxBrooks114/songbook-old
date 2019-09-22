@@ -1,54 +1,83 @@
 <h1><%= link_to @user.username.titleize, edit_user_path(@user) %>'s Songbook</h1>
 
-<%= link_to "Add an Instrument", new_user_instrument_path(@user) %><br/>
-<button id='ajax-new-instrument'>New Instrument</button>
-<div id="new-instrument-form-div"></div>
-<% unless @user.instruments.empty? %>
-  <%= link_to "Add a Song", new_user_song_path(@user) %><br/>
-  <button id='ajax-new-song'>New Song</button>
-  <div id="new-song-form-div"></div>
-  <%= link_to "Add an Element", new_user_element_path(@user) %><br/>
-  <button id='ajax-new-element'>New Element</button>
-  <div id="new-element-form-div"></div>
-<% end %>
-<% if @user.instruments.any? && @user.songs.any? && @user.elements.any? %>
-  <p>Favorite Instrument:
-    <%= link_to @user.elements.favorite(:instrument).display_name, user_instrument_path(@user, @user.elements.favorite(:instrument)) %></p>
-  <p>Favorite Song:
-    <%=link_to @user.elements.favorite(:song).title, user_song_path(@user, @user.elements.favorite(:song)) %></p>
-  <p>Elements Learned:
-    <%= link_to @user.elements.learned_count, user_elements_path(@user) %></p>
-  <p>Songs Added:
-    <%= link_to @user.songs.song_count, user_songs_path(@user) %>
-  </p>
-  <p>Favorite Artist:
-    <%= link_to @user.songs.favorite(:artist), user_songs_path(@user, :artist => @user.songs.favorite(:artist)) %>
-  </p>
-  <p>Favorite Genre:
-    <%= link_to @user.songs.favorite(:genre), user_songs_path(@user, :genre => @user.songs.favorite(:genre)) %>
-  </p>
-  <p>Favorite Album:
-    <%= link_to @user.songs.favorite(:album), user_songs_path(@user, :album => @user.songs.favorite(:album)) %>
-  </p>
-  <p>Favorite Instrument Range:
-    <%= link_to @user.instruments.favorite(:range), user_instruments_path(@user, :range => @user.instruments.favorite(:range)) %>
-  </p>
-  <p>Favorite Instrument Family:
-    <%= link_to @user.instruments.favorite(:family), user_instruments_path(@user, :family => @user.instruments.favorite(:family)) %>
-  </p>
-  <p>Favorite Element:
-    <%= link_to @user.elements.favorite(:e_name), user_elements_path(@user, :e_name => @user.elements.favorite(:e_name)) %>
-  </p>
-  <p>Favorite key:
-    <%= link_to @user.elements.favorite(:key), user_elements_path(@user, :key => @user.elements.favorite(:key))%>
-  </p>
-  <% unless @user.elements.fastest.blank? %>
-    <p>Fastest Tempo:
-      <%= link_to @user.elements.fastest, user_elements_path(@user, :tempo => @user.elements.fastest) %>
+<% if @user.instruments.empty? %>
+  <div class="warning">
+    <p>
+      Before you start adding songs or elements please add an instrument!
     </p>
-  <% end %>
-<% end %>
-<br/>
-<br/>
+  </div>
+  <% elsif @user.songs.empty? %>
+    <div class="warning">
+      <p>
+        Before you start adding elements please add a song first!
+      </p>
+    </div>
+  <%end%>
 
-</br/>
+</div>
+<% if @user && session[:user_id] = @user.id %>
+  <nav>
+    <button id='ajax-new-instrument'>New Instrument</button>
+    <div id="new-instrument-form-div"></div>
+    <button id='ajax-new-song'>New Song</button>
+    <div id="new-song-form-div"></div>
+    <button id='ajax-new-element'>New Element</button>
+    <div id="new-element-form-div"></div>
+    <button id='instruments-data'>
+      See your Instruments
+    </button>
+    <div id='ajax-instruments'></div>
+    <button id='songs-data'>
+      See your Songs
+    </button>
+    <div id='ajax-songs'></div>
+    <button id='elements-data'>
+      See your Elements</button>
+    <div id='ajax-elements'></div>
+  </nav>
+  <div id="new-instrument-form-div"></div>
+
+  <br/>
+  <br/>
+  <%= link_to "Log Out", logout_path, :method => :get %>
+
+  <% if @user.instruments.any? && @user.songs.any? && @user.elements.any? %>
+    <p>Favorite Instrument:
+      <%= link_to @user.elements.favorite(:instrument).display_name, user_instrument_path(@user, @user.elements.favorite(:instrument)) %></p>
+    <p>Favorite Song:
+      <%=link_to @user.elements.favorite(:song).title, user_song_path(@user, @user.elements.favorite(:song)) %></p>
+    <p>Elements Learned:
+      <%= link_to @user.elements.learned_count, user_elements_path(@user) %></p>
+    <p>Songs Added:
+      <%= link_to @user.songs.song_count, user_songs_path(@user) %>
+    </p>
+    <p>Favorite Artist:
+      <%= link_to @user.songs.favorite(:artist), user_songs_path(@user, :artist => @user.songs.favorite(:artist)) %>
+    </p>
+    <p>Favorite Genre:
+      <%= link_to @user.songs.favorite(:genre), user_songs_path(@user, :genre => @user.songs.favorite(:genre)) %>
+    </p>
+    <p>Favorite Album:
+      <%= link_to @user.songs.favorite(:album), user_songs_path(@user, :album => @user.songs.favorite(:album)) %>
+    </p>
+    <p>Favorite Instrument Range:
+      <%= link_to @user.instruments.favorite(:range), user_instruments_path(@user, :range => @user.instruments.favorite(:range)) %>
+    </p>
+    <p>Favorite Instrument Family:
+      <%= link_to @user.instruments.favorite(:family), user_instruments_path(@user, :family => @user.instruments.favorite(:family)) %>
+    </p>
+    <p>Favorite Element:
+      <%= link_to @user.elements.favorite(:e_name), user_elements_path(@user, :e_name => @user.elements.favorite(:e_name)) %>
+    </p>
+    <p>Favorite key:
+      <%= link_to @user.elements.favorite(:key), user_elements_path(@user, :key => @user.elements.favorite(:key))%>
+    </p>
+    <% unless @user.elements.fastest.blank? %>
+      <p>Fastest Tempo:
+        <%= link_to @user.elements.fastest, user_elements_path(@user, :tempo => @user.elements.fastest) %>
+      </p>
+    <% end %>
+  <% end %>
+  <br/>
+  <br/>
+<%end%>
