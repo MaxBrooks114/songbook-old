@@ -1,8 +1,8 @@
-<%= form_for [@user, @element] do |f| %>
+<%= form_for [@user, @element], validate: true do |f| %>
 <%= render partial: 'layouts/errors', locals: {object: @element} %>
 <%= f.hidden_field :user_id, :value => @user.id %>
-<%= f.label :name %>
-<br>
+<fieldset>
+  <%= f.label :name %>
   <%= f.select :e_name, Element.names %></br>
 <%= f.label :song %><br>
 <%= f.collection_select :song_id, @user.songs, :id, :title %><br>
@@ -28,5 +28,6 @@
   <%= f.label :delete_recording %>
   <%= f.check_box :delete_recording %><br/>
 <% end %>
+</fieldset>
 <%= f.submit @element.new_record? ? "Add element" : "Update element" %>
 <% end %>
