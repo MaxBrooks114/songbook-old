@@ -69,7 +69,7 @@ function getNewSongFormOnClick() {
       dataType: 'html',
       statusCode: {
         500: function() {
-          alert("you need to have at least one nstrument added before you add a song ")
+          alert("you need to have at least one Instrument added before you add a song ")
         }
       },
     }).success(function(response) {
@@ -113,8 +113,8 @@ function postSong() {
         success: document.getElementById("new-song-form-div").innerHTML = 'Song Added!'
       })
     } else { //No checkbox checked
-      return false;
       document.getElementById("new-song-form-div").innerHTML += "You need to pick an instrument!"
+      return false;
     }
   })
 
@@ -156,7 +156,7 @@ class Song {
     this.title = song.title
     this.artist = song.artist
     this.genre = song.genre
-    this.album = song.lyrics
+    this.album = song.album
     this.lyrics = song.lyrics
     this.instruments = song.instruments
     this.elements = song.elements
@@ -203,3 +203,73 @@ Song.prototype.songHTML = function() {
       <p>Elements: ${songElements}</p>
 	`)
 }
+
+
+
+function scopey() {
+  console.log(b)
+  var a = "first Value"
+  let b = "first Value"
+  const c = "first Value"
+  d = "first Value"
+
+  if (true) {
+    var a = "second Value"
+    let b = "second Value"
+    const c = "second Value"
+    d = "second Value"
+  }
+
+  // what will each statement log to the console?
+  console.log("a (var) is,", a)
+  console.log("b (let) is,", b)
+  console.log("c (const) is,", c)
+  console.log("d (evil) is,", d)
+}
+
+var paid;
+
+
+paid = function() {
+  console.log('Original salary was', salary)
+
+  salary = '$5000'
+
+  console.log('My New Salary', salary)
+}
+
+paid()
+
+
+var salary = '$1000'
+
+
+
+
+this.character = 'Daisy'
+
+const game = {
+  character: 'Mario',
+  details: {
+    character: 'Yoshi',
+    characterName: function() {
+      return this.character
+    },
+    arrowCharacterName: () => this.character
+  }
+}
+
+let characterNameFn = game.details.characterName
+
+
+characterNameFn()//  "Daisy"
+
+game.details.characterName.bind(this)()
+
+
+game.details.character // "Yoshi"
+
+game.details.characterName() // "Yoshi"
+
+
+characterNameFn.call(game)
